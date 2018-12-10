@@ -31,7 +31,20 @@ class Tables extends React.Component{
         
         const rowSelection = {
             onSelect: (record, selected, selectedRows, nativeEvent) => {
-                selected ? this.props.addSelectedTable(record) : this.props.removeSlectedTable(record)
+                if(selected){
+                    this.props.addSelectedTable(record)
+                } else {
+                    // let removeColumn
+                    //
+                    // this.props.getSelectedObjs.filter(obj => (removeColumn = obj.columnList) && obj.tableName != record.tableName  )
+                    //
+                    // removeColumn.forEach(column => this.columnSelectedKeys.find((key, index) => column.tableName + '*@' + column.columnName == key ? this.columnSelectedKeys.splice(index, 1) : undefined))
+                    //
+                    // this.props.dispatch(setCoulumnSelectedRowKeys(this.columnSelectedKeys))
+
+                    this.props.removeSlectedTable(record)
+                }
+
             }
         }
 

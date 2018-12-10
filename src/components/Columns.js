@@ -18,22 +18,22 @@ class Columns extends React.Component{
         }]
 
         let {columnArr, columnSelectedRowKeys, getSelectedObjs, addSelectedColumn,
-            removeSelectedColumn, updateColumnSelectedKeys, dispatchColumnSelectedKeys} = this.props
+            removeSelectedColumn, updateColumnSelectedRowKeys, dispatchColumnSelectedRowKeys} = this.props
 
         const rowSelection = {
             selectedRowKeys: columnSelectedRowKeys,
-            onChange: selectedRowKeys => updateColumnSelectedKeys(selectedRowKeys),
+            onChange: selectedRowKeys => updateColumnSelectedRowKeys(selectedRowKeys),
             onSelect: (record, selected, selectedRows, nativeEvent) => {
                 if (selected) {
                     if (getSelectedObjs().find(obj => obj.tableName == record.tableName)) {
                         addSelectedColumn(record)
-                        dispatchColumnSelectedKeys()
+                        dispatchColumnSelectedRowKeys()
                     } else {
                         message.error('请勾选数据库列对应的数据库表！')
                     }
                 } else {
                     removeSelectedColumn(record)
-                    dispatchColumnSelectedKeys()
+                    dispatchColumnSelectedRowKeys()
                 }
             }
         }
