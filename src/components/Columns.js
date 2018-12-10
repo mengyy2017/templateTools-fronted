@@ -1,8 +1,7 @@
 import 'antd/dist/antd.less'
 import React from 'react'
 import {connect} from 'react-redux'
-import { Table, Col,message } from 'antd'
-import {setCoulumnSelectedRowKeys} from 'actions/databaseAction'
+import { Table, Col, message } from 'antd'
 
 class Columns extends React.Component{
 
@@ -17,30 +16,23 @@ class Columns extends React.Component{
             dataIndex: 'columnComment',
         }]
 
-        let {columnArr, columnSelectedRowKeys, getSelectedObjs, addSelectedColumn,
-            removeSelectedColumn, updateColumnSelectedRowKeys, dispatchColumnSelectedRowKeys} = this.props
+        let {colArr, selectedColKeys, getSelectedObjs, addSelectedCol,
+            rmSelectedCol, updateSelectedColKeys, dispatchSelectedColKeys} = this.props
 
         const rowSelection = {
-            selectedRowKeys: columnSelectedRowKeys,
-            onChange: selectedRowKeys => updateColumnSelectedRowKeys(selectedRowKeys),
+            selectedRowKeys: selectedColKeys,
+            onChange: selectedRowKeys => updateSelectedColKeys(selectedRowKeys),
             onSelect: (record, selected, selectedRows, nativeEvent) => {
-                if (selected) {
-                    if (getSelectedObjs().find(obj => obj.tableName == record.tableName)) {
-                        addSelectedColumn(record)
-                        dispatchColumnSelectedRowKeys()
-                    } else {
-                        message.error('请勾选数据库列对应的数据库表！')
-                    }
-                } else {
-                    removeSelectedColumn(record)
-                    dispatchColumnSelectedRowKeys()
-                }
+                if (selected)
+                    getSelectedObjs().find(obj => obj.tableName == record.tableName) ? addSelectedCol(record) && dispatchSelectedColKeys() : message.error('请勾选数据库列对应的数据库表！')
+                else
+                    rmSelectedCol(record) && dispatchSelectedColKeys()
             }
         }
 
         return (
             <Col span={12}>
-                <Table rowSelection={rowSelection} dataSource={columnArr}
+                <Table rowSelection={rowSelection} dataSource={colArr}
                        pagination={{pageSize: 20}} rowKey={record => record.tableName + '*@' + record.columnName} columns={columns} scroll={{y: 330}} />
             </Col>
         )
@@ -48,8 +40,8 @@ class Columns extends React.Component{
 }
 
 var mapStateToProps = state => {
-    const {columnArr = [], columnSelectedRowKeys = []} = state.columns ? state.columns : {}
-    return {columnArr, columnSelectedRowKeys}
+    const {colArr = [], selectedColKeys = []} = state.columns ? state.columns : {}
+    return {colArr, selectedColKeys}
 }
 
 export default connect(mapStateToProps)(Columns)

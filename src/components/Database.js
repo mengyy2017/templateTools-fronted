@@ -1,46 +1,51 @@
 import React from "react"
 import {Button, Col, Row} from "antd";
-import {createCodeAction, setCoulumnSelectedRowKeys} from 'actions/databaseAction'
+import {createCodeAction, setSelectedColKeys} from 'actions/databaseAction'
 import connect from "react-redux/es/connect/connect";
 
 class Database extends React.Component {
 
     selectedObjs = []
+    selectedColKeys = []
+
+    addSelectedTable = record => this.selectedObjs.push({tableName: record.tableName, colList: []})
+
+    rmSlectedTable = record => {
+
+        let rmColList
+        this.selectedObjs = this.selectedObjs.filter(obj => obj.tableName != record.tableName || (rmColList = obj.colList) == undefined )
+
+        // rmColList.forEach(col => this.selectedColKeys.find((key, index) => col.tableName + '*@' + col.columnName == key ? this.selectedColKeys.splice(index, 1) : undefined))
+        // 不能直接改 this.selectedColKeys  虽然 this.selectedColKeys 和 Column 中
+        // const rowSelection = {
+        //     selectedRowKeys: selectedColKeys,
+        //     ......
+        // }
+        // 的键没有关系  和他的值也没有关系  但是改 this.selectedColKeys state中的 selectedColKeys 就会跟着变  不知道为什么
+        // 好像有点明白了......  updateSelectedColKeys 中将 this.selectedColKeys 和 传进来的参数做了关联
+        // 而这个传进来的参数是antd onChange事件的参数  这个参数很可能跟state有关  你在这里改this.selectedColKeys
+        // 就相当于通过这个引用去改实际对象的值  参数和state也就跟着一块改了
+
+        this.selectedKeys = [...this.selectedColKeys]
+        rmColList.forEach(col => this.selectedKeys.find((key, index) => col.tableName + '*@' + col.columnName == key ? this.selectedKeys.splice(index, 1) : undefined))
+
+        this.props.dispatch(setSelectedColKeys(this.selectedKeys))
+        this.updateSelectedColKeys(this.selectedKeys)
+    }
+
+    addSelectedCol = record => this.selectedObjs.find(obj => obj.tableName == record.tableName ? obj.colList = [record, ...obj.colList] : undefined)
+
+    rmSelectedCol = record => this.selectedObjs.find(obj => obj.tableName == record.tableName ? obj.colList = obj.colList.filter(col => col.columnName != record.columnName) : undefined)
+
+
 
     getSelectedObjs = () => this.selectedObjs
 
-    addSelectedTable = record => this.selectedObjs.push({tableName: record.tableName, columnList: []})
-
-    removeSlectedTable = record => {
-
-        let removeColumn
-        this.selectedObjs = this.selectedObjs.filter(obj => obj.tableName != record.tableName || (removeColumn = obj.columnList) == undefined )
-
-        // removeColumn.forEach(column => this.colSelectedKeys.find((key, index) => column.tableName + '*@' + column.columnName == key ? this.colSelectedKeys.splice(index, 1) : undefined))
-        // 不能直接改 this.colSelectedKeys  虽然 this.colSelectedKeys 和 Column 中
-        // const rowSelection = {
-        //     selectedRowKeys: columnSelectedRowKeys,
-        //     ......
-        // }
-        // 的键没有关系  和他的值也没有关系  但是改 this.colSelectedKeys state中的columnSelectedRowKeys就会跟着变  不知道为什么
-        // 好像有点明白了......  updateColumnSelectedRowKeys中将 this.colSelectedKeys 和 传进来的参数做了关联
-        // 而这个传进来的参数是antd onChange事件的参数  这个参数很可能跟state有关  你在这里改this.colSelectedKeys
-        // 就相当于通过这个引用去改实际对象的值  参数和state也就跟着一块改了
-
-        this.finallySelectedKeys = [...this.colSelectedKeys]
-        removeColumn.forEach(column => this.finallySelectedKeys.find((key, index) => column.tableName + '*@' + column.columnName == key ? this.finallySelectedKeys.splice(index, 1) : undefined))
-
-        this.props.dispatch(setCoulumnSelectedRowKeys(this.finallySelectedKeys))
-        this.updateColumnSelectedRowKeys(this.finallySelectedKeys)
-    }
-
-    addSelectedColumn = record => this.selectedObjs.find(obj => obj.tableName == record.tableName ? obj.columnList = [record, ...obj.columnList] : undefined)
-
-    removeSelectedColumn = record => this.selectedObjs.find(obj => obj.tableName == record.tableName ? obj.columnList = obj.columnList.filter(column => column.columnName != record.columnName) : undefined)
-
-    updateColumnSelectedRowKeys = keys => this.colSelectedKeys = keys
+    updateSelectedColKeys = keys => this.selectedColKeys = keys
     
-    dispatchColumnSelectedRowKeys = () => this.props.dispatch(setCoulumnSelectedRowKeys(this.colSelectedKeys))
+    dispatchSelectedColKeys = () => this.props.dispatch(setSelectedColKeys(this.selectedColKeys))
+
+
 
     createCode = () => this.props.dispatch(createCodeAction(this.selectedObjs))
 
@@ -52,13 +57,13 @@ class Database extends React.Component {
 
                 return React.cloneElement(child, {
                         addSelectedTable: this.addSelectedTable,
-                        removeSlectedTable: this.removeSlectedTable,
-                        addSelectedColumn: this.addSelectedColumn,
-                        removeSelectedColumn: this.removeSelectedColumn,
+                        rmSlectedTable: this.rmSlectedTable,
+                        addSelectedCol: this.addSelectedCol,
+                        rmSelectedCol: this.rmSelectedCol,
                         getSelectedObjs: this.getSelectedObjs,
-                        updateColumnSelectedRowKeys: this.updateColumnSelectedRowKeys,
-                        dispatchColumnSelectedRowKeys: this.dispatchColumnSelectedRowKeys,
-                        // colSelectedKeys: this.colSelectedKeys,
+                        updateSelectedColKeys: this.updateSelectedColKeys,
+                        dispatchSelectedColKeys: this.dispatchSelectedColKeys,
+                        // selectedColKeys: this.selectedColKeys,
                         ...otherProps
                     })
             }
@@ -75,9 +80,6 @@ class Database extends React.Component {
     }
 }
 
-var mapStateToProps = state => {
-    const {columnArr = [], columnSelectedRowKeys = []} = state.columns ? state.columns : {}
-    return {columnArr, columnSelectedRowKeys}
-}
+var mapStateToProps = state => ({})
 
 export default connect(mapStateToProps)(Database)

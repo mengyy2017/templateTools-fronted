@@ -13,12 +13,14 @@ export const getTablesAction = data => dispatch => {
 }
 
 
+
 export const GET_COLUMNS = 'GET_COLUMNS'
 export const GET_COLUMNS_ERR = 'GET_COLUMNS_ERR'
-export const SET_COLUMN_KEYS_SELECTED = 'SET_COLUMN_KEYS_SELECTED'
+export const SET_SELECTED_COL_KEYS = 'SET_SELECTED_COL_KEYS'
+
 export const getColumnsSuccess = data => ({type: GET_COLUMNS, data})
 export const getColumnsFail = err => ({type: GET_COLUMNS_ERR, err})
-export const setColumnKeysSelected = selectedKeys => ({type: SET_COLUMN_KEYS_SELECTED, selectedKeys})
+export const setSelectedCol = selectedKeys => ({type: SET_SELECTED_COL_KEYS, selectedKeys})
 
 export const getColumnsAction = data => dispatch => {
     axios.get('http://127.0.0.1:8099/database/getAllColumns', {params: {'tableName': data}})
@@ -26,7 +28,8 @@ export const getColumnsAction = data => dispatch => {
             err => dispatch(getColumnsFail(err))
         )
 }
-export const setCoulumnSelectedRowKeys = selectedKeys => dispatch => dispatch(setColumnKeysSelected(selectedKeys))
+export const setSelectedColKeys = selectedKeys => dispatch => dispatch(setSelectedCol(selectedKeys))
+
 
 
 export const createCodeAction = data => dispatch => {
