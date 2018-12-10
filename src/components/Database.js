@@ -14,7 +14,7 @@ class Database extends React.Component {
     removeSlectedTable = record => {
 
         let removeColumn
-        this.selectedObjs = this.selectedObjs.filter(obj => (removeColumn = obj.columnList) && obj.tableName != record.tableName  )
+        this.selectedObjs = this.selectedObjs.filter(obj => obj.tableName != record.tableName || (removeColumn = obj.columnList) == undefined )
 
         // removeColumn.forEach(column => this.colSelectedKeys.find((key, index) => column.tableName + '*@' + column.columnName == key ? this.colSelectedKeys.splice(index, 1) : undefined))
         // 不能直接改 this.colSelectedKeys  虽然 this.colSelectedKeys 和 Column 中
@@ -27,12 +27,11 @@ class Database extends React.Component {
         // 而这个传进来的参数是antd onChange事件的参数  这个参数很可能跟state有关  你在这里改this.colSelectedKeys
         // 就相当于通过这个引用去改实际对象的值  参数和state也就跟着一块改了
 
-
         this.finallySelectedKeys = [...this.colSelectedKeys]
         removeColumn.forEach(column => this.finallySelectedKeys.find((key, index) => column.tableName + '*@' + column.columnName == key ? this.finallySelectedKeys.splice(index, 1) : undefined))
 
         this.props.dispatch(setCoulumnSelectedRowKeys(this.finallySelectedKeys))
-
+        this.updateColumnSelectedRowKeys(this.finallySelectedKeys)
     }
 
     addSelectedColumn = record => this.selectedObjs.find(obj => obj.tableName == record.tableName ? obj.columnList = [record, ...obj.columnList] : undefined)
