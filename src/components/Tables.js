@@ -31,7 +31,7 @@ class Tables extends React.Component{
         
         const rowSelection = {
             onSelect: (record, selected, selectedRows, nativeEvent) => {
-                selected ? this.props.addSelectedTables(record) : this.props.removeSlectedTables(record)
+                selected ? this.props.addSelectedTable(record) : this.props.removeSlectedTable(record)
             }
         }
 
@@ -43,9 +43,7 @@ class Tables extends React.Component{
                        pagination={{pageSize: 20}} rowKey="id" columns={columns} scroll={{y: 330}} />
             </Col>
         )
-
     }
-
 }
 
 var mapStateToProps = state => ({tablesArr: state.tables ? state.tables.tablesArr : [] })

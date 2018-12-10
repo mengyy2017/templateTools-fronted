@@ -1,6 +1,5 @@
 import axios from 'axios'
 
-
 export const GET_TABLES = 'GET_TABLES'
 export const GET_TABLES_ERR = 'GET_TABLES_ERR'
 export const getTablesSuccess = data => ({type: GET_TABLES, data})
@@ -16,8 +15,10 @@ export const getTablesAction = data => dispatch => {
 
 export const GET_COLUMNS = 'GET_COLUMNS'
 export const GET_COLUMNS_ERR = 'GET_COLUMNS_ERR'
+export const SET_COLUMN_KEYS_SELECTED = 'SET_COLUMN_KEYS_SELECTED'
 export const getColumnsSuccess = data => ({type: GET_COLUMNS, data})
 export const getColumnsFail = err => ({type: GET_COLUMNS_ERR, err})
+export const setColumnKeysSelected = selectedKeys => ({type: SET_COLUMN_KEYS_SELECTED, selectedKeys})
 
 export const getColumnsAction = data => dispatch => {
     axios.get('http://127.0.0.1:8099/database/getAllColumns', {params: {'tableName': data}})
@@ -25,9 +26,10 @@ export const getColumnsAction = data => dispatch => {
             err => dispatch(getColumnsFail(err))
         )
 }
+export const setCoulumnSelectedRowKeys = selectedKeys => dispatch => dispatch(setColumnKeysSelected(selectedKeys))
+
 
 export const createCodeAction = data => dispatch => {
-
     axios({
         method: 'POST',
         url: 'http://127.0.0.1:8099/database/createCode',

@@ -2,22 +2,9 @@ import 'antd/dist/antd.less'
 import React from 'react'
 import {connect} from 'react-redux'
 import { Table, Col,message } from 'antd'
-import {getColumnsAction} from 'actions/databaseAction'
+import {setCoulumnSelectedRowKeys} from 'actions/databaseAction'
 
 class Columns extends React.Component{
-
-    constructor(props) {
-        super(props);
-        // this.state = {
-        //     columnSelectedRowKeys: []
-        // }
-    }
-
-    onRow = (record) => ({
-        onClick: () => {
-        }
-    })
-
 
     render = () => {
 
@@ -29,48 +16,40 @@ class Columns extends React.Component{
             title: '列注释',
             dataIndex: 'columnComment',
         }]
-        
+
+        let {columnArr, columnSelectedRowKeys, getSelectedObjs, addSelectedColumn,
+            removeSelectedColumn, updateColumnSelectedKeys, dispatchColumnSelectedKeys} = this.props
+
         const rowSelection = {
-            // selectedRowKeys: this.state.columnSelectedRowKeys,
-            onChange: (selectedRowKeys, selectedRows) => {
-
-                // console.log(selectedRows)
-                // let slectedRecord =  selectedRows[selectedRows.length - 1] || {}
-                // if(this.props.selectedObjs.find(obj => obj.tableName == slectedRecord.tableName)){
-                //     this.setState({ columnSelectedRowKeys: selectedRowKeys })
-                //
-                // }
-
-                // this.props.selectedObjs.find(obj => obj.tableName == selectedRows[selectedRows.length - 1].tableName) ? this.setState({ columnSelectedRowKeys: selectedRowKeys }) == undefined :  message.error('请勾选数据库列对应的数据库表！')
-                // console.log(selectedRowKeys)
-                // console.log(selectedRows)
-            },
+            selectedRowKeys: columnSelectedRowKeys,
+            onChange: selectedRowKeys => updateColumnSelectedKeys(selectedRowKeys),
             onSelect: (record, selected, selectedRows, nativeEvent) => {
-                if(selected){
-                    if(this.props.selectedObjs.find(obj => obj.tableName == record.tableName))
-                        this.props.addSelectedColumns(record)
-                    else
+                if (selected) {
+                    if (getSelectedObjs().find(obj => obj.tableName == record.tableName)) {
+                        addSelectedColumn(record)
+                        dispatchColumnSelectedKeys()
+                    } else {
                         message.error('请勾选数据库列对应的数据库表！')
+                    }
                 } else {
-                    this.props.removeSelectedColumns(record)
+                    removeSelectedColumn(record)
+                    dispatchColumnSelectedKeys()
                 }
-
             }
         }
 
-        let {columnsArr} = this.props
-
         return (
             <Col span={12}>
-                <Table onRow={this.onRow.bind(this)} rowSelection={rowSelection} dataSource={columnsArr} 
-                       pagination={{pageSize: 20}} rowKey={record => record.tableName + '*@'+ record.columnName} columns={columns} scroll={{y: 330}} />
+                <Table rowSelection={rowSelection} dataSource={columnArr}
+                       pagination={{pageSize: 20}} rowKey={record => record.tableName + '*@' + record.columnName} columns={columns} scroll={{y: 330}} />
             </Col>
         )
-
     }
-
 }
 
-var mapStateToProps = state => ({columnsArr: state.columns ? state.columns.columnsArr : []})
+var mapStateToProps = state => {
+    const {columnArr = [], columnSelectedRowKeys = []} = state.columns ? state.columns : {}
+    return {columnArr, columnSelectedRowKeys}
+}
 
 export default connect(mapStateToProps)(Columns)

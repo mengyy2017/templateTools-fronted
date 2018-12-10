@@ -7,10 +7,7 @@ import Columns from 'components/Columns'
 import 'styles/index.css'
 
 class Container extends React.Component {
-
-    componentWillMount = () => {
-    }
-
+    
     render = () => {
         return (
             <div>

@@ -1,4 +1,4 @@
-import {GET_TABLES, GET_COLUMNS} from 'actions/databaseAction'
+import {GET_TABLES, GET_COLUMNS, SET_COLUMN_KEYS_SELECTED } from 'actions/databaseAction'
 
 export const tables = (prevState = {}, action) => {
     switch (action.type) {
@@ -12,7 +12,9 @@ export const tables = (prevState = {}, action) => {
 export const columns = (prevState = {}, action) => {
     switch (action.type) {
         case GET_COLUMNS:
-            return Object.assign({}, prevState, {columnsArr: action.data})
+            return Object.assign({}, prevState, {columnArr: action.data})
+        case SET_COLUMN_KEYS_SELECTED:
+            return Object.assign({}, prevState, {columnSelectedRowKeys: action.selectedKeys})
         default:
             return prevState
     }
