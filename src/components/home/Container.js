@@ -1,6 +1,5 @@
 import React from "react"
-import {Route} from "react-router-dom"
-import {Button, Col, Row} from "antd"
+import {Row} from "antd"
 import Database from 'components/Database'
 import Tables from 'components/Tables'
 import Columns from 'components/Columns'

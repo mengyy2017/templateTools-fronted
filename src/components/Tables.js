@@ -11,9 +11,7 @@ class Tables extends React.Component{
     }
 
     onRow = record => ({
-        onClick: () => {
-            this.props.dispatch(getColumnsAction(record.tableName))
-        }
+        onClick: () => this.props.dispatch(getColumnsAction(record.tableName))
     })
 
     render = () => {
@@ -38,7 +36,7 @@ class Tables extends React.Component{
 
         return (
             <Col span={12}>
-                <Table onRow={this.onRow.bind(this)} rowSelection={rowSelection} dataSource={tablesArr}
+                <Table onRow={this.onRow} rowSelection={rowSelection} dataSource={tablesArr}
                        pagination={{pageSize: 20}} rowKey="id" columns={columns} scroll={{y: 330}} />
             </Col>
         )

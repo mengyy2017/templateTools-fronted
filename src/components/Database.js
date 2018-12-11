@@ -63,7 +63,6 @@ class Database extends React.Component {
                         getSelectedObjs: this.getSelectedObjs,
                         updateSelectedColKeys: this.updateSelectedColKeys,
                         dispatchSelectedColKeys: this.dispatchSelectedColKeys,
-                        // selectedColKeys: this.selectedColKeys,
                         ...otherProps
                     })
             }

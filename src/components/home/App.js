@@ -1,9 +1,7 @@
 import React from "react"
-import {Route} from 'react-router-dom'
 import Container from './Container'
 
 class App extends React.Component{
-
     render = () => {
         return (
             <div className="wrapper">
@@ -11,7 +9,6 @@ class App extends React.Component{
             </div>
         )
     }
-
 }
 
 export default App
