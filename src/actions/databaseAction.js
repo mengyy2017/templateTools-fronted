@@ -5,11 +5,19 @@ export const GET_TABLES_ERR = 'GET_TABLES_ERR'
 export const getTablesSuccess = data => ({type: GET_TABLES, data})
 export const getTablesFail = err => ({type: GET_TABLES_ERR, err})
 
-export const getTablesAction = data => dispatch => {
-    axios.get('http://127.0.0.1:8099/database/getAllTables?id=' + data)
-        .then(response => dispatch(getTablesSuccess(response.data)),
-            err => dispatch(getTablesFail(err))
-        )
+export const getTablesAction = data => async dispatch => {
+    // axios.get('http://127.0.0.1:8099/database/getAllTables?id=' + data)
+    //     .then(response => dispatch(getTablesSuccess(response.data)),
+    //         err => dispatch(getTablesFail(err))
+    //     )
+
+    // try {
+        let response = await axios.get('http://127.0.0.1:8099/database/getAllTables?id=' + data)
+        dispatch(getTablesSuccess(response.data))
+    // } catch (e) {
+    //     getTablesFail(e)
+    // }
+
 }
 
 
