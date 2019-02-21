@@ -30,9 +30,11 @@ class Tables extends React.Component{
         let {tablesArr, addSelectedTable, rmSlectedTable} = this.props
 
         const rowSelection = {
-            onSelect: (record, selected) => selected ? addSelectedTable(record) : rmSlectedTable(record)
+            onSelect: (record, selected) => selected ? addSelectedTable(record) : rmSlectedTable(record),
+            onSelectAll: (selected, selectedRows, changeRows) => {
+                console.log(selected, selectedRows, changeRows);
+            }
         }
-
 
         return (
             <Col span={12}>

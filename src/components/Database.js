@@ -33,6 +33,7 @@ class Database extends React.Component {
         this.updateSelectedColKeys(this.selectedKeys)
     }
 
+    // 这两个是更新选中的这条数据的信息 包含主键和其他的信息 传入后台的需要的是整条数据信息  跟state无关 不会引起对勾变化
     addSelectedCol = record => this.selectedObjs.find(obj => obj.tableName == record.tableName ? obj.colList = [record, ...obj.colList] : undefined)
 
     rmSelectedCol = record => this.selectedObjs.find(obj => obj.tableName == record.tableName ? obj.colList = obj.colList.filter(col => col.columnName != record.columnName) : undefined)
@@ -41,6 +42,7 @@ class Database extends React.Component {
 
     getSelectedObjs = () => this.selectedObjs
 
+    // 这个只更新主键 跟state有关系 更新后对勾会变化
     updateSelectedColKeys = keys => this.selectedColKeys = keys
     
     dispatchSelectedColKeys = () => this.props.dispatch(setSelectedColKeys(this.selectedColKeys))
