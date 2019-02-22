@@ -27,7 +27,7 @@ class Tables extends React.Component{
             dataIndex: 'tableComment',
         }]
         
-        let {tablesArr, addSelectedTable, rmSlectedTable, rmAllSelectedTables} = this.props
+        let {tablesArr, addSelectedTable, rmSlectedTable} = this.props
 
         const rowSelection = {
             onSelect: (record, selected) => selected ? addSelectedTable(record) : rmSlectedTable(record),

@@ -33,8 +33,6 @@ class Database extends React.Component {
         this.updateSelectedColKeys(this.selectedKeys)
     }
 
-    rmAllSelectedTables = () => this.selectedObjs = []
-
     // 这两个是更新选中的这条数据的信息 包含主键和其他的信息 传入后台的需要的是整条数据信息  跟state无关 不会引起对勾变化
     addSelectedCol = record => this.selectedObjs.find(obj => obj.tableName == record.tableName ? obj.colList = [record, ...obj.colList] : undefined)
 
@@ -62,7 +60,6 @@ class Database extends React.Component {
                 return React.cloneElement(child, {
                         addSelectedTable: this.addSelectedTable,
                         rmSlectedTable: this.rmSlectedTable,
-                        rmAllSelectedTables: this.rmAllSelectedTables,
                         addSelectedCol: this.addSelectedCol,
                         rmSelectedCol: this.rmSelectedCol,
                         getSelectedObjs: this.getSelectedObjs,

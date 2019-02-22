@@ -11,5 +11,9 @@ body, html {
     margin-bottom: 20px;
 }
 
+.tab-panel-margin {
+    margin-right: 200px!important;
+}
+
 
 
