@@ -27,6 +27,20 @@ class Columns extends React.Component{
                     getSelectedObjs().find(obj => obj.tableName == record.tableName) ? addSelectedCol(record) && dispatchSelectedColKeys() : message.error('请勾选数据库列对应的数据库表！')
                 else
                     rmSelectedCol(record) && dispatchSelectedColKeys()
+            },
+            onSelectAll: (selected, selectedRows, changeRows) => {
+                if (selected){
+                    for(let record of changeRows) {
+                        if(getSelectedObjs().find(obj => obj.tableName == record.tableName)) {
+                            addSelectedCol(record) && dispatchSelectedColKeys()
+                        } else {
+                            message.error('请勾选数据库列对应的数据库表！')
+                            break
+                        }
+                    }
+                } else {
+                    changeRows.forEach(record => rmSelectedCol(record) && dispatchSelectedColKeys())
+                }
             }
         }
 

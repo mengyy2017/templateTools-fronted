@@ -27,12 +27,12 @@ class Tables extends React.Component{
             dataIndex: 'tableComment',
         }]
         
-        let {tablesArr, addSelectedTable, rmSlectedTable} = this.props
+        let {tablesArr, addSelectedTable, rmSlectedTable, rmAllSelectedTables} = this.props
 
         const rowSelection = {
             onSelect: (record, selected) => selected ? addSelectedTable(record) : rmSlectedTable(record),
             onSelectAll: (selected, selectedRows, changeRows) => {
-                console.log(selected, selectedRows, changeRows);
+                selected ? changeRows.forEach(record => addSelectedTable(record)) : changeRows.forEach(record => rmSlectedTable(record))
             }
         }
 
