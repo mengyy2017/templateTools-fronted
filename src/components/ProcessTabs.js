@@ -25,7 +25,7 @@ class ProcessTabs extends React.Component{
                         <CodeFormInfo changeActiveKey={this.changeActiveKey.bind(this)}/>
                     </TabPane>
                     <TabPane disabled tab="Tab 1" key="1">
-                        <SelectDataTab/>
+                        <SelectDataTab changeActiveKey={this.changeActiveKey.bind(this)}/>
                     </TabPane>
                     <TabPane disabled tab="Tab 2" key="2">Content of Tab Pane 3</TabPane>
                 </Tabs>

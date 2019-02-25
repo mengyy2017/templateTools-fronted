@@ -52,7 +52,7 @@ class CodeFormInfo extends React.Component{
                     >
                         {getFieldDecorator('databaseType', {
                             rules: [
-                                { required: true, message: 'Please select your database type!' },
+                                { required: false, message: 'Please select your database type!' },
                             ],
                         })(
                             <Select placeholder="Please select a database type">
@@ -67,7 +67,7 @@ class CodeFormInfo extends React.Component{
                         label="database schema"
                     >
                         {getFieldDecorator('databaseSchema', {
-                            rules: [{ required: true, message: 'Please input your database schema!', whitespace: true }],
+                            rules: [{ required: false, message: 'Please input your database schema!', whitespace: true }],
                         })(
                             <Input />
                         )}
@@ -78,7 +78,7 @@ class CodeFormInfo extends React.Component{
                         label="code package"
                     >
                         {getFieldDecorator('codePackage', {
-                            rules: [{ required: true, message: 'Please input your code package!', whitespace: true }],
+                            rules: [{ required: false, message: 'Please input your code package!', whitespace: true }],
                         })(
                             <Input />
                         )}

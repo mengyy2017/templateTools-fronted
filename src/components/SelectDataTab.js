@@ -9,7 +9,7 @@ class SelectDataTab extends React.Component{
     render = () => {
 
         return (
-            <Database>
+            <Database changeActiveKey={this.props.changeActiveKey}>
                 <Tables/>
                 <Columns/>
             </Database>

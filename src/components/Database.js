@@ -51,6 +51,8 @@ class Database extends React.Component {
 
     createCode = () => this.props.dispatch(createCodeAction(this.selectedObjs))
 
+    last = () => this.props.changeActiveKey("0")
+
     render = () => {
 
         let {children, ...otherProps} = this.props
@@ -75,7 +77,19 @@ class Database extends React.Component {
                 <Row type="flex" justify="end" className="header">
                     <Col span={14}><Button type="primary" onClick={this.createCode}>生成代码</Button></Col>
                 </Row>
-                {childrenWithProps}
+                <Row>
+                    {childrenWithProps}
+                </Row>
+                <Row>
+                    <Col span={8}>
+                    </Col>
+                    <Col span={8}>
+                        <Button type="primary" htmlType="submit" onClick={this.last}>last</Button>
+                    </Col>
+                    <Col span={8}>
+                        <Button type="primary" htmlType="submit">next</Button>
+                    </Col>
+                </Row>
             </div>
         )
     }
