@@ -1,7 +1,6 @@
 import React from "react"
 import {Route} from 'react-router-dom'
 import {Row} from "antd"
-import SelectDataTab from 'components/SelectDataTab'
 import 'styles/index.css'
 import {Switch} from "react-router";
 import ProcessTabs from "components/ProcessTabs";
@@ -14,8 +13,18 @@ class Container extends React.Component {
 
                 <Row gutter={32}>
                     <Switch>
-                        <Route exact path="/" component={ProcessTabs}/>
-                        <Route path="/selectDataTab" component={SelectDataTab}/>
+                        <Route exact path="/" render={() => <h3>hi</h3>}/>
+                        <Route path="/select" component={ProcessTabs}/>
+
+
+                        {/*直接使用render返回内容也是可以的*/}
+                        {/*<Route exact path="/selectData" render={() => <Tabs className="tabs-property" defaultActiveKey="1" onChange={this.callback}>*/}
+                            {/*<TabPane tab="Tab 1" key="1">*/}
+                                {/*<SelectDataTab/>*/}
+                            {/*</TabPane>*/}
+                            {/*<TabPane tab="Tab 2" key="2">Content of Tab Pane 222</TabPane>*/}
+                            {/*<TabPane tab="Tab 3" key="3">Content of Tab Pane 3</TabPane>*/}
+                        {/*</Tabs>}/>*/}
                     </Switch>
                 </Row>
 
