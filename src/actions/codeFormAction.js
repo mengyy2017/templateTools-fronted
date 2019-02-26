@@ -1,6 +1,10 @@
 import axios from 'axios'
 import {getTablesSuccess} from "actions/databaseAction";
 
+export const SET_CREATE_INFO_TOKEN = "SET_CODE_INFO_TOKEN"
+
+export const setCreateInfoToken = data => ({type: SET_CREATE_INFO_TOKEN, data})
+
 export const setCodeInfoAction = data => async dispatch => {
     let response = await axios({
         method: 'POST',
@@ -11,4 +15,9 @@ export const setCodeInfoAction = data => async dispatch => {
     // console.log(response)
     dispatch(getTablesSuccess(response.data))
 
+    const {createInfoToken} = response.data
+
+    debugger
+    if(createInfoToken)
+        dispatch(setCreateInfoToken(createInfoToken))
 }
