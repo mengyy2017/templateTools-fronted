@@ -12,7 +12,9 @@ export const getTablesAction = data => async dispatch => {
     //     )
 
     // try {
-        let response = await axios.get('http://127.0.0.1:8099/database/getAllTables?id=' + data)
+    debugger
+        let response = await axios.get('http://127.0.0.1:8099/database/getAllTables')
+    debugger
         dispatch(getTablesSuccess(response.data))
     // } catch (e) {
     //     getTablesFail(e)

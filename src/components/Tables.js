@@ -7,7 +7,7 @@ import {getTablesAction, getColumnsAction} from 'actions/databaseAction'
 class Tables extends React.Component{
 
     componentWillMount(){
-        this.props.dispatch(getTablesAction())
+        // this.props.dispatch(getTablesAction())
     }
 
     onRow = record => ({

@@ -13,6 +13,7 @@ class ProcessTabs extends React.Component{
 
     changeActiveKey = (key) => {
         console.log(key);
+
         this.setState({activeKey: key})
     }
 

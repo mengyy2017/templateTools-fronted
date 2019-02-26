@@ -1,6 +1,7 @@
 import React from "react";
 import connect from "react-redux/es/connect/connect";
 import {Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, AutoComplete,} from 'antd';
+import {setCodeInfoAction} from "actions/codeFormAction";
 
 class CodeFormInfo extends React.Component{
 
@@ -9,6 +10,7 @@ class CodeFormInfo extends React.Component{
         this.props.form.validateFieldsAndScroll((err, values) => {
             if (!err) {
                 console.log('Received values of form: ', values);
+                this.props.dispatch(setCodeInfoAction(values))
                 this.props.changeActiveKey("1")
             }
         });
@@ -17,8 +19,7 @@ class CodeFormInfo extends React.Component{
     render = () => {
 
         const { getFieldDecorator } = this.props.form;
-        // const {changeActiveKey} = this.props
-        
+
         const formItemLayout = {
             labelCol: {
                 xs: { span: 24 },
@@ -37,7 +38,7 @@ class CodeFormInfo extends React.Component{
                 },
                 sm: {
                     span: 16,
-                    offset: 8,
+                    offset: 12,
                 },
             },
         };
@@ -46,30 +47,83 @@ class CodeFormInfo extends React.Component{
             <div>
 
                 <Form onSubmit={this.next}>
+
+                    <Form.Item
+                        {...formItemLayout}
+                        label="database address"
+                        placeholder="Please input your database address"
+                    >
+                        {getFieldDecorator('databaseAdress', {
+                            initialValue: "127.0.0.1",
+                            rules: [{ required: true, message: 'Please input your database schema!', whitespace: true }],
+                        })(
+                            <Input />
+                        )}
+                    </Form.Item>
+
                     <Form.Item
                         {...formItemLayout}
                         label="database type"
                     >
                         {getFieldDecorator('databaseType', {
+                            initialValue: "mysql",
                             rules: [
-                                { required: false, message: 'Please select your database type!' },
+                                { required: true, message: 'Please select your database type!' },
                             ],
                         })(
                             <Select placeholder="Please select a database type">
-                                <Select.Option value="china">Mysql</Select.Option>
-                                <Select.Option value="usa">Oracle</Select.Option>
+                                <Select.Option value="mysql">mysql</Select.Option>
+                                <Select.Option value="oracle">oracle</Select.Option>
                             </Select>
                         )}
                     </Form.Item>
 
                     <Form.Item
                         {...formItemLayout}
+                        label="database port"
+                    >
+                        {getFieldDecorator('databasePort', {
+                            initialValue: "3306",
+                            rules: [{ required: true, message: 'Please input your database port!', whitespace: true }],
+                        })(
+                            <Input  placeholder="Please input your database port" />
+                        )}
+                    </Form.Item>
+
+                    <Form.Item
+                        {...formItemLayout}
                         label="database schema"
+                        placeholder="Please input your database schema"
                     >
                         {getFieldDecorator('databaseSchema', {
-                            rules: [{ required: false, message: 'Please input your database schema!', whitespace: true }],
+                            initialValue: "wxj",
+                            rules: [{ required: true, message: 'Please input your database schema!', whitespace: true }],
                         })(
                             <Input />
+                        )}
+                    </Form.Item>
+
+                    <Form.Item
+                        {...formItemLayout}
+                        label="database username"
+                    >
+                        {getFieldDecorator('databaseUsername', {
+                            initialValue: "root",
+                            rules: [{ required: true, message: 'Please input your database username!', whitespace: true }],
+                        })(
+                            <Input placeholder="Please input your database username"/>
+                        )}
+                    </Form.Item>
+
+                    <Form.Item
+                        {...formItemLayout}
+                        label="database password"
+                    >
+                        {getFieldDecorator('databasePassword', {
+                            initialValue: "1",
+                            rules: [{ required: true, message: 'Please input your database password!', whitespace: true }],
+                        })(
+                            <Input placeholder="Please input your database password" />
                         )}
                     </Form.Item>
 
@@ -78,7 +132,8 @@ class CodeFormInfo extends React.Component{
                         label="code package"
                     >
                         {getFieldDecorator('codePackage', {
-                            rules: [{ required: false, message: 'Please input your code package!', whitespace: true }],
+                            initialValue: "com.yishi",
+                            rules: [{ required: true, message: 'Please input your code package!', whitespace: true }],
                         })(
                             <Input />
                         )}
@@ -89,6 +144,7 @@ class CodeFormInfo extends React.Component{
                         label="author"
                     >
                         {getFieldDecorator('author', {
+                            initialValue: "",
                             rules: [{ required: false, message: 'Please input author!', whitespace: true }],
                         })(
                             <Input />
