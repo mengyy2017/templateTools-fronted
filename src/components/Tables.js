@@ -11,7 +11,7 @@ class Tables extends React.Component{
     }
 
     onRow = record => ({
-        onClick: () => this.props.dispatch(getColumnsAction(record.tableName))
+        onClick: () => this.props.dispatch(getColumnsAction({"tableSchema": record.tableSchema, "tableName": record.tableName}))
     })
 
     render = () => {

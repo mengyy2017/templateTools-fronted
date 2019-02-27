@@ -44,7 +44,7 @@ export const getColumnsAction = data => dispatch => {
     axios({
         method: 'get',
         url: 'http://127.0.0.1:8099/database/getAllColumns',
-        data: {'tableName': data},
+        params: data,
         withCredentials: true
     }).then(response => dispatch(getColumnsSuccess(response.data)),
             err => dispatch(getColumnsFail(err))
