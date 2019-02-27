@@ -11,13 +11,13 @@ export const setCodeInfoAction = data => async dispatch => {
         url: 'http://127.0.0.1:8099/database/setCreateInfo',
         headers: { 'content-type': 'application/json'},
         data: JSON.stringify(data),
+        withCredentials: true
     })
     // console.log(response)
     dispatch(getTablesSuccess(response.data))
 
     const {createInfoToken} = response.data
 
-    debugger
     if(createInfoToken)
         dispatch(setCreateInfoToken(createInfoToken))
 }

@@ -12,7 +12,12 @@ export const getTablesAction = data => async dispatch => {
     //     )
 
     // try {
-        let response = await axios.get('http://127.0.0.1:8099/database/getAllTables')
+    //     let response = await axios.get('http://127.0.0.1:8099/database/getAllTables')
+        let response = await axios({
+            method: 'get',
+            url: 'http://127.0.0.1:8099/database/getAllTables',
+            withCredentials: true
+        })
         dispatch(getTablesSuccess(response.data))
     // } catch (e) {
     //     getTablesFail(e)
@@ -31,10 +36,20 @@ export const getColumnsFail = err => ({type: GET_COLUMNS_ERR, err})
 export const setSelectedCol = selectedKeys => ({type: SET_SELECTED_COL_KEYS, selectedKeys})
 
 export const getColumnsAction = data => dispatch => {
-    axios.get('http://127.0.0.1:8099/database/getAllColumns', {params: {'tableName': data}})
-        .then(response => dispatch(getColumnsSuccess(response.data)),
+    // axios.get('http://127.0.0.1:8099/database/getAllColumns', {params: {'tableName': data}})
+    //     .then(response => dispatch(getColumnsSuccess(response.data)),
+    //         err => dispatch(getColumnsFail(err))
+    //     )
+
+    axios({
+        method: 'get',
+        url: 'http://127.0.0.1:8099/database/getAllColumns',
+        data: {'tableName': data},
+        withCredentials: true
+    }).then(response => dispatch(getColumnsSuccess(response.data)),
             err => dispatch(getColumnsFail(err))
         )
+
 }
 export const setSelectedColKeys = selectedKeys => dispatch => dispatch(setSelectedCol(selectedKeys))
 
@@ -46,6 +61,7 @@ export const createCodeAction = data => dispatch => {
         url: 'http://127.0.0.1:8099/database/createCode',
         headers: { 'content-type': 'application/json'},
         data: JSON.stringify(data),
+        withCredentials: true
     }).then(response => console.log(response))
 }
     
