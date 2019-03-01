@@ -3,25 +3,22 @@ import React from "react";
 import connect from "react-redux/es/connect/connect";
 import SelectDataTab from "components/SelectDataTab";
 import CodeFormInfo from "components/CodeFormInfo";
+import {setActiveKeyAction} from "actions/processTabsAction";
 const TabPane = Tabs.TabPane;
 
 class ProcessTabs extends React.Component{
 
-    state = {
-            activeKey: "0",
-        }
-
     changeActiveKey = (key) => {
-        console.log(key);
-
-        this.setState({activeKey: key})
+        this.props.dispatch(setActiveKeyAction(key))
     }
 
     render = () => {
 
+        const {activeKey} = this.props
+
         return (
             <div>
-                <Tabs className="tabs-property" defaultActiveKey="1" activeKey={this.state.activeKey} onChange={this.changeActiveKey}>
+                <Tabs className="tabs-property" defaultActiveKey="1" activeKey={activeKey} onChange={this.changeActiveKey}>
                     <TabPane disabled tab="Tab 0" key="0">
                         <CodeFormInfo changeActiveKey={this.changeActiveKey.bind(this)}/>
                     </TabPane>
@@ -36,6 +33,7 @@ class ProcessTabs extends React.Component{
 
 }
 
-var mapStateToProps = state => ({ })
+var mapStateToProps = state => state.activeKey
+
 
 export default connect(mapStateToProps)(ProcessTabs)

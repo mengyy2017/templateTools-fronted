@@ -9,7 +9,6 @@ class CodeFormInfo extends React.Component{
         e.preventDefault();
         this.props.form.validateFieldsAndScroll((err, values) => {
             if (!err) {
-                console.log('Received values of form: ', values);
                 this.props.dispatch(setCodeInfoAction(values))
                 this.props.changeActiveKey("1")
             }
@@ -96,7 +95,7 @@ class CodeFormInfo extends React.Component{
                         placeholder="Please input your database schema"
                     >
                         {getFieldDecorator('databaseSchema', {
-                            initialValue: "medical",
+                            initialValue: "wxj",
                             rules: [{ required: true, message: 'Please input your database schema!', whitespace: true }],
                         })(
                             <Input />

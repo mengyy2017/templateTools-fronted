@@ -1,5 +1,6 @@
 import axios from 'axios'
-
+import {setActiveKey} from "actions/processTabsAction";
+import {message} from "antd";
 export const GET_TABLES = 'GET_TABLES'
 export const GET_TABLES_ERR = 'GET_TABLES_ERR'
 export const getTablesSuccess = data => ({type: GET_TABLES, data})
@@ -17,7 +18,7 @@ export const getTablesAction = data => async dispatch => {
             method: 'get',
             url: 'http://127.0.0.1:8099/database/getAllTables',
             withCredentials: true
-        })
+        }) // 使用await报错的时候  这里可以用.catch(){}  或者直接把代码块用try catch包围
         dispatch(getTablesSuccess(response.data))
     // } catch (e) {
     //     getTablesFail(e)
@@ -46,9 +47,13 @@ export const getColumnsAction = data => dispatch => {
         url: 'http://127.0.0.1:8099/database/getAllColumns',
         params: data,
         withCredentials: true
-    }).then(response => dispatch(getColumnsSuccess(response.data)),
-            err => dispatch(getColumnsFail(err))
-        )
+    }).then(
+        response => dispatch(getColumnsSuccess(response.data))
+    ).catch(err => {
+        message.error("连接超时")
+        console.log(err.message)
+        dispatch(setActiveKey("0"))
+    })
 
 }
 export const setSelectedColKeys = selectedKeys => dispatch => dispatch(setSelectedCol(selectedKeys))
