@@ -95,7 +95,7 @@ class CodeFormInfo extends React.Component{
                         placeholder="Please input your database schema"
                     >
                         {getFieldDecorator('databaseSchema', {
-                            initialValue: "wxj",
+                            initialValue: "medical",
                             rules: [{ required: true, message: 'Please input your database schema!', whitespace: true }],
                         })(
                             <Input />

@@ -41,19 +41,27 @@ export const getColumnsAction = data => dispatch => {
     //     .then(response => dispatch(getColumnsSuccess(response.data)),
     //         err => dispatch(getColumnsFail(err))
     //     )
-
-    axios({
-        method: 'get',
-        url: 'http://127.0.0.1:8099/database/getAllColumns',
-        params: data,
-        withCredentials: true
-    }).then(
-        response => dispatch(getColumnsSuccess(response.data))
-    ).catch(err => {
-        message.error("连接超时")
-        console.log(err.message)
-        dispatch(setActiveKey("0"))
-    })
+    try {
+        axios({
+            method: 'get',
+            url: 'http://127.0.0.1:8099/database/getAllColumns',
+            params: data,
+            withCredentials: true
+        }).then(response => {
+                if (response.data) {
+                    dispatch(getColumnsSuccess(response.data))
+                } else {
+                    message.error("连接超时！")
+                    dispatch(setActiveKey("0"))
+                }
+            },
+            err => {
+                message.error(err.response.data.message)
+                dispatch(setActiveKey("0"))
+            })
+    } catch(err) {
+            alert(1)
+    }
 
 }
 export const setSelectedColKeys = selectedKeys => dispatch => dispatch(setSelectedCol(selectedKeys))
