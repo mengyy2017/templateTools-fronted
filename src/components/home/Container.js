@@ -4,6 +4,7 @@ import {Row} from "antd"
 import 'styles/index.css'
 import {Switch} from "react-router";
 import ProcessTabs from "components/ProcessTabs";
+import LoginFormInfo from "components/LoginFormInfo";
 
 class Container extends React.Component {
     
@@ -14,6 +15,7 @@ class Container extends React.Component {
                 <Row gutter={32}>
                     <Switch>
                         <Route exact path="/" render={() => <h3>hi</h3>}/>
+                        <Route path="/login" component={LoginFormInfo}/>
                         <Route path="/select" component={ProcessTabs}/>
 
 
