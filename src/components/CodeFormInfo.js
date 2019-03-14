@@ -1,6 +1,6 @@
 import React from "react";
 import connect from "react-redux/es/connect/connect";
-import {Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, AutoComplete,} from 'antd';
+import {Form, Input, Select, Button,} from 'antd';
 import {setCodeInfoAction} from "actions/codeFormAction";
 
 class CodeFormInfo extends React.Component{
@@ -95,7 +95,7 @@ class CodeFormInfo extends React.Component{
                         placeholder="Please input your database schema"
                     >
                         {getFieldDecorator('databaseSchema', {
-                            initialValue: "medical",
+                            initialValue: "pm",
                             rules: [{ required: true, message: 'Please input your database schema!', whitespace: true }],
                         })(
                             <Input />

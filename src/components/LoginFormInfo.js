@@ -2,6 +2,7 @@ import React from "react";
 import connect from "react-redux/es/connect/connect";
 import {Form, Input, Button,} from 'antd';
 import {loginAction} from "actions/loginFormAction";
+import {Redirect} from "react-router";
 
 class LoginFormInfo extends React.Component{
 
@@ -39,7 +40,11 @@ class LoginFormInfo extends React.Component{
                     offset: 12,
                 },
             },
-        };
+        }
+
+        const {redirectUrl} = this.props
+        if (redirectUrl)
+            return (<Redirect to={redirectUrl} />);
 
         return (
             <div>
@@ -84,7 +89,7 @@ class LoginFormInfo extends React.Component{
 
 }
 
-var mapStateToProps = state => ({ })
+var mapStateToProps = state => state.redirectUrl
 
 const form = Form.create({ name: 'LoginFormInfo' })(LoginFormInfo);
 

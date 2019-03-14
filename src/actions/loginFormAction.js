@@ -1,50 +1,25 @@
 import axios from 'axios'
 
-// export const SET_CREATE_INFO_TOKEN = "SET_CODE_INFO_TOKEN"
+export const SET_REDIRECT_URL = "SET_REDIRECT_URL"
 
-// export const setCreateInfoToken = data => ({type: SET_CREATE_INFO_TOKEN, data})
+export const setRedirectUrl = redirectUrl => ({type: SET_REDIRECT_URL, redirectUrl})
 
-export const loginAction = data => dispatch => {
+export const loginAction = data => async dispatch => {
 
-    // axios.get('http://127.0.0.1:8099/account/accDenied', {params: {
-    //     username: 'Fred',
-    //     password: 'Flintstone'
-    // }})
-    //     .then(function (response) {
-    //         console.log(response);
-    //     })
-    //     .catch(function (error) {
-    //         console.log(error);
-    //     });
+    let param = new URLSearchParams()
+    param.append("username", data.username)
+    param.append("password", data.password)
 
-    // let response = await axios({
-    //     method: 'POST',
-    //     // url: 'http://127.0.0.1:8099/j_logiiiiii',
-    //     url: 'http://127.0.0.1:8099/account/accDenied',
-    //     // headers: { 'Content-Type': 'application/json'},
-    //     // headers: { 'Content-Type': 'application/x-www-form-urlencoded'},
-    //     // headers: { 'Content-Type': 'application/json;charset=UTF-8'},
-    //     // data: JSON.stringify(data),
-    //     data: data,
-    //     withCredentials: true
-    // })
-
-    axios.post('http://127.0.0.1:8099/account/accDenied', {
-        firstName: 'Fred',
-        username: 'Flintstone'
+    let response = await axios({
+        method: 'POST',
+        url: 'http://127.0.0.1:8099/j_logi',
+        data: param,
+        withCredentials: true
     })
-        .then(function (response) {
-            console.log(response);
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
 
-    // console.log(response)
-    // dispatch(getTablesSuccess(response.data))
+    if (response.data == "success")
+        dispatch(setRedirectUrl("/select"))
+    
+    console.log(JSON.stringify(response))
 
-    // const {createInfoToken} = response.data
-
-    // if(createInfoToken)
-    //     dispatch(setCreateInfoToken(createInfoToken))
 }
