@@ -95,8 +95,21 @@ class CodeFormInfo extends React.Component{
                         placeholder="Please input your database schema"
                     >
                         {getFieldDecorator('databaseSchema', {
-                            initialValue: "pm",
+                            initialValue: "information_schema",
                             rules: [{ required: true, message: 'Please input your database schema!', whitespace: true }],
+                        })(
+                            <Input />
+                        )}
+                    </Form.Item>
+
+                    <Form.Item
+                        {...formItemLayout}
+                        label="table schema"
+                        placeholder="Please input your database schema"
+                    >
+                        {getFieldDecorator('tableSchema', {
+                            initialValue: "pm",
+                            rules: [{ required: true, message: 'Please input your table schema!', whitespace: true }],
                         })(
                             <Input />
                         )}
