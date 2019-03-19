@@ -104,19 +104,6 @@ class CodeFormInfo extends React.Component{
 
                     <Form.Item
                         {...formItemLayout}
-                        label="table schema"
-                        placeholder="Please input your database schema"
-                    >
-                        {getFieldDecorator('tableSchema', {
-                            initialValue: "pm",
-                            rules: [{ required: true, message: 'Please input your table schema!', whitespace: true }],
-                        })(
-                            <Input />
-                        )}
-                    </Form.Item>
-
-                    <Form.Item
-                        {...formItemLayout}
                         label="database username"
                     >
                         {getFieldDecorator('databaseUsername', {
@@ -141,10 +128,23 @@ class CodeFormInfo extends React.Component{
 
                     <Form.Item
                         {...formItemLayout}
+                        label="table schema"
+                        placeholder="Please input your database schema"
+                    >
+                        {getFieldDecorator('tableSchema', {
+                            initialValue: "security",
+                            rules: [{ required: true, message: 'Please input your table schema!', whitespace: true }],
+                        })(
+                            <Input />
+                        )}
+                    </Form.Item>
+
+                    <Form.Item
+                        {...formItemLayout}
                         label="code package"
                     >
                         {getFieldDecorator('codePackage', {
-                            initialValue: "com.yishi",
+                            initialValue: "com.templateTools",
                             rules: [{ required: true, message: 'Please input your code package!', whitespace: true }],
                         })(
                             <Input />
