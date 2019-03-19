@@ -45,7 +45,8 @@ export const getColumnsAction = data => dispatch => {
         axios({
             method: 'post',
             url: 'http://127.0.0.1:8099/database/getAllColumns',
-            data: data,
+            headers: { 'content-type': 'application/json'},
+            data: JSON.stringify(data),
             withCredentials: true
         }).then(response => {
                 if (response.data) {
