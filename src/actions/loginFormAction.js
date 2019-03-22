@@ -20,6 +20,6 @@ export const loginAction = pars => async dispatch => {
     if (data.msg == "success")
         dispatch(setRedirectUrl("/select"))
     
-    console.log(JSON.stringify(data))
+    console.log(data)
 
 }
