@@ -4,22 +4,22 @@ export const SET_REDIRECT_URL = "SET_REDIRECT_URL"
 
 export const setRedirectUrl = redirectUrl => ({type: SET_REDIRECT_URL, redirectUrl})
 
-export const loginAction = data => async dispatch => {
+export const loginAction = pars => async dispatch => {
 
     let param = new URLSearchParams()
-    param.append("username", data.username)
-    param.append("password", data.password)
+    param.append("username", pars.username)
+    param.append("password", pars.password)
 
-    let response = await axios({
+    let {data} = await axios({
         method: 'POST',
         url: 'http://127.0.0.1:8099/j_logi',
         data: param,
         withCredentials: true
     })
 
-    if (response.data == "success")
+    if (data.msg == "success")
         dispatch(setRedirectUrl("/select"))
     
-    console.log(JSON.stringify(response))
+    console.log(JSON.stringify(data))
 
 }
