@@ -43,7 +43,6 @@ export const createCodeAction = pars => async dispatch => {
         url: 'http://127.0.0.1:8099/database/createCode',
         data: pars,
         succCallback: () => message.success("生成代码成功"),
-        failCallback: ({response, response: {data}}) => message.error(data.msg)
     })
 }
     

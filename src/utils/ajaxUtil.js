@@ -8,11 +8,11 @@ const defaulData = {
     succCallback: ({data}) => console.log(data),
     failCallback: ({response, response: {data}}) => {
         if (response.status == "401" && data.code == "401" && data.msg == "未认证") {
-            message.error(data.msg)
             window.location.href = "http://127.0.0.1:8090/#/login"
         } else {
             console.log(JSON.stringify(response))
         }
+        message.error(data.msg)
     },
 }
 
