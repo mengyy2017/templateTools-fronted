@@ -71,6 +71,7 @@ module.exports = {
             "stores": path.join(cwd, basePath + "stores"),
             "components": path.join(cwd, basePath + "components"),
             "routes": path.join(cwd, basePath + "routes"),
+            "utils": path.join(cwd, basePath + "utils"),
         }
     },
 
