@@ -1,6 +1,5 @@
 import axios from 'axios'
 import {getTablesSuccess} from "actions/databaseAction";
-import {Redirect} from "react-router";
 import React from "react";
 
 export const setCodeInfoAction = pars => async dispatch => {
@@ -14,9 +13,8 @@ export const setCodeInfoAction = pars => async dispatch => {
         })
         dispatch(getTablesSuccess(data.respData))
     } catch (e) {
-        if (e.response.status == "401") {
-            console.log(111111111111111111 + JSON.stringify(e))
-            // return (<Redirect to="/login" />);
+        debugger
+        if (e.response.status == "401" && e.response.data.code == "401" && e.response.data.msg == "未认证") {
             window.location.href = "http://127.0.0.1:8090/#/login"
         }
     }

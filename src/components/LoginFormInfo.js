@@ -2,7 +2,6 @@ import React from "react";
 import connect from "react-redux/es/connect/connect";
 import {Form, Input, Button,} from 'antd';
 import {loginAction} from "actions/loginFormAction";
-import {Redirect} from "react-router";
 
 class LoginFormInfo extends React.Component{
 
