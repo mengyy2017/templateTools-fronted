@@ -42,9 +42,9 @@ class LoginFormInfo extends React.Component{
             },
         }
 
-        const {redirectUrl} = this.props
-        if (redirectUrl)
-            return (<Redirect to={redirectUrl} />);
+        // const {redirectUrl} = this.props
+        // if (redirectUrl)
+        //     return (<Redirect to={redirectUrl} />);
 
         return (
             <div>

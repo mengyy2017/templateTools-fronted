@@ -16,7 +16,8 @@ export const setCodeInfoAction = pars => async dispatch => {
     } catch (e) {
         if (e.response.status == "401") {
             console.log(111111111111111111 + JSON.stringify(e))
-            return (<Redirect to="/login" />);
+            // return (<Redirect to="/login" />);
+            window.location.href = "http://127.0.0.1:8090/#/login"
         }
     }
     

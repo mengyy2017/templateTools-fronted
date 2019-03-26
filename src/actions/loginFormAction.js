@@ -18,7 +18,8 @@ export const loginAction = pars => async dispatch => {
     })
 
     if (data.msg == "success")
-        dispatch(setRedirectUrl("/select"))
+        window.location.href = "http://127.0.0.1:8090/#/select"
+        // dispatch(setRedirectUrl("/select"))
     
     console.log(data)
 
