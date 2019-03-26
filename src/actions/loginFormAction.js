@@ -2,8 +2,6 @@ import ajax from "utils/ajaxUtil";
 
 export const SET_REDIRECT_URL = "SET_REDIRECT_URL"
 
-export const setRedirectUrl = redirectUrl => ({type: SET_REDIRECT_URL, redirectUrl})
-
 export const loginAction = pars => async dispatch => {
     let param = new URLSearchParams()
     param.append("username", pars.username)
