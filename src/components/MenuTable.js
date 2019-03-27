@@ -1,23 +1,26 @@
 import {Table} from "antd";
 import React from "react";
 import {connect} from "react-redux";
+import {getMenuAction} from "actions/menuAction";
 
 
 class MenuTable extends React.Component{
 
-
+    componentWillMount(){
+        this.props.dispatch(getMenuAction())
+    }
 
     render = () => {
 
         const columns = [{
-            title: '表名称',
-            dataIndex: 'tableName',
+            title: '访问路径',
+            dataIndex: 'url',
             width: 150,
             render: text => <a href="javascript:;">{text}</a>,
         }, {
-            title: '表注释',
+            title: '权限',
             width: 150,
-            dataIndex: 'tableComment',
+            dataIndex: 'permission',
         }]
 
         let {menuArr} = this.props

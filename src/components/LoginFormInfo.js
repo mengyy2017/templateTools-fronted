@@ -88,7 +88,7 @@ class LoginFormInfo extends React.Component{
 
 }
 
-var mapStateToProps = state => state.redirectUrl
+var mapStateToProps = state => ({})
 
 const form = Form.create({ name: 'LoginFormInfo' })(LoginFormInfo);
 

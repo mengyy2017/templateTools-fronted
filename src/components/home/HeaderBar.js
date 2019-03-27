@@ -16,20 +16,20 @@ class HeaderBar extends React.Component{
                     style={{ background: '#fff' }}
                 >
                     <SubMenu title={<span className="submenu-title-wrapper">
-                        <Icon type="home" /><Link to="/">Navigation Home</Link></span>}
+                        <Icon type="home" /><Link to="/" replace>Navigation Home</Link></span>}
                     >
                         <Menu.Item key="setting:1">
-                            <Link to="/login">
+                            <Link to="/login" replace>
                                 <Icon type="login" />&nbsp;&nbsp;&nbsp;&nbsp;login
                             </Link>
                         </Menu.Item>
                         <Menu.Item key="setting:2">
-                            <Link to="/select">
-                                <Icon type="select" />&nbsp;&nbsp;&nbsp;&nbsp;select
+                            <Link to="/select" replace>
+                                <Icon type="select"/>&nbsp;&nbsp;&nbsp;&nbsp;select
                             </Link>
                         </Menu.Item>
                     </SubMenu>
-                    <Menu.Item key="2"><Link to="/menu">Menu</Link></Menu.Item>
+                    <Menu.Item key="2"><Link to="/menu" replace>Menu</Link></Menu.Item>
                     <Menu.Item key="3">nav 3</Menu.Item>
                 </Menu>
             </Header>

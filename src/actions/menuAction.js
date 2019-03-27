@@ -7,8 +7,10 @@ export const getMenu = data => ({type: GET_MENU, data})
 
 export const getMenuAction = () => async dispatch => {
     await ajax.post({
-        url: "127.0.0.1: 8099/menu/getAllMenu",
-        succCallback: ({data: {respData}}) => dispatch(getMenu(respData))
+        url: "http://127.0.0.1:8099/menu/getAllMenu",
+        succCallback: ({data}) => {
+            return dispatch(getMenu(data.respData))
+        }
     })
 }
 
