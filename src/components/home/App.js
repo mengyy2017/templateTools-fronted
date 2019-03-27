@@ -1,11 +1,11 @@
 import React from "react"
-import Container from './Container'
+import Home from './Home'
 
 class App extends React.Component{
     render = () => {
         return (
-            <div className="wrapper">
-                <Container/>
+            <div className="app">
+                <Home/>
             </div>
         )
     }
