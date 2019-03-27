@@ -18,12 +18,12 @@ class ProcessTabs extends React.Component{
 
         return (
             <div>
-                <Tabs className="tabs-property" defaultActiveKey="1" activeKey={activeKey} onChange={this.changeActiveKey}>
+                <Tabs defaultActiveKey="1" activeKey={activeKey} onChange={this.changeActiveKey}>
                     <TabPane disabled tab="Tab 0" key="0">
-                        <CodeFormInfo changeActiveKey={this.changeActiveKey.bind(this)}/>
+                        <CodeFormInfo changeActiveKey={this.changeActiveKey}/>
                     </TabPane>
                     <TabPane disabled tab="Tab 1" key="1">
-                        <SelectDataTab changeActiveKey={this.changeActiveKey.bind(this)}/>
+                        <SelectDataTab changeActiveKey={this.changeActiveKey}/>
                     </TabPane>
                     <TabPane disabled tab="Tab 2" key="2">Content of Tab Pane 3</TabPane>
                 </Tabs>

@@ -12,11 +12,6 @@ body, html {
     margin-bottom: 20px;
 }
 
-.tabs-property {
-    width: 80%;
-    margin-left: 150px!important;
-}
-
 .ant-tabs-nav-wrap .ant-tabs-tab:nth-of-type(1) {
     margin-left: 200px;
 }

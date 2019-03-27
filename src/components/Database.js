@@ -75,9 +75,9 @@ class Database extends React.Component {
         return (
             <div>
                 <Row type="flex" justify="end" className="header">
-                    <Col span={14}><Button type="primary" onClick={this.createCode}>生成代码</Button></Col>
+                    <Col span={13}><Button type="primary" onClick={this.createCode}>生成代码</Button></Col>
                 </Row>
-                <Row>
+                <Row gutter={24}>
                     {childrenWithProps}
                 </Row>
                 <Row>

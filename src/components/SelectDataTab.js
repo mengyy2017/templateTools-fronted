@@ -9,10 +9,11 @@ class SelectDataTab extends React.Component{
     render = () => {
 
         return (
-            <Database changeActiveKey={this.props.changeActiveKey}>
-                <Tables/>
-                <Columns/>
-            </Database>
+                <Database changeActiveKey={this.props.changeActiveKey}>
+                    <Tables/>
+                    <Columns/>
+                </Database>
+
         )
     }
 

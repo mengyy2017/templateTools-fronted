@@ -37,7 +37,7 @@ class Tables extends React.Component{
         }
 
         return (
-            <Col span={12}>
+            <Col span={12} >
                 <Table onRow={this.onRow} rowSelection={rowSelection} dataSource={tablesArr}
                        pagination={{pageSize: 20}} rowKey="id" columns={columns} scroll={{y: 330}} />
             </Col>
@@ -46,5 +46,6 @@ class Tables extends React.Component{
 }
 
 var mapStateToProps = state => ({tablesArr: state.tables ? state.tables.tablesArr : [] })
+// var mapStateToProps = state => ({tablesArr} = state.tables)
 
 export default connect(mapStateToProps)(Tables)

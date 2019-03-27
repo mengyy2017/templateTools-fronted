@@ -45,7 +45,7 @@ class Columns extends React.Component{
         }
 
         return (
-            <Col span={12}>
+            <Col span={12} >
                 <Table rowSelection={rowSelection} dataSource={colArr}
                        pagination={{pageSize: 20}} rowKey={record => record.tableName + '*@' + record.columnName} columns={columns} scroll={{y: 330}} />
             </Col>

@@ -15,7 +15,9 @@ class HeaderBar extends React.Component{
                     defaultSelectedKeys={['2']}
                     style={{ background: '#fff' }}
                 >
-                    <SubMenu title={<span className="submenu-title-wrapper"><Icon type="home" /><Link to="/">Navigation Home</Link></span>}>
+                    <SubMenu title={<span className="submenu-title-wrapper">
+                        <Icon type="home" /><Link to="/">Navigation Home</Link></span>}
+                    >
                         <Menu.Item key="setting:1">
                             <Link to="/login">
                                 <Icon type="login" />&nbsp;&nbsp;&nbsp;&nbsp;login
@@ -27,7 +29,7 @@ class HeaderBar extends React.Component{
                             </Link>
                         </Menu.Item>
                     </SubMenu>
-                    <Menu.Item key="2">nav 2</Menu.Item>
+                    <Menu.Item key="2"><Link to="/menu">Menu</Link></Menu.Item>
                     <Menu.Item key="3">nav 3</Menu.Item>
                 </Menu>
             </Header>
