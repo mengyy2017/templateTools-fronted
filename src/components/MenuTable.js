@@ -1,8 +1,7 @@
 import {Col, Table} from "antd";
 import React from "react";
 import {connect} from "react-redux";
-import {getMenuAction} from "actions/menuAction";
-
+import {getMenuAction, getMenuUniqAction} from "actions/menuAction";
 
 class MenuTable extends React.Component{
 
@@ -10,12 +9,17 @@ class MenuTable extends React.Component{
         this.props.dispatch(getMenuAction())
     }
 
-    render = () => {
+    onRow = record => ({
+        onClick: () => this.props.dispatch(getMenuUniqAction({"id": record.id}))
+    })
+
+            render = () => {
 
         const columns = [{
             title: '访问路径',
             dataIndex: 'url',
             width: 150,
+            render: text => <a href="javascript:;">{text}</a>,
         }, {
             title: '权限',
             width: 150,
@@ -26,17 +30,13 @@ class MenuTable extends React.Component{
 
         return (
             <Col span={12}>
-                <Table dataSource={menuArr} pagination={{pageSize: 20}} rowKey="id" columns={columns} scroll={{y: 330}} />
+                <Table onRow={this.onRow} dataSource={menuArr} pagination={{pageSize: 20}} rowKey="id" columns={columns} scroll={{y: 330}} />
             </Col>
-
         )
     }
-
 }
 
-
-var mapStateToProps = state => ({menuArr: state.menu ? state.menu.menuArr : []})
-
+const mapStateToProps = state => ({menuArr: state.menu ? state.menu.menuArr : []})
 
 export default connect(mapStateToProps)(MenuTable)
 

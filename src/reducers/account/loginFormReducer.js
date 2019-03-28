@@ -1,4 +1,4 @@
-import {SET_REDIRECT_URL} from "../../actions/account/loginFormAction";
+import {SET_REDIRECT_URL} from "actions/account/loginFormAction";
 
 
 export const redirect = (preState = {}, action) => {

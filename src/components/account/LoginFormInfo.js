@@ -1,7 +1,7 @@
 import React from "react";
 import connect from "react-redux/es/connect/connect";
 import {Form, Input, Button,} from 'antd';
-import {loginAction} from "../../actions/account/loginFormAction";
+import {loginAction} from "actions/account/loginFormAction";
 
 class LoginFormInfo extends React.Component{
 
@@ -88,7 +88,7 @@ class LoginFormInfo extends React.Component{
 
 }
 
-var mapStateToProps = state => ({})
+const mapStateToProps = state => ({})
 
 const form = Form.create({ name: 'LoginFormInfo' })(LoginFormInfo);
 

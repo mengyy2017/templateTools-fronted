@@ -174,7 +174,7 @@ class CodeFormInfo extends React.Component{
 
 }
 
-var mapStateToProps = state => ({ })
+const mapStateToProps = state => ({ })
 
 const form = Form.create({ name: 'CodeFormInfo' })(CodeFormInfo);
 

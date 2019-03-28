@@ -53,7 +53,7 @@ class Columns extends React.Component{
     }
 }
 
-var mapStateToProps = state => {
+const mapStateToProps = state => {
     const {colArr = [], selectedColKeys = []} = state.columns ? state.columns : {}
     return {colArr, selectedColKeys}
 }

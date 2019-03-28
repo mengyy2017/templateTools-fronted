@@ -19,6 +19,6 @@ class TabTableColumn extends React.Component{
 
 }
 
-var mapStateToProps = state => ({ })
+const mapStateToProps = state => ({ })
 
 export default connect(mapStateToProps)(TabTableColumn)

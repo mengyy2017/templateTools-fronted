@@ -33,7 +33,7 @@ class TabHeader extends React.Component{
 
 }
 
-var mapStateToProps = state => state.activeKey
+const mapStateToProps = state => state.activeKey
 
 
 export default connect(mapStateToProps)(TabHeader)
