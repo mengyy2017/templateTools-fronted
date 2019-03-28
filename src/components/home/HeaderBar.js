@@ -9,15 +9,12 @@ class HeaderBar extends React.Component{
     render = () => {
         return(
             <Header style={{padding: '0', background: '#f0f2f5', }}>
+
                 <div className="logo" />
-                <Menu
-                    mode="horizontal"
-                    defaultSelectedKeys={['2']}
-                    style={{ background: '#fff' }}
-                >
-                    <SubMenu title={<span className="submenu-title-wrapper">
-                        <Icon type="home" /><Link to="/" replace>Navigation Home</Link></span>}
-                    >
+
+                <Menu mode="horizontal" defaultSelectedKeys={['2']} style={{ background: '#fff' }}>
+
+                    <SubMenu title={<span className="submenu-title-wrapper"><Icon type="home" /><Link to="/" replace>Navigation Home</Link></span>}>
                         <Menu.Item key="setting:1">
                             <Link to="/login" replace>
                                 <Icon type="login" />&nbsp;&nbsp;&nbsp;&nbsp;login
@@ -29,8 +26,11 @@ class HeaderBar extends React.Component{
                             </Link>
                         </Menu.Item>
                     </SubMenu>
-                    <Menu.Item key="2"><Link to="/menu" replace>Menu</Link></Menu.Item>
+
+                    <Menu.Item key="2"><Link to="/menu" replace><Icon type="menu-fold" />Menu</Link></Menu.Item>
+
                     <Menu.Item key="3">nav 3</Menu.Item>
+
                 </Menu>
             </Header>
         )

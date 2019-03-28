@@ -21,7 +21,8 @@ const defaultFailCallback = (responseObj) => {
     if (response) {
         if (response.status == "401" && response.data.code == "401" && response.data.msg == "未认证")
             window.location.href = "http://127.0.0.1:8090/#/login"
-        message.error(response.statusText)
+        response.statusText != "" ? message.error(response.statusText) : undefined
+        response.data.msg != "" ? message.error(response.data.msg) : undefined
     } else {
         let {data: {code, msg}} = responseObj
         message.error(code + " " + msg)
@@ -46,12 +47,26 @@ const ajax = {
 export default ajax
 
 // ---------返回自定义错误
-// {
-//     xxx: "xxx",
-//     response: {data: {msg: "未认证", code: "401"}},
-//     status: 自定义
-//     yyy: "yyy"
-// }
+
+// columnNumber: 15
+// config: {…}
+// fileName: "http://127.0.0.1:8090/src/index.js line 3297 > eval"
+// lineNumber: 16
+// message: "Request failed with status code 401"
+// request: XMLHttpRequest
+// response: {…}
+//     config: {…}
+//     data: {…}
+//         code: 401
+//         msg: "没有权限访问！"
+//     headers: {…}
+//     request: XMLHttpRequest
+//     status: 401 // -- 自定义
+//     statusText: ""
+// stack: "createError@webpack:///./node_modules/axios/lib/core/createError.js?:16:15\nsettle@webpack:///./node_modules/axios/lib/core/settle.js?:18:12\nhandleLoad@webpack:///./node_modules/axios/lib/adapters/xhr.js?:77:7\n"
+
+
+
 
 
 // ------- 500错误 但是status是200
