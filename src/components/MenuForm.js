@@ -1,4 +1,4 @@
-import {Form, Button, Input, Col, Tag} from "antd";
+import {Form, Button, Input, Col} from "antd";
 import React from "react";
 import connect from "react-redux/es/connect/connect";
 import {updateOrSaveAction} from "actions/menuAction";
@@ -41,8 +41,6 @@ class MenuForm extends React.Component {
             },
         }
 
-        let {menuUniq = {}} = this.props
-
         return (
                 <Col span={12}>
 
@@ -55,8 +53,7 @@ class MenuForm extends React.Component {
                             style={{display: 'none'}}
                         >
                             {getFieldDecorator('id', {
-                                initialValue: menuUniq.id,
-                                rules: [{ required: true, message: 'Please input id!', whitespace: true }],
+                                rules: [{ required: false, message: 'Please input id!', whitespace: true }],
                             })(
                                 <Input />
                             )}
@@ -68,7 +65,6 @@ class MenuForm extends React.Component {
                             placeholder="Please input url"
                         >
                             {getFieldDecorator('url', {
-                                initialValue: menuUniq.url,
                                 rules: [{ required: true, message: 'Please input url!', whitespace: true }],
                             })(
                                 <Input />
@@ -80,7 +76,6 @@ class MenuForm extends React.Component {
                             label="permission"
                         >
                             {getFieldDecorator('permission', {
-                                initialValue: menuUniq.permission,
                                 rules: [
                                     { required: true, message: 'Please input permission!' },
                                 ],
@@ -100,7 +95,17 @@ class MenuForm extends React.Component {
 
 const mapStateToProps = state => ({menuUniq: state.menu ? state.menu.menuUniq : []})
 
-const form = Form.create({ name: 'MenuForm' })(MenuForm);
+const form = Form.create({
+        name: "MenuForm",
+        mapPropsToFields(props) {
+            let {menuUniq = {}} = props
+            return {
+                id: Form.createFormField({value: menuUniq.id}),
+                url: Form.createFormField({value: menuUniq.url}),
+                permission: Form.createFormField({value: menuUniq.permission})
+            }
+        }
+    })(MenuForm);
 
 export default connect(mapStateToProps)(form)
 

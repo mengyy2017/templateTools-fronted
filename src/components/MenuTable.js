@@ -13,7 +13,7 @@ class MenuTable extends React.Component{
         onClick: () => this.props.dispatch(getMenuUniqAction({"id": record.id}))
     })
 
-            render = () => {
+    render = () => {
 
         const columns = [{
             title: '访问路径',

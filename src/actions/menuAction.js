@@ -7,9 +7,8 @@ export const getMenu = data => ({type: GET_MENU, data})
 export const getMenuAction = () => async dispatch => {
     await ajax.post({
         url: "http://127.0.0.1:8099/menu/getAllMenu",
-        succCallback: ({data}) => {
-            return dispatch(getMenu(data.respData))
-        }
+        succCallback: ({data}) => dispatch(getMenu(data.respData))
+
     })
 }
 
@@ -32,9 +31,8 @@ export const updateOrSaveAction = pars => async dispatch => {
     await ajax.post({
         url: "http://127.0.0.1:8099/menu/updateOrSave",
         data: pars,
-        succCallback: ({data}) => {
-            return dispatch(getMenuAction())
-        }
+        succCallback: () => dispatch(getMenuAction())
+
     })
 }
 
