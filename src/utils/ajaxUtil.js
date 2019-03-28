@@ -21,8 +21,9 @@ const defaultFailCallback = (responseObj) => {
     if (response) {
         if (response.status == "401" && response.data.code == "401" && response.data.msg == "未认证")
             window.location.href = "http://127.0.0.1:8090/#/login"
-        response.statusText != "" ? message.error(response.statusText) : undefined
-        response.data.msg != "" ? message.error(response.data.msg) : undefined
+        response.statusText && response.statusText != "" ? message.error(response.statusText) : undefined
+        response.data.msg && response.data.msg != "" ? message.error(response.data.msg) : undefined
+        response.data.message && response.data.message != "" ? message.error(response.data.message) : undefined
     } else {
         let {data: {code, msg}} = responseObj
         message.error(code + " " + msg)
