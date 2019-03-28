@@ -8,7 +8,6 @@ import TabHeader from "components/database/TabHeader";
 import MenuForm from "components/MenuForm";
 import {Row} from "antd";
 import MenuOperation from "components/MenuOperation";
-import MenuComponent from "components/MenuComponent";
 
 class PrimarySwitch extends React.Component{
 
