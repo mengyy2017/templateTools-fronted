@@ -2,7 +2,7 @@
 import {combineReducers} from 'redux';
 import {routeReducer} from 'redux-simple-router';
 import {tables, columns} from 'reducers/database/databaseReducer'
-import {tabHeader} from "reducers/database/TabHeaderReducer";
+import {tabHeader} from "reducers/database/tabHeaderReducer";
 import {menu} from "reducers/menuReducer";
 
 export default combineReducers({

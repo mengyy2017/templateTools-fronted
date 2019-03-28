@@ -1,4 +1,4 @@
-import {SET_ACTIVE_KEY} from "actions/database/TabHeaderAction";
+import {SET_ACTIVE_KEY} from "actions/database/tabHeaderAction";
 
 
 export const tabHeader = (prevState = {activeKey: "0"}, action) => {

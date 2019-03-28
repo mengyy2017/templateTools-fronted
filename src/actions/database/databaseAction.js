@@ -1,4 +1,4 @@
-import {setActiveKey} from "actions/database/TabHeaderAction";
+import {setActiveKey} from "actions/database/tabHeaderAction";
 import {message} from "antd";
 import ajax from "utils/ajaxUtil";
 export const GET_TABLES = 'GET_TABLES'

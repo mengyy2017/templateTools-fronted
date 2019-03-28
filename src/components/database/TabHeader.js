@@ -2,7 +2,7 @@ import {Tabs} from 'antd';
 import React from "react";
 import connect from "react-redux/es/connect/connect";
 import CodeFormInfo from "components/database/CodeFormInfo";
-import {setActiveKeyAction} from "actions/database/TabHeaderAction";
+import {setActiveKeyAction} from "actions/database/tabHeaderAction";
 import TabTableColumn from "components/database/TabTableColumn";
 const TabPane = Tabs.TabPane;
 
