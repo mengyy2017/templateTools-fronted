@@ -1,6 +1,6 @@
 import React from "react"
 import {Button, Col, Row} from "antd";
-import {createCodeAction, setSelectedColKeys} from 'actions/databaseAction'
+import {createCodeAction, setSelectedColKeys} from 'actions/database/databaseAction'
 import connect from "react-redux/es/connect/connect";
 
 class Database extends React.Component {

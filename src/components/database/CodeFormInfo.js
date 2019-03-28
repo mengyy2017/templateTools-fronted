@@ -1,7 +1,7 @@
 import React from "react";
 import connect from "react-redux/es/connect/connect";
 import {Form, Input, Select, Button,} from 'antd';
-import {setCodeInfoAction} from "actions/codeFormAction";
+import {setCodeInfoAction} from "actions/database/codeFormAction";
 
 class CodeFormInfo extends React.Component{
 

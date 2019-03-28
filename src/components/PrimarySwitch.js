@@ -1,10 +1,10 @@
 import {Route} from "react-router-dom";
 import Hi from "components/Hi";
 import LoginFormInfo from "components/LoginFormInfo";
-import ProcessTabs from "components/ProcessTabs";
 import {Switch} from "react-router";
 import React from "react";
 import MenuTable from "components/MenuTable";
+import TabHeader from "components/database/TabHeader";
 
 
 class PrimarySwitch extends React.Component{
@@ -15,7 +15,7 @@ class PrimarySwitch extends React.Component{
                 <Switch>
                     <Route exact path="/" component={Hi}/>
                     <Route path="/login" component={LoginFormInfo}/>
-                    <Route path="/select" component={ProcessTabs}/>
+                    <Route path="/select" component={TabHeader}/>
                     <Route path="/menu" component={MenuTable}/>
                 </Switch>
             </div>

@@ -1,4 +1,4 @@
-import {GET_TABLES, GET_COLUMNS, SET_SELECTED_COL_KEYS} from 'actions/databaseAction'
+import {GET_TABLES, GET_COLUMNS, SET_SELECTED_COL_KEYS} from 'actions/database/databaseAction'
 
 export const tables = (prevState = {}, action) => {
     switch (action.type) {

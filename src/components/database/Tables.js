@@ -2,7 +2,7 @@ import 'antd/dist/antd.less'
 import React from 'react'
 import {connect} from 'react-redux'
 import { Table, Col } from 'antd'
-import {getTablesAction, getColumnsAction} from 'actions/databaseAction'
+import {getTablesAction, getColumnsAction} from 'actions/database/databaseAction'
 
 class Tables extends React.Component{
 

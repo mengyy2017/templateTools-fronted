@@ -1,12 +1,12 @@
 import {Tabs} from 'antd';
 import React from "react";
 import connect from "react-redux/es/connect/connect";
-import SelectDataTab from "components/SelectDataTab";
-import CodeFormInfo from "components/CodeFormInfo";
-import {setActiveKeyAction} from "actions/processTabsAction";
+import CodeFormInfo from "components/database/CodeFormInfo";
+import {setActiveKeyAction} from "actions/database/TabHeaderAction";
+import TabTableColumn from "components/database/TabTableColumn";
 const TabPane = Tabs.TabPane;
 
-class ProcessTabs extends React.Component{
+class TabHeader extends React.Component{
 
     changeActiveKey = (key) => {
         this.props.dispatch(setActiveKeyAction(key))
@@ -23,7 +23,7 @@ class ProcessTabs extends React.Component{
                         <CodeFormInfo changeActiveKey={this.changeActiveKey}/>
                     </TabPane>
                     <TabPane disabled tab="Tab 1" key="1">
-                        <SelectDataTab changeActiveKey={this.changeActiveKey}/>
+                        <TabTableColumn changeActiveKey={this.changeActiveKey}/>
                     </TabPane>
                     <TabPane disabled tab="Tab 2" key="2">Content of Tab Pane 3</TabPane>
                 </Tabs>
@@ -36,4 +36,4 @@ class ProcessTabs extends React.Component{
 var mapStateToProps = state => state.activeKey
 
 
-export default connect(mapStateToProps)(ProcessTabs)
+export default connect(mapStateToProps)(TabHeader)

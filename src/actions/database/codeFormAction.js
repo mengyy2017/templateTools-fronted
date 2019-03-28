@@ -1,4 +1,4 @@
-import {getTablesSuccess} from "actions/databaseAction";
+import {getTablesSuccess} from "actions/database/databaseAction";
 import React from "react";
 import ajax from "utils/ajaxUtil";
 

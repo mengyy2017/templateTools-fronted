@@ -1,8 +1,7 @@
-import {setActiveKey} from "actions/processTabsAction";
+import {setActiveKey} from "actions/database/TabHeaderAction";
 import {message} from "antd";
 import ajax from "utils/ajaxUtil";
 export const GET_TABLES = 'GET_TABLES'
-export const GET_TABLES_ERR = 'GET_TABLES_ERR'
 export const getTablesSuccess = data => ({type: GET_TABLES, data})
 
 // export const getTablesAction = pars => async dispatch => {
@@ -15,7 +14,6 @@ export const getTablesSuccess = data => ({type: GET_TABLES, data})
 
 
 export const GET_COLUMNS = 'GET_COLUMNS'
-export const GET_COLUMNS_ERR = 'GET_COLUMNS_ERR'
 export const SET_SELECTED_COL_KEYS = 'SET_SELECTED_COL_KEYS'
 
 export const getColumnsSuccess = data => ({type: GET_COLUMNS, data})

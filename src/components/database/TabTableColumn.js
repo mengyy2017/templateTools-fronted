@@ -1,10 +1,10 @@
 import React from "react";
 import connect from "react-redux/es/connect/connect";
-import Tables from "components/Tables";
-import Columns from "components/Columns";
-import Database from "components/Database";
+import Tables from "components/database/Tables";
+import Columns from "components/database/Columns";
+import Database from "components/database/Database";
 
-class SelectDataTab extends React.Component{
+class TabTableColumn extends React.Component{
 
     render = () => {
 
@@ -21,4 +21,4 @@ class SelectDataTab extends React.Component{
 
 var mapStateToProps = state => ({ })
 
-export default connect(mapStateToProps)(SelectDataTab)
+export default connect(mapStateToProps)(TabTableColumn)
