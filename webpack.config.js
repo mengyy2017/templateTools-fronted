@@ -80,6 +80,10 @@ module.exports = {
         new webpack.DllReferencePlugin({
             context: path.join(cwd, basePath),
             manifest: require('./src/manifest-vendor.json')
+        }),
+        new webpack.DefinePlugin({
+            SERVER_URL: "127.0.0.1:8099",
+            WEB_URL: "127.0.0.1:8090"
         })
     ],
 
