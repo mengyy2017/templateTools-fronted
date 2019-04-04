@@ -1,16 +1,18 @@
 import {setActiveKey} from "actions/database/tabHeaderAction";
 import {message} from "antd";
 import ajax from "utils/ajaxUtil";
+
+
 export const GET_TABLES = 'GET_TABLES'
 export const getTablesSuccess = data => ({type: GET_TABLES, data})
 
-// export const getTablesAction = pars => async dispatch => {
-//         ajax.post({
-//             url: 'http://127.0.0.1:8099/database/getAllTables',
-//             data: pars,
-//             succCallback: ({data}) => dispatch(getTablesSuccess(data.respData))
-//         })
-// }
+export const getTablesAction = pars => async dispatch => {
+        ajax.post({
+            url: 'http://127.0.0.1:8099/database/getAllTables',
+            data: pars,
+            succCallback: ({data}) => dispatch(getTablesSuccess(data.respData))
+        })
+}
 
 
 export const GET_COLUMNS = 'GET_COLUMNS'
@@ -30,9 +32,9 @@ export const getColumnsAction = pars => dispatch => {
             }
         })
 }
+
+
 export const setSelectedColKeys = selectedKeys => dispatch => dispatch(setSelectedCol(selectedKeys))
-
-
 
 export const createCodeAction = pars => async dispatch => {
     ajax.post({
