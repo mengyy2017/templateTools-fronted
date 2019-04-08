@@ -8,9 +8,9 @@ export const loginAction = pars => async dispatch => {
     param.append("password", pars.password)
 
     ajax.post({
-        headers: {'content-type':'application/x-www-form-urlencoded'},
-        url: 'http://127.0.0.1:8099/j_logi',
-        data: param,
+        // headers: {'content-type':'application/x-www-form-urlencoded'},
+        url: 'http://127.0.0.1:8099/account/login',
+        data: pars,
         succCallback: ({data}) => {if (data.msg == "success") window.location.href = "http://127.0.0.1:8090/#/select"},
     })
 }
