@@ -1,4 +1,5 @@
 import ajax from "utils/ajaxUtil";
+import Cookies from 'js-cookie'
 
 export const SET_REDIRECT_URL = "SET_REDIRECT_URL"
 
@@ -7,10 +8,17 @@ export const loginAction = pars => async dispatch => {
     param.append("username", pars.username)
     param.append("password", pars.password)
 
+    Cookies.remove("access_token")
+
     ajax.post({
         // headers: {'content-type':'application/x-www-form-urlencoded'},
         url: 'http://127.0.0.1:8099/account/login',
         data: pars,
-        succCallback: ({data}) => {if (data.msg == "success") window.location.href = "http://127.0.0.1:8090/#/select"},
+        succCallback: ({data}) => {
+            if (data.msg == "success") {
+                Cookies.set("access_token", data.respData);
+                window.location.href = "http://127.0.0.1:8090/#/select"
+            }
+        },
     })
 }

@@ -1,9 +1,12 @@
 import {message} from "antd"
 import axios from 'axios'
+import Cookies from 'js-cookie'
 
 const defaulData = {
     method: 'POST',
-    headers: {'content-type': 'application/json'},
+    headers: {
+        'content-type': 'application/json',
+    },
     withCredentials: true,
     succCallback: () => {},  // 自定义成功回调，可以不覆盖
     failCallback: () => {}   // 自定义失败回调，可以不覆盖
@@ -19,10 +22,11 @@ const defaultSuccCallBack = response => {
 const defaultFailCallback = (responseObj) => {
     let{response} = responseObj
     if (response) {
-        if (response.status == "401" && response.data.code == "401" && response.data.msg == "未认证")
-            window.location.href = "http://127.0.0.1:8090/#/login"
+        // if (response.status == "401" && response.data.code == "401" && response.data.msg == "未认证")
+        //     window.location.href = "http://127.0.0.1:8090/#/login"
         response.statusText && response.statusText != "" ? message.error(response.statusText) : undefined
         response.data.msg && response.data.msg != "" ? message.error(response.data.msg) : undefined
+        response.data.error && response.data.error != "" ? message.error(response.data.error) : undefined
         // response.data.message && response.data.message != "" ? message.error(response.data.message) : undefined
     } else {
         let {data: {code, msg}} = responseObj
@@ -34,9 +38,12 @@ const defaultFailCallback = (responseObj) => {
 const ajax = {
 
     post: (pars) => {
-        if (pars.headers == undefined) pars.data = JSON.stringify(pars.data)
 
         pars = Object.assign({}, defaulData, pars)
+
+        pars.headers['content-type'] == 'application/json' ? pars.data = JSON.stringify(pars.data) : undefined
+
+        Cookies.get("access_token") ? pars.headers['Authorization'] = 'Bearer ' + Cookies.get("access_token") : pars.headers['Authorization'] = ''
 
         axios(pars).then(defaultSuccCallBack)
             .then(pars.succCallback).catch(defaultFailCallback).catch(pars.failCallback)
