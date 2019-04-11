@@ -23,7 +23,6 @@ const defaultFailCallback = (responseObj) => {
     let{response} = responseObj
     if (response) {
         // if (response.status == "401" && response.data.code == "401" && response.data.msg == "未认证")
-        //     window.location.href = "http://127.0.0.1:8020/#/login"
         response.statusText && response.statusText != "" ? message.error(response.statusText) : undefined
         response.data.msg && response.data.msg != "" ? message.error(response.data.msg) : undefined
         response.data.error && response.data.error != "" ? message.error(response.data.error) : undefined
@@ -58,7 +57,7 @@ export default ajax
 
 // columnNumber: 15
 // config: {…}
-// fileName: "http://127.0.0.1:8020/src/index.js line 3297 > eval"
+// fileName: "http://0.0.0.0.:8020/src/index.js line 3297 > eval"
 // lineNumber: 16
 // message: "Request failed with status code 401"
 // request: XMLHttpRequest

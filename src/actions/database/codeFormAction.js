@@ -4,7 +4,7 @@ import ajax from "utils/ajaxUtil";
 
 export const setCodeInfoAction = pars => async dispatch => {
     await ajax.post({
-            url: "http://127.0.0.1:8042/database/setCreateInfo",
+            url: TEMPLATE_SERVER_URL + "/database/setCreateInfo",
             data: pars,
             succCallback: ({data}) => dispatch(getTablesSuccess(data.respData))
         }

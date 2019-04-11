@@ -17,8 +17,7 @@ export const loginAction = pars => async dispatch => {
         succCallback: ({data}) => {
             if (data.msg == "success") {
                 Cookies.set("access_token", data.respData);
-                // window.location.href = "http://127.0.0.1:8020/#/select"
-                window.location.href = `${WEB_URL}` + "/select"
+                window.location.href = WEB_URL + "/select"
             }
         },
     })

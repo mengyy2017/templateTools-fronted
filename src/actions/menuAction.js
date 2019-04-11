@@ -6,7 +6,7 @@ export const getMenu = data => ({type: GET_MENU, data})
 
 export const getMenuAction = () => async dispatch => {
     await ajax.post({
-        url: "http://127.0.0.1:8041/menu/getAllMenu",
+        url: SYSTEM_SERVER_URL + "/menu/getAllMenu",
         succCallback: ({data}) => dispatch(getMenu(data.respData))
 
     })
@@ -18,7 +18,7 @@ export const getMenuUniq = data => ({type: GET_MENU_UNIQ, data})
 
 export const getMenuUniqAction = pars => async dispatch => {
     await ajax.post({
-        url: "http://127.0.0.1:8041/menu/getMenuUniq",
+        url: SYSTEM_SERVER_URL + "/menu/getMenuUniq",
         data: pars,
         succCallback: ({data}) => {
             dispatch(changeMenuOper({"menuOperType": "编辑"}))
@@ -29,7 +29,7 @@ export const getMenuUniqAction = pars => async dispatch => {
 
 export const updateOrSaveAction = pars => async dispatch => {
     await ajax.post({
-        url: "http://127.0.0.1:8041/menu/updateOrSave",
+        url: SYSTEM_SERVER_URL + "/menu/updateOrSave",
         data: pars,
         succCallback: () => dispatch(getMenuAction())
 
