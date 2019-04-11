@@ -12,12 +12,13 @@ export const loginAction = pars => async dispatch => {
 
     ajax.post({
         // headers: {'content-type':'application/x-www-form-urlencoded'},
-        url: 'http://127.0.0.1:8099/account/login',
+        url: TEMPLATE_SERVER_URL + '/account/login',
         data: pars,
         succCallback: ({data}) => {
             if (data.msg == "success") {
                 Cookies.set("access_token", data.respData);
-                window.location.href = "http://127.0.0.1:8090/#/select"
+                // window.location.href = "http://127.0.0.1:8020/#/select"
+                window.location.href = `${WEB_URL}` + "/select"
             }
         },
     })

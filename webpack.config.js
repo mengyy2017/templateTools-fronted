@@ -82,8 +82,9 @@ module.exports = {
             manifest: require('./src/manifest-vendor.json')
         }),
         new webpack.DefinePlugin({
-            SERVER_URL: "127.0.0.1:8099",
-            WEB_URL: "127.0.0.1:8090"
+            SYSTEM_SERVER_URL: JSON.stringify('http://127.0.0.1:8041'),
+            TEMPLATE_SERVER_URL: JSON.stringify('http://127.0.0.1:8042'),
+            WEB_URL: JSON.stringify('http://127.0.0.1:8020/#')
         })
     ],
 

@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dll-dev": "webpack --display-error-details --progress --colors -p --config webpack.dll.config.js",
     "build-dev": "webpack --mode production --progress --colors",
-    "run-dev": "webpack-dev-server --mode development --port 8090 --hot --inline --devtool eval --progress --colors",
+    "run-dev": "webpack-dev-server --mode development --port 8020 --hot --inline --devtool eval --progress --colors",
     "build-test": "webpack --devtool eval --display-error-details --profile --display-modules --progress --colors"
   },
   "author": "",

@@ -8,7 +8,7 @@ export const getTablesSuccess = data => ({type: GET_TABLES, data})
 
 export const getTablesAction = pars => async dispatch => {
         ajax.post({
-            url: 'http://127.0.0.1:8099/database/getAllTables',
+            url: TEMPLATE_SERVER_URL + '/database/getAllTables',
             data: pars,
             succCallback: ({data}) => dispatch(getTablesSuccess(data.respData))
         })
@@ -23,7 +23,7 @@ export const setSelectedCol = selectedKeys => ({type: SET_SELECTED_COL_KEYS, sel
 
 export const getColumnsAction = pars => dispatch => {
         ajax.post({
-            url: 'http://127.0.0.1:8099/database/getAllColumns',
+            url: TEMPLATE_SERVER_URL + '/database/getAllColumns',
             data: pars,
             succCallback: ({data}) => dispatch(getColumnsSuccess(data.respData)),
             failCallback: ({response, response: {data}}) => {
@@ -38,7 +38,7 @@ export const setSelectedColKeys = selectedKeys => dispatch => dispatch(setSelect
 
 export const createCodeAction = pars => async dispatch => {
     ajax.post({
-        url: 'http://127.0.0.1:8099/database/createCode',
+        url: TEMPLATE_SERVER_URL + '/database/createCode',
         data: pars,
         succCallback: () => message.success("生成代码成功"),
     })
