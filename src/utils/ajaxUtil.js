@@ -28,8 +28,9 @@ const defaultFailCallback = (responseObj) => {
         response.data.error && response.data.error != "" ? message.error(response.data.error) : undefined
         // response.data.message && response.data.message != "" ? message.error(response.data.message) : undefined
     } else {
-        let {data: {code, msg}} = responseObj
-        message.error(code + " " + msg)
+        responseObj.data ? {data: {code, msg}} = responseObj : undefined
+        responseObj.data ? message.error(code + " " + msg) : undefined
+        responseObj.message ? message.error(responseObj.message) : undefined
     }
     return new Promise((resolve, reject) => reject())
 }
