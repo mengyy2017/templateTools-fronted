@@ -8,6 +8,7 @@ import TabHeader from "components/database/TabHeader";
 import MenuForm from "components/MenuForm";
 import {Row} from "antd";
 import MenuOperation from "components/MenuOperation";
+import AutoCompletion from 'components/spider/AutoCompletion';
 
 class PrimarySwitch extends React.Component{
 
@@ -30,6 +31,7 @@ class PrimarySwitch extends React.Component{
                             </div>
                         )
                     }}/>
+                    <Route path="/autoCompletion" component={AutoCompletion}/>
                 </Switch>
             </div>
         )

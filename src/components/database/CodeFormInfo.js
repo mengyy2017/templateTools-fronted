@@ -132,7 +132,7 @@ class CodeFormInfo extends React.Component{
                         placeholder="Please input your database schema"
                     >
                         {getFieldDecorator('tableSchema', {
-                            initialValue: "security",
+                            initialValue: "hopc",
                             rules: [{ required: true, message: 'Please input your table schema!', whitespace: true }],
                         })(
                             <Input />

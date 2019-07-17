@@ -29,7 +29,7 @@ class HeaderBar extends React.Component{
 
                     <Menu.Item key="2"><Link to="/menu" replace><Icon type="menu-fold" />Menu</Link></Menu.Item>
 
-                    <Menu.Item key="3">nav 3</Menu.Item>
+                    <Menu.Item key="3"><Link to="/autoCompletion" replace>AutoCompletion</Link></Menu.Item>
 
                 </Menu>
             </Header>
