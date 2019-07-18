@@ -84,6 +84,7 @@ module.exports = {
         new webpack.DefinePlugin({
             SYSTEM_SERVER_URL: JSON.stringify('http://127.0.0.1:8041'),
             TEMPLATE_SERVER_URL: JSON.stringify('http://127.0.0.1:8042'),
+            SPIDER_SERVER_URL: JSON.stringify('http://127.0.0.1:8043'),
             WEB_URL: JSON.stringify('http://127.0.0.1:8020/#')
         })
     ],
