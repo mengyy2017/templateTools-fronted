@@ -4,9 +4,18 @@ const cwd = process.cwd()
 const basePath = "./src/"
 const ExtractTextPlugin = require("extract-text-webpack-plugin")
 
+// const nodeExternals = require('webpack-node-externals');
+
+
+
 module.exports = {
 
     entry: './main.js', // 入口文件路径
+
+    target: 'node', // in order to ignore built-in modules like path, fs, etc.
+    // externals: [nodeExternals()], // in order to ignore all modules in node_modules folder
+
+    // externals: [{ 'express': { commonjs: 'express' } }],
 
     output: {
         path: path.join(cwd,basePath),
@@ -18,6 +27,12 @@ module.exports = {
     devServer: {
         contentBase: "."
     },
+
+    // node: {
+    //     net: 'empty',
+    //     tls: 'empty',
+    //     dns: 'empty'
+    // },
 
     module: {
         rules:  [
@@ -76,7 +91,7 @@ module.exports = {
     },
 
     plugins: [
-        new ExtractTextPlugin("common.css"),
+        new ExtractTextPlugin({filename: 'common.css', allChunks: true}),
         new webpack.DllReferencePlugin({
             context: path.join(cwd, basePath),
             manifest: require('./src/manifest-vendor.json')

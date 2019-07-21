@@ -3,10 +3,45 @@ import {AutoComplete, Col, Select, Form, Input, Button} from 'antd';
 import {connect} from "react-redux";
 import {Row} from "antd";
 import {exePyAction, setAutoCompletionSourceAction} from "actions/spider/autoCompletionAction"
+import {connect as rabbitConnect} from "amqplib/callback_api"
 
 function onSelect(value) {
-    console.log('onSelect', value);
+    alert('onSelect', value);
 }
+
+rabbitConnect('amqp://localhost', function(error0, connection) {
+    if (error0) {
+        throw error0;
+    }
+    connection.createChannel(function(error1, channel) {
+        if (error1) {
+            throw error1;
+        }
+        var exchange = 'logs';
+
+        channel.assertExchange(exchange, 'fanout', {
+            durable: false
+        });
+
+        channel.assertQueue('', {
+            exclusive: true
+        }, function(error2, q) {
+            if (error2) {
+                throw error2;
+            }
+            console.log(" [*] Waiting for messages in %s. To exit press CTRL+C", q.queue);
+            channel.bindQueue(q.queue, exchange, '');
+
+            channel.consume(q.queue, function(msg) {
+                if(msg.content) {
+                    console.log(" [x] %s", msg.content.toString());
+                }
+            }, {
+                noAck: true
+            });
+        });
+    });
+});
 
 class AutoCompletion extends React.Component {
 
@@ -29,6 +64,7 @@ class AutoCompletion extends React.Component {
     };
 
     render = () => {
+
         const { AutoCompletionSource } = this.props;
 
         const { getFieldDecorator } = this.props.form;
