@@ -17,7 +17,7 @@ class AutoCompletion extends React.Component {
         super(props);
         // if ('WebSocket' in window) {
         //     console.log(1)
-            let ws = new WebSocket('ws://localhost:15674/ws');
+        let ws = new WebSocket('ws://localhost:15674/ws');
         // } else {
         //     console.log(2)
         //     let ws = new SockJS('http://localhost:15674/stomp');
