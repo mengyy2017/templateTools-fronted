@@ -5,6 +5,7 @@ import {Row} from "antd";
 import {exePyAction, setAutoCompletionSourceAction} from "actions/spider/autoCompletionAction"
 import Stomp from "stompjs"
 import SockJS from "sockjs-client"
+import {client as WebSocket} from "websocket"
 
 function onSelect(value) {
     alert('onSelect', value);
@@ -17,24 +18,24 @@ class AutoCompletion extends React.Component {
         debugger
         if ('WebSocket' in window) {
             console.log(1)
-            var ws = new WebSocket('ws://localhost:15674/ws');
+            let ws = new WebSocket('ws://localhost:15674/ws');
         } else {
             console.log(2)
-            var ws = new SockJS('http://localhost:15674/stomp');
+            let ws = new SockJS('http://localhost:15674/stomp');
         }
 
-        var client = Stomp.overWS(ws);
+        let client = Stomp.overWS(ws);
         client.heartbeat.outgoing = 0;
         client.heartbeat.incoming = 0;
 
-        var on_connect = function(x) {
+        let on_connect = function(x) {
             client.subscribe("/exchange/queue1BindOnFanoutExchange1", function(data) {
                 var msg = data.body;
                 alert("收到数据：" + msg);
             });
         };
 
-        var on_error =  function() {
+        let on_error =  function() {
             console.log('error');
         };
 
