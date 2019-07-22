@@ -3,47 +3,45 @@ import {AutoComplete, Col, Select, Form, Input, Button} from 'antd';
 import {connect} from "react-redux";
 import {Row} from "antd";
 import {exePyAction, setAutoCompletionSourceAction} from "actions/spider/autoCompletionAction"
-import {connect as rabbitConnect} from "amqplib/callback_api"
+import Stomp from "stompjs"
+import SockJS from "sockjs-client"
 
 function onSelect(value) {
     alert('onSelect', value);
 }
 
-rabbitConnect('amqp://localhost', function(error0, connection) {
-    if (error0) {
-        throw error0;
-    }
-    connection.createChannel(function(error1, channel) {
-        if (error1) {
-            throw error1;
-        }
-        var exchange = 'logs';
-
-        channel.assertExchange(exchange, 'fanout', {
-            durable: false
-        });
-
-        channel.assertQueue('', {
-            exclusive: true
-        }, function(error2, q) {
-            if (error2) {
-                throw error2;
-            }
-            console.log(" [*] Waiting for messages in %s. To exit press CTRL+C", q.queue);
-            channel.bindQueue(q.queue, exchange, '');
-
-            channel.consume(q.queue, function(msg) {
-                if(msg.content) {
-                    console.log(" [x] %s", msg.content.toString());
-                }
-            }, {
-                noAck: true
-            });
-        });
-    });
-});
-
 class AutoCompletion extends React.Component {
+
+    constructor(props) {
+        super(props);
+        debugger
+        if ('WebSocket' in window) {
+            console.log(1)
+            var ws = new WebSocket('ws://localhost:15674/ws');
+        } else {
+            console.log(2)
+            var ws = new SockJS('http://localhost:15674/stomp');
+        }
+
+        var client = Stomp.overWS(ws);
+        client.heartbeat.outgoing = 0;
+        client.heartbeat.incoming = 0;
+
+        var on_connect = function(x) {
+            client.subscribe("/exchange/queue1BindOnFanoutExchange1", function(data) {
+                var msg = data.body;
+                alert("收到数据：" + msg);
+            });
+        };
+
+        var on_error =  function() {
+            console.log('error');
+        };
+
+        client.connect('root', '1', on_connect, on_error, '/');
+        console.log(">>>连接上http://localhost:15674");
+    }
+
 
     search = () => {
         this.props.form.validateFieldsAndScroll((err, values) => {
