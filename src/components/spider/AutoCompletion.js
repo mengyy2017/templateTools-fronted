@@ -2,7 +2,7 @@ import React from "react";
 import {AutoComplete, Col, Select, Form, Input, Button} from 'antd';
 import {connect} from "react-redux";
 import {Row} from "antd";
-import {exePyAction, setAutoCompletionSourceAction} from "actions/spider/autoCompletionAction"
+import {exeSearchAction, setAutoCompletionSourceAction, recieveContentAction} from "actions/spider/autoCompletionAction"
 import Stomp from "stompjs"
 import SockJS from "sockjs-client"
 import {w3cwebsocket as WebSocket} from "websocket"
@@ -14,32 +14,31 @@ function onSelect(value) {
 class AutoCompletion extends React.Component {
 
     constructor(props) {
-        super(props);
+        super(props)
+        let that = this
         // if ('WebSocket' in window) {
         //     console.log(1)
-        let ws = new WebSocket('ws://localhost:15674/ws');
+            let ws = new WebSocket('ws://localhost:15674/ws')
         // } else {
         //     console.log(2)
         //     let ws = new SockJS('http://localhost:15674/stomp');
         // }
 
-        let client = Stomp.over(ws);
-        client.heartbeat.outgoing = 0;
-        client.heartbeat.incoming = 0;
+        let client = Stomp.over(ws)
+        client.heartbeat.outgoing = 0
+        client.heartbeat.incoming = 0
 
-        let on_connect = function(x) {
-            client.subscribe("/exchange/FanoutExchange1", function(data) {
-                var msg = data.body;
-                alert("收到数据：" + msg);
-            });
-        };
+        let onConnect = info => {
+            client.subscribe("/exchange/FanoutExchange1", message => {
+                message.body ? that.props.dispatch(recieveContentAction(message.body)) : undefined
+                message.ack()
+            }, {ack: "client"})
+        }
 
-        let on_error =  function() {
-            console.log('error');
-        };
+        let on_error =  () => console.log('error')
 
-        client.connect('root', '1', on_connect, on_error, '/');
-        console.log(">>>连接上http://localhost:15674");
+        client.connect('root', '1', onConnect, on_error, '/')
+        console.log(">>>连接上http://localhost:15674")
     }
 
 
@@ -47,7 +46,7 @@ class AutoCompletion extends React.Component {
         this.props.form.validateFieldsAndScroll((err, values) => {
             if (!err) {
                 // this.props.dispatch(setAutoCompletionSourceAction('indexName=wb&fieldName='+ values.fieldName +'&phrase=' + phrase))
-                this.props.dispatch(exePyAction('searchUser='+ values.searchUser))
+                this.props.dispatch(exeSearchAction('searchUser='+ values.searchUser))
 
             }
         });
@@ -61,9 +60,20 @@ class AutoCompletion extends React.Component {
         });
     };
 
+    contentChange = textArea => {
+
+        this.refs.textArea ? this.refs.textArea.textAreaRef.scrollTop = this.refs.textArea.textAreaRef.scrollHeight : undefined
+
+        // let that = this
+        // setTimeout(function () {
+        //     that.refs.textArea ? that.refs.textArea.textAreaRef.scrollTop = that.refs.textArea.textAreaRef.scrollHeight : undefined
+        // }, 3000)
+
+    }
+
     render = () => {
 
-        const { AutoCompletionSource } = this.props;
+        const { AutoCompletionSource, recieveContent } = this.props;
 
         const { getFieldDecorator } = this.props.form;
 
@@ -119,7 +129,8 @@ class AutoCompletion extends React.Component {
                     </Col>
 
                     <Col span={14}>
-                        <TextArea rows={13} />
+                        <TextArea style={{overflowY: "scroll"}} onChange={this.contentChange(this)}
+                            ref="textArea" rows={13} value={recieveContent} />
                     </Col>
 
                 </Row>
@@ -165,13 +176,13 @@ class AutoCompletion extends React.Component {
                 </Row>
             </div>
 
-
-
         );
     }
 }
 
-const mapStateToProps = state => ({AutoCompletionSource: state.autoCompletion ? state.autoCompletion.AutoCompletionSource : []})
+const mapStateToProps = state =>
+    ({AutoCompletionSource: state.autoCompletion ? state.autoCompletion.AutoCompletionSource : [],
+    recieveContent: state.autoCompletion ? state.autoCompletion.recieveContent : ''})
 
 const AutoCompletionForm = Form.create({ name: 'AutoCompletion' })(AutoCompletion);
 
