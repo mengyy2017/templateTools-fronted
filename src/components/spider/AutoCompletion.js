@@ -1,5 +1,5 @@
 import React from "react";
-import {AutoComplete, Col, Select, Form, Input, Button} from 'antd';
+import {AutoComplete, Col, Select, Form, Input, Button, message} from 'antd';
 import {connect} from "react-redux";
 import {Row} from "antd";
 import {exeSearchAction, setAutoCompletionSourceAction, recieveContentAction} from "actions/spider/autoCompletionAction"
@@ -29,9 +29,10 @@ class AutoCompletion extends React.Component {
         client.heartbeat.incoming = 0
 
         let onConnect = info => {
-            client.subscribe("/exchange/FanoutExchange1", message => {
-                message.body ? that.props.dispatch(recieveContentAction(message.body)) : undefined
-                message.ack()
+            client.subscribe("/exchange/FanoutExchange1", msg => {
+                if(msg.body)
+                    msg.body == "搜索完毕" ? message.success("搜索完毕") : that.props.dispatch(recieveContentAction(msg.body))
+                msg.ack()
             }, {ack: "client"})
         }
 
@@ -42,7 +43,8 @@ class AutoCompletion extends React.Component {
     }
 
 
-    search = () => {
+    exeSearch = (e) => {
+        e.preventDefault()
         this.props.form.validateFieldsAndScroll((err, values) => {
             if (!err) {
                 // this.props.dispatch(setAutoCompletionSourceAction('indexName=wb&fieldName='+ values.fieldName +'&phrase=' + phrase))
@@ -52,7 +54,7 @@ class AutoCompletion extends React.Component {
         });
     }
 
-    handleSearch = phrase => {
+    inputSearch = phrase => {
         this.props.form.validateFieldsAndScroll((err, values) => {
             if (!err) {
                 this.props.dispatch(setAutoCompletionSourceAction('indexName=wb&fieldName='+ values.fieldName +'&phrase=' + phrase))
@@ -107,14 +109,14 @@ class AutoCompletion extends React.Component {
                 <Row>
 
                     <Col span={8} offset={1}>
-                        <Form onSubmit={this.search} layout="inline" >
+                        <Form onSubmit={this.exeSearch} layout="inline" >
                             <Form.Item
                                 {...formItemLayout0}
-                                label="search user"
+                                label="微博用户"
                                 placeholder="Please input user"
                             >
                                 {getFieldDecorator('searchUser', {
-                                    initialValue: "思想聚焦",
+                                    initialValue: "",
                                     rules: [{ required: true, message: 'Please input user!', whitespace: true }],
                                 })(
                                     <Input size={"large"} />
@@ -129,7 +131,7 @@ class AutoCompletion extends React.Component {
                     </Col>
 
                     <Col span={14}>
-                        <TextArea style={{overflowY: "scroll"}} onChange={this.contentChange(this)}
+                        <TextArea style={{overflowY: "scroll"}} onChange={this.contentChange}
                             ref="textArea" rows={13} value={recieveContent} />
                     </Col>
 
@@ -170,7 +172,7 @@ class AutoCompletion extends React.Component {
                     <Col span={8}>
                         <AutoComplete dataSource={AutoCompletionSource} size={"large"}
                                       style={{ width: 400 }} onSelect={onSelect}
-                                      onSearch={this.handleSearch} placeholder="input here"/>
+                                      onSearch={this.inputSearch} placeholder="input here"/>
                     </Col>
 
                 </Row>
@@ -181,8 +183,13 @@ class AutoCompletion extends React.Component {
 }
 
 const mapStateToProps = state =>
-    ({AutoCompletionSource: state.autoCompletion ? state.autoCompletion.AutoCompletionSource : [],
-    recieveContent: state.autoCompletion ? state.autoCompletion.recieveContent : ''})
+{
+    let AutoCompletionSource = state.autoCompletion ? state.autoCompletion.AutoCompletionSource : []
+    let recieveContent = state.autoCompletion ? state.autoCompletion.recieveContent : undefined
+    return {AutoCompletionSource, recieveContent}
+}
+    // ({AutoCompletionSource: state.autoCompletion ? state.autoCompletion.AutoCompletionSource : [],
+    // recieveContent: state.autoCompletion ? state.autoCompletion.recieveContent : undefined})
 
 const AutoCompletionForm = Form.create({ name: 'AutoCompletion' })(AutoCompletion);
 

@@ -12,7 +12,7 @@ class HeaderBar extends React.Component{
 
                 <div className="logo" />
 
-                <Menu mode="horizontal" defaultSelectedKeys={['2']} style={{ background: '#fff' }}>
+                <Menu mode="horizontal" defaultSelectedKeys={['0']} style={{ background: '#fff' }}>
 
                     <SubMenu title={<span className="submenu-title-wrapper"><Icon type="home" /><Link to="/" replace>Navigation Home</Link></span>}>
                         <Menu.Item key="setting:1">
