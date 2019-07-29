@@ -62,7 +62,7 @@ class AutoCompletion extends React.Component {
         });
     };
 
-    contentChange = textArea => {
+    contentChange = (textArea) => {
 
         this.refs.textArea ? this.refs.textArea.textAreaRef.scrollTop = this.refs.textArea.textAreaRef.scrollHeight : undefined
 
@@ -131,7 +131,7 @@ class AutoCompletion extends React.Component {
                     </Col>
 
                     <Col span={14}>
-                        <TextArea style={{overflowY: "scroll"}} onChange={this.contentChange}
+                        <TextArea style={{overflowY: "scroll"}} onChange={this.contentChange(this)}
                             ref="textArea" rows={13} value={recieveContent} />
                     </Col>
 

@@ -5,7 +5,7 @@ export const autoCompletion = (prevState = {}, action) => {
         case SET_ATUOCOMPLTION_SOURCE:
             return Object.assign({}, prevState, {AutoCompletionSource: action.AutoCompletionSource})
         case RECIEVE_CONTENT:
-            return Object.assign({}, prevState, {recieveContent: prevState.recieveContent ? (prevState.recieveContent.length < 300 ? prevState.recieveContent + '\n' + action.recieveContent : prevState.recieveContent.substring(300) + '\n' + action.recieveContent) : action.recieveContent })
+            return Object.assign({}, prevState, {recieveContent: prevState.recieveContent ? (prevState.recieveContent.length < 600 ? prevState.recieveContent + '\n' + action.recieveContent : prevState.recieveContent.substring(300) + '\n' + action.recieveContent) : action.recieveContent })
         default:
             return prevState
     }
