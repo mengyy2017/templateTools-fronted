@@ -12,8 +12,8 @@ export const loginAction = pars => async dispatch => {
 
     ajax.post({
         // headers: {'content-type':'application/x-www-form-urlencoded'},
-        // url: SYSTEM_SERVER_URL + '/account/login',
-        url: 'http://127.0.0.1:8032/SYSTEM-SERVER' + '/account/login',
+        url: SYSTEM_SERVER_URL + '/account/login',
+        // url: 'http://127.0.0.1:8032/SYSTEM-SERVER' + '/account/login',
         data: pars,
         succCallback: ({data}) => {
             if (data.msg == "success") {
