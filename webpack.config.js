@@ -82,9 +82,18 @@ module.exports = {
             manifest: require('./src/manifest-vendor.json')
         }),
         new webpack.DefinePlugin({
-            SYSTEM_SERVER_URL: JSON.stringify('http://127.0.0.1:8040'),
-            TEMPLATE_SERVER_URL: JSON.stringify('http://127.0.0.1:8042'),
-            SPIDER_SERVER_URL: JSON.stringify('http://127.0.0.1:8043'),
+            // SYSTEM_SERVER_URL: JSON.stringify('http://127.0.0.1:8040'),
+            // TEMPLATE_SERVER_URL: JSON.stringify('http://127.0.0.1:8042'),
+            // SPIDER_SERVER_URL: JSON.stringify('http://127.0.0.1:8043'),
+
+            SYSTEM_SERVER_URL: JSON.stringify('http://127.0.0.1:8888/SYSTEM-SERVER'),
+            TEMPLATE_SERVER_URL: JSON.stringify('http://127.0.0.1:8888/TEMPLATE-SERVER'),
+            SPIDER_SERVER_URL: JSON.stringify('http://127.0.0.1:8888/SPIDER-SERVER'),
+
+            // SYSTEM_SERVER_URL: JSON.stringify('http://127.0.0.1:9999/SYSTEM-SERVER'),
+            // TEMPLATE_SERVER_URL: JSON.stringify('http://127.0.0.1:9999/TEMPLATE-SERVER'),
+            // SPIDER_SERVER_URL: JSON.stringify('http://127.0.0.1:9999/SPIDER-SERVER'),
+
             WEB_URL: JSON.stringify('http://127.0.0.1:8020/#')
         })
     ],
