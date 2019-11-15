@@ -1,10 +1,10 @@
 import React from "react"
 import {Layout} from "antd"
 import 'styles/index.css'
-import HeaderBar from "components/home/HeaderBar";
-import CommArea from "components/home/CommArea";
-import PrimarySwitch from "components/PrimarySwitch";
-import FooterBar from "components/home/FooterBar";
+import HeaderBar from "components/app/index/HeaderBar";
+import CommArea from "components/app/index/CommArea";
+import PrimarySwitch from "components/app/index/PrimarySwitch";
+import FooterBar from "components/app/index/FooterBar";
 
 class Home extends React.Component {
     

@@ -3,11 +3,11 @@ import Hi from "components/account/Hi";
 import LoginFormInfo from "components/account/LoginFormInfo";
 import {Switch} from "react-router";
 import React from "react";
-import MenuTable from "components/MenuTable";
+import MenuTable from "components/menu/MenuTable";
 import TabHeader from "components/database/TabHeader";
-import MenuForm from "components/MenuForm";
+import MenuForm from "components/menu/MenuForm";
 import {Row} from "antd";
-import MenuOperation from "components/MenuOperation";
+import MenuOperation from "components/menu/MenuOperation";
 import AutoCompletion from 'components/spider/AutoCompletion';
 
 class PrimarySwitch extends React.Component{

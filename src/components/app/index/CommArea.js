@@ -16,8 +16,9 @@ class CommArea extends React.Component{
                 </Breadcrumb>
 
                 <div style={{ background: '#fff', padding: 24, minHeight: 580 }}>
-                    {this.props.children}
+                    {this.props.children} {/*或者这里的{this.props.children}直接写<PrimarySwitch/>多明显*/}
                 </div>
+
 
             </Content>
         )

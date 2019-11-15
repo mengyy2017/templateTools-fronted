@@ -8,7 +8,7 @@ import configureStore from 'stores/configureStore'
 
 // import { syncReduxAndRouter } from 'redux-simple-router'
 import { Provider } from "react-redux"
-import App from 'components/home/App'
+import App from 'components/app/App'
 
 // const history = useBasename(createHashHistory)({
 //     basename: '/'

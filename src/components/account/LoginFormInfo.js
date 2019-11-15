@@ -1,6 +1,6 @@
 import React from "react";
 import connect from "react-redux/es/connect/connect";
-import {Form, Input, Button,} from 'antd';
+import {Form, Input, Button, Col} from 'antd';
 import {loginAction} from "actions/account/loginFormAction";
 
 class LoginFormInfo extends React.Component{
@@ -12,6 +12,10 @@ class LoginFormInfo extends React.Component{
                 this.props.dispatch(loginAction(values))
             }
         });
+    }
+
+    concurrencyTest = () => {
+
     }
 
     render = () => {
@@ -81,6 +85,10 @@ class LoginFormInfo extends React.Component{
                         <Button type="primary" htmlType="submit">login</Button>
                     </Form.Item>
                 </Form>
+
+                <Col offset={11}>
+                    <Button type="primary" onClick={this.concurrencyTest}>High Concurrent Test</Button>
+                </Col>
 
             </div>
         )
