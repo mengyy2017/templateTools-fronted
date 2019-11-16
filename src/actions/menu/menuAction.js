@@ -8,7 +8,6 @@ export const getMenuAction = () => async dispatch => {
     await ajax.post({
         url: SYSTEM_SERVER_URL + "/menu/getAllMenu",
         succCallback: ({data}) => dispatch(getMenu(data.respData))
-
     })
 }
 

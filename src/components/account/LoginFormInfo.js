@@ -2,6 +2,7 @@ import React from "react";
 import connect from "react-redux/es/connect/connect";
 import {Form, Input, Button, Col} from 'antd';
 import {loginAction} from "actions/account/loginFormAction";
+import {Redirect} from "react-router";
 
 class LoginFormInfo extends React.Component{
 
@@ -14,8 +15,9 @@ class LoginFormInfo extends React.Component{
         });
     }
 
-    concurrencyTest = () => {
-
+    concurrencyRedirect = () => {
+        // return (<Redirect to="/asyncListener" />); Redirect组件直接写在这里不生效 需要写在render里面
+        this.setState({asyncListenerUrl: "/asyncListener"})
     }
 
     render = () => {
@@ -48,6 +50,9 @@ class LoginFormInfo extends React.Component{
         // const {redirectUrl} = this.props
         // if (redirectUrl)
         //     return (<Redirect to={redirectUrl} />);
+
+        if (this.state && this.state.asyncListenerUrl)
+            return (<Redirect to={{pathname: this.state.asyncListenerUrl, state:{"exchangeName": "asyncListenExchange"}}} />);
 
         return (
             <div>
@@ -87,7 +92,7 @@ class LoginFormInfo extends React.Component{
                 </Form>
 
                 <Col offset={11}>
-                    <Button type="primary" onClick={this.concurrencyTest}>High Concurrent Test</Button>
+                    <Button type="primary" onClick={this.concurrencyRedirect}>High Concurrent Test</Button>
                 </Col>
 
             </div>

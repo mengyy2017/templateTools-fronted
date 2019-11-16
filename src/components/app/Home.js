@@ -3,7 +3,7 @@ import {Layout} from "antd"
 import 'styles/index.css'
 import HeaderBar from "components/app/index/HeaderBar";
 import CommArea from "components/app/index/CommArea";
-import PrimarySwitch from "components/app/index/PrimarySwitch";
+import SwitchRoute from "components/app/index/SwitchRoute";
 import FooterBar from "components/app/index/FooterBar";
 
 class Home extends React.Component {
@@ -17,7 +17,7 @@ class Home extends React.Component {
                     <HeaderBar/>
 
                     <CommArea>
-                        <PrimarySwitch/>
+                        <SwitchRoute/>
                     </CommArea>
 
                     <FooterBar/>

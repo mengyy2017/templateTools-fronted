@@ -9,8 +9,9 @@ import MenuForm from "components/menu/MenuForm";
 import {Row} from "antd";
 import MenuOperation from "components/menu/MenuOperation";
 import AutoCompletion from 'components/spider/AutoCompletion';
+import AsyncListener from "components/concurrency/AsyncListener";
 
-class PrimarySwitch extends React.Component{
+class SwitchRoute extends React.Component{
 
     render = () => {
 
@@ -32,6 +33,7 @@ class PrimarySwitch extends React.Component{
                         )
                     }}/>
                     <Route path="/autoCompletion" component={AutoCompletion}/>
+                    <Route path="/asyncListener" component={AsyncListener}/>
                 </Switch>
             </div>
         )
@@ -39,7 +41,7 @@ class PrimarySwitch extends React.Component{
 
 }
 
-export default PrimarySwitch
+export default SwitchRoute
 
 
 

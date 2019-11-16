@@ -1,7 +1,7 @@
 import {Form, Button, Input, Col} from "antd";
 import React from "react";
 import connect from "react-redux/es/connect/connect";
-import {updateOrSaveAction} from "actions/menuAction";
+import {updateOrSaveAction} from "actions/menu/menuAction";
 
 class MenuForm extends React.Component {
 

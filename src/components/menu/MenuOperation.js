@@ -1,6 +1,6 @@
 import {Button, Col, Row, Tag} from "antd";
 import React from "react";
-import {changeMenuOperTypeAction} from "actions/menuAction";
+import {changeMenuOperTypeAction} from "actions/menu/menuAction";
 import connect from "react-redux/es/connect/connect";
 
 class MenuOperation extends React.Component{

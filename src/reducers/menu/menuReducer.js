@@ -1,4 +1,4 @@
-import {CHANGE_MENU_OPER, GET_MENU, GET_MENU_UNIQ} from "actions/menuAction";
+import {CHANGE_MENU_OPER, GET_MENU, GET_MENU_UNIQ} from "actions/menu/menuAction";
 
 
 export const menu = (preState = {menuArr: []}, action) => {

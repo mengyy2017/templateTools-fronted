@@ -1,7 +1,7 @@
 import {Col, Table} from "antd";
 import React from "react";
 import {connect} from "react-redux";
-import {getMenuAction, getMenuUniqAction} from "actions/menuAction";
+import {getMenuAction, getMenuUniqAction} from "actions/menu/menuAction";
 
 class MenuTable extends React.Component{
 
