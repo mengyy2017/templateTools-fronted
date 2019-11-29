@@ -132,7 +132,7 @@ class CodeFormInfo extends React.Component{
                         placeholder="Please input your database schema"
                     >
                         {getFieldDecorator('tableSchema', {
-                            initialValue: "hopc",
+                            initialValue: "running",
                             rules: [{ required: true, message: 'Please input your table schema!', whitespace: true }],
                         })(
                             <Input />
@@ -144,7 +144,7 @@ class CodeFormInfo extends React.Component{
                         label="code package"
                     >
                         {getFieldDecorator('codePackage', {
-                            initialValue: "com.templateTools",
+                            initialValue: "templateToolsCode", // 可以是com.templateTools形式
                             rules: [{ required: true, message: 'Please input your code package!', whitespace: true }],
                         })(
                             <Input />

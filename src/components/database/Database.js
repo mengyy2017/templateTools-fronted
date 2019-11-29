@@ -8,12 +8,12 @@ class Database extends React.Component {
     selectedObjs = []
     selectedColKeys = []
 
-    addSelectedTable = record => this.selectedObjs.push({tableName: record.tableName, colList: []})
+    addSelectedTable = record => this.selectedObjs.push({tableEntity: {tableName: record.tableName}, colList: []})
 
     rmSlectedTable = record => {
 
         let rmColList
-        this.selectedObjs = this.selectedObjs.filter(obj => obj.tableName != record.tableName || (rmColList = obj.colList) == undefined )
+        this.selectedObjs = this.selectedObjs.filter(obj => (obj.tableEntity && obj.tableEntity.tableName != record.tableName) || (rmColList = obj.colList) == undefined )
 
         // rmColList.forEach(col => this.selectedColKeys.find((key, index) => col.tableName + '*@' + col.columnName == key ? this.selectedColKeys.splice(index, 1) : undefined))
         // 不能直接改 this.selectedColKeys  虽然 this.selectedColKeys 和 Column 中
@@ -34,9 +34,9 @@ class Database extends React.Component {
     }
 
     // 这两个是更新选中的这条数据的信息 包含主键和其他的信息 传入后台的需要的是整条数据信息  跟state无关 不会引起对勾变化
-    addSelectedCol = record => this.selectedObjs.find(obj => obj.tableName == record.tableName ? obj.colList = [...obj.colList, record] : undefined)
+    addSelectedCol = record => this.selectedObjs.find(obj => (obj.tableEntity && obj.tableEntity.tableName == record.tableName) ? obj.colList = [...obj.colList, record] : undefined)
 
-    rmSelectedCol = record => this.selectedObjs.find(obj => obj.tableName == record.tableName ? obj.colList = obj.colList.filter(col => col.columnName != record.columnName) : undefined)
+    rmSelectedCol = record => this.selectedObjs.find(obj => (obj.tableEntity && obj.tableEntity.tableName == record.tableName) ? obj.colList = obj.colList.filter(col => col.columnName != record.columnName) : undefined)
 
 
 
