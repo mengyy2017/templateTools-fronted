@@ -10,7 +10,7 @@ export const getTablesAction = pars => async dispatch => {
         ajax.post({
             url: TEMPLATE_SERVER_URL + '/database/getAllTables',
             data: pars,
-            succCallback: ({data}) => dispatch(getTablesSuccess(data.respData))
+            succCallback: ({resp}) => dispatch(getTablesSuccess(resp.data))
         })
 }
 
@@ -25,9 +25,9 @@ export const getColumnsAction = pars => dispatch => {
         ajax.post({
             url: TEMPLATE_SERVER_URL + '/database/getAllColumns',
             data: pars,
-            succCallback: ({data}) => dispatch(getColumnsSuccess(data.respData)),
-            failCallback: ({response, response: {data}}) => {
-                message.error(data.msg)
+            succCallback: ({resp}) => dispatch(getColumnsSuccess(resp.data)),
+            failCallback: ({response, response: {resp}}) => {
+                message.error(resp.msg)
                 dispatch(setActiveKey("0"))
             }
         })

@@ -15,6 +15,7 @@ const defaulData = {
 const defaultSuccCallBack = response => {
     return new Promise((resolve, reject) => {
         let {data: {code}} = response
+        response.resp = response.data
         code == "200" ? resolve(response) : reject(response)
     })
 }

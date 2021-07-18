@@ -15,9 +15,9 @@ export const loginAction = pars => async dispatch => {
         url: SYSTEM_SERVER_URL + '/account/login',
         // url: 'http://127.0.0.1:8032/SYSTEM-SERVER' + '/account/login',
         data: pars,
-        succCallback: ({data}) => {
-            if (data.msg == "success") {
-                Cookies.set("access_token", data.respData);
+        succCallback: ({resp}) => {
+            if (resp.msg == "success") {
+                Cookies.set("access_token", resp.data);
                 window.location.href = WEB_URL + "/select"
             }
         },

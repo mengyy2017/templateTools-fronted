@@ -7,7 +7,7 @@ export const getMenu = data => ({type: GET_MENU, data})
 export const getMenuAction = () => async dispatch => {
     await ajax.post({
         url: SYSTEM_SERVER_URL + "/menu/getAllMenu",
-        succCallback: ({data}) => dispatch(getMenu(data.respData))
+        succCallback: ({resp}) => dispatch(getMenu(resp.data))
     })
 }
 
@@ -19,9 +19,9 @@ export const getMenuUniqAction = pars => async dispatch => {
     await ajax.post({
         url: SYSTEM_SERVER_URL + "/menu/getMenuUniq",
         data: pars,
-        succCallback: ({data}) => {
+        succCallback: ({resp}) => {
             dispatch(changeMenuOper({"menuOperType": "编辑"}))
-            dispatch(getMenuUniq(data.respData))
+            dispatch(getMenuUniq(resp.data))
         }
     })
 }

@@ -16,9 +16,9 @@ export const setAutoCompletionSourceAction = value => dispatch => {
         },
         url: SPIDER_SERVER_URL + '/es/matchPhrase',
         data: value,
-        succCallback: ({data}) => dispatch(setAutoCompletionSource(data.respData)),
-        failCallback: ({response, response: {data}}) => {
-            message.error(data.msg)
+        succCallback: ({resp}) => dispatch(setAutoCompletionSource(resp.data)),
+        failCallback: ({response, response: {resp}}) => {
+            message.error(resp.msg)
         }
     })
 }
@@ -37,9 +37,9 @@ export const exeSearchAction = value => dispatch => {
         },
         url: SPIDER_SERVER_URL + '/py/exeSearch',
         data: value,
-        succCallback: ({data}) => dispatch(exeSearch(data.respData)),
-        failCallback: ({response, response: {data}}) => {
-            message.error(data.msg)
+        succCallback: ({resp}) => dispatch(exeSearch(resp.data)),
+        failCallback: ({response, response: {resp}}) => {
+            message.error(resp.msg)
         }
     })
 }

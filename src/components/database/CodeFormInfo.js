@@ -119,7 +119,7 @@ class CodeFormInfo extends React.Component{
                         label="database password"
                     >
                         {getFieldDecorator('databasePassword', {
-                            initialValue: "1",
+                            initialValue: "123456",
                             rules: [{ required: true, message: 'Please input your database password!', whitespace: true }],
                         })(
                             <Input placeholder="Please input your database password" />
@@ -132,7 +132,7 @@ class CodeFormInfo extends React.Component{
                         placeholder="Please input your database schema"
                     >
                         {getFieldDecorator('tableSchema', {
-                            initialValue: "running",
+                            initialValue: "asset_portal",
                             rules: [{ required: true, message: 'Please input your table schema!', whitespace: true }],
                         })(
                             <Input />

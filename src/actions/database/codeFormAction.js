@@ -6,7 +6,7 @@ export const setCodeInfoAction = pars => async dispatch => {
     await ajax.post({
             url: TEMPLATE_SERVER_URL + "/database/setCreateInfo",
             data: pars,
-            succCallback: ({data}) => dispatch(getTablesSuccess(data.respData))
+            succCallback: ({resp}) => dispatch(getTablesSuccess(resp.data))
         }
     )
 }
