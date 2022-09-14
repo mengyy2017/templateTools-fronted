@@ -24,14 +24,14 @@ class Columns extends React.Component{
             onChange: selectedRowKeys => updateSelectedColKeys(selectedRowKeys),
             onSelect: (record, selected, selectedRows, nativeEvent) => {
                 if (selected)
-                    getSelectedObjs().find(obj => obj.tableName == record.tableName) ? addSelectedCol(record) && dispatchSelectedColKeys() : message.error('请勾选数据库列对应的数据库表！')
+                    getSelectedObjs().find(obj => obj.tableEntity.tableName == record.tableName) ? addSelectedCol(record) && dispatchSelectedColKeys() : message.error('请勾选数据库列对应的数据库表！')
                 else
                     rmSelectedCol(record) && dispatchSelectedColKeys()
             },
             onSelectAll: (selected, selectedRows, changeRows) => {
                 if (selected){
                     for(let record of changeRows) {
-                        if(getSelectedObjs().find(obj => obj.tableName == record.tableName)) {
+                        if(getSelectedObjs().find(obj => obj.tableEntity.tableName == record.tableName)) {
                             addSelectedCol(record) && dispatchSelectedColKeys()
                         } else {
                             message.error('请勾选数据库列对应的数据库表！')
