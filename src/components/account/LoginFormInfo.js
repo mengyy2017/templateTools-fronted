@@ -55,7 +55,7 @@ class LoginFormInfo extends React.Component{
             return (<Redirect to={{pathname: this.state.asyncListenerUrl, state:{"exchangeName": "asyncListenExchange"}}} />);
 
         return (
-            <div>
+            <div style={{padding: 24}}>
 
                 <Form onSubmit={this.login}>
 

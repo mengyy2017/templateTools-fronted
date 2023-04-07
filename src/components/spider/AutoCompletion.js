@@ -105,7 +105,7 @@ class AutoCompletion extends React.Component {
 
         return (
 
-            <div>
+            <div style={{padding: 24}}>
                 <Row>
 
                     <Col span={8} offset={1}>

@@ -23,7 +23,7 @@ class SwitchRoute extends React.Component{
                     <Route path="/select" component={TabHeader}/>
                     <Route path="/menu" render={() => {
                         return (
-                            <div>
+                            <div style={{padding: "1px 24px 24px 24px"}}>
                                 <MenuOperation  />
                                 <Row>
                                     <MenuTable  />

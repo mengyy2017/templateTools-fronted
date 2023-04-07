@@ -16,7 +16,7 @@ class Hi extends React.Component{
             return (<Redirect to={this.state.loginUrl} />);
 
         return (
-            <div>
+            <div style={{padding: 24}}>
                 <Row>
                     <Col span={23}><h3>hi</h3></Col>
                     <Col span={1}><Button type="default" onClick={this.hi}>go</Button></Col>

@@ -47,25 +47,20 @@ class CodeFormInfo extends React.Component{
 
                 <Form onSubmit={this.next}>
 
-                    <Form.Item
-                        {...formItemLayout}
-                        label="database address"
-                        placeholder="Please input your database address"
-                    >
-                        {getFieldDecorator('databaseAdress', {
-                            initialValue: "127.0.0.1",
+                    <Form.Item{...formItemLayout} label="database address" placeholder="Please input your database address">
+                        {getFieldDecorator('databaseAddress', {
+                            // initialValue: "127.0.0.1",
+                            initialValue: "192.168.3.75",
                             rules: [{ required: true, message: 'Please input your database schema!', whitespace: true }],
                         })(
                             <Input />
                         )}
                     </Form.Item>
 
-                    <Form.Item
-                        {...formItemLayout}
-                        label="database type"
-                    >
+                    <Form.Item{...formItemLayout} label="database type">
                         {getFieldDecorator('databaseType', {
-                            initialValue: "mysql",
+                            // initialValue: "mysql",
+                            initialValue: "dm",
                             rules: [
                                 { required: true, message: 'Please select your database type!' },
                             ],
@@ -73,91 +68,74 @@ class CodeFormInfo extends React.Component{
                             <Select placeholder="Please select a database type">
                                 <Select.Option value="mysql">mysql</Select.Option>
                                 <Select.Option value="oracle">oracle</Select.Option>
+                                <Select.Option value="dm">dm</Select.Option>
                             </Select>
                         )}
                     </Form.Item>
 
-                    <Form.Item
-                        {...formItemLayout}
-                        label="database port"
-                    >
+                    <Form.Item{...formItemLayout} label="database port">
                         {getFieldDecorator('databasePort', {
-                            initialValue: "3306",
+                            // initialValue: "3306",
+                            initialValue: "5236",
                             rules: [{ required: true, message: 'Please input your database port!', whitespace: true }],
                         })(
                             <Input  placeholder="Please input your database port" />
                         )}
                     </Form.Item>
 
-                    <Form.Item
-                        {...formItemLayout}
-                        label="database schema"
-                        placeholder="Please input your database schema"
-                    >
+                    <Form.Item{...formItemLayout} label="sys database schema" placeholder="Please input your sys database schema">
                         {getFieldDecorator('databaseSchema', {
-                            initialValue: "information_schema",
-                            rules: [{ required: true, message: 'Please input your database schema!', whitespace: true }],
+                            // initialValue: "information_schema",
+                            initialValue: "SYS",
+                            rules: [{ required: true, message: 'Please input your sys database schema!', whitespace: true }],
                         })(
                             <Input />
                         )}
                     </Form.Item>
 
-                    <Form.Item
-                        {...formItemLayout}
-                        label="database username"
-                    >
+                    <Form.Item{...formItemLayout} label="username">
                         {getFieldDecorator('databaseUsername', {
-                            initialValue: "root",
+                            // initialValue: "root",
+                            initialValue: "PDM",
                             rules: [{ required: true, message: 'Please input your database username!', whitespace: true }],
                         })(
                             <Input placeholder="Please input your database username"/>
                         )}
                     </Form.Item>
 
-                    <Form.Item
-                        {...formItemLayout}
-                        label="database password"
-                    >
+                    <Form.Item{...formItemLayout} label="password">
                         {getFieldDecorator('databasePassword', {
-                            initialValue: "123456",
+                            // initialValue: "123456",
+                            initialValue: "plm123456",
                             rules: [{ required: true, message: 'Please input your database password!', whitespace: true }],
                         })(
                             <Input placeholder="Please input your database password" />
                         )}
                     </Form.Item>
 
-                    <Form.Item
-                        {...formItemLayout}
-                        label="table schema"
-                        placeholder="Please input your database schema"
-                    >
+                    <Form.Item {...formItemLayout} label="business database schema" placeholder="Please input your business database schema">
                         {getFieldDecorator('tableSchema', {
                             // initialValue: "operation_monitor",
-                            initialValue: "sync_user_org",
-                            rules: [{ required: true, message: 'Please input your table schema!', whitespace: true }],
+                            // initialValue: "sync_user_org",
+                            initialValue: "PDM_STAR",
+                            rules: [{ required: true, message: 'Please input your business database schema!', whitespace: true }],
                         })(
                             <Input />
                         )}
                     </Form.Item>
 
-                    <Form.Item
-                        {...formItemLayout}
-                        label="code package"
-                    >
+                    <Form.Item {...formItemLayout} label="code package">
                         {getFieldDecorator('codePackage', {
                             // initialValue: "templateToolsCode", // 可以是com.templateTools形式
                             // initialValue: "com.guowang", // 可以是com.templateTools形式
-                            initialValue: "com", // 可以是com.templateTools形式
+                            initialValue: "cn.jwis.product.ppm.customer", // 可以是com.templateTools形式
                             rules: [{ required: true, message: 'Please input your code package!', whitespace: true }],
                         })(
                             <Input />
                         )}
                     </Form.Item>
 
-                    <Form.Item
-                        {...formItemLayout}
-                        label="author"
-                    >
+                    <Form.Item {...formItemLayout} label="author">
                         {getFieldDecorator('author', {
                             initialValue: "",
                             rules: [{ required: false, message: 'Please input author!', whitespace: true }],

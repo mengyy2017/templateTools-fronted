@@ -1,5 +1,5 @@
 import React from "react"
-import {Button, Col, Row} from "antd";
+import {Button, Col, Form, Input, Row, Select} from "antd";
 import {createCodeAction, setSelectedColKeys} from 'actions/database/databaseAction'
 import connect from "react-redux/es/connect/connect";
 
@@ -55,6 +55,32 @@ class Database extends React.Component {
 
     render = () => {
 
+        const { getFieldDecorator } = this.props.form;
+
+        const formItemLayout = {
+            labelCol: {
+                xs: { span: 24 },
+                sm: { span: 6 },
+            },
+            wrapperCol: {
+                xs: { span: 24 },
+                sm: { span: 12 },
+            },
+        };
+
+        const tailFormItemLayout = {
+            wrapperCol: {
+                xs: {
+                    span: 24,
+                    offset: 0,
+                },
+                sm: {
+                    span: 16,
+                    offset: 12,
+                },
+            },
+        };
+
         let {children, ...otherProps} = this.props
 
         const childrenWithProps = React.Children.map(children, (child, index) => {
@@ -75,8 +101,31 @@ class Database extends React.Component {
         return (
             <div>
                 <Row type="flex" justify="end" className="header">
-                    <Col span={13}><Button type="primary" onClick={this.createCode}>生成代码</Button></Col>
+                    <Col span={11}>
+                        <Form onSubmit={this.next} layout={"inline"}>
+                            <Form.Item label="tableName" placeholder="Please input tableName">
+                                {getFieldDecorator('tableName', {
+                                    // initialValue: "127.0.0.1",
+                                    initialValue: "",
+                                    rules: [{ required: true, message: 'Please input tableName!', whitespace: true }],
+                                })(
+                                    <Input />
+                                )}
+                            </Form.Item>
+
+                            <Form.Item >
+                                <Button type="primary" htmlType="submit">搜索</Button>
+                            </Form.Item>
+                        </Form>
+                    </Col>
+
+                    <Col span={13}><Button type="primary"  onClick={this.createCode}>生成代码</Button></Col>
                 </Row>
+
+                <Row type="flex" justify="start" className="header">
+
+                </Row>
+
                 <Row gutter={24}>
                     {childrenWithProps}
                 </Row>
@@ -97,4 +146,6 @@ class Database extends React.Component {
 
 const mapStateToProps = state => ({})
 
-export default connect(mapStateToProps)(Database)
+const databaseInfo = Form.create({ name: 'Database' })(Database);
+
+export default connect(mapStateToProps)(databaseInfo)

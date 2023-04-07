@@ -15,7 +15,7 @@ class CommArea extends React.Component{
                     <Breadcrumb.Item>App</Breadcrumb.Item>
                 </Breadcrumb>
 
-                <div style={{ background: '#fff', padding: 24, minHeight: 580 }}>
+                <div style={{ background: '#fff', minHeight: 580 }}>
                     {this.props.children} {/*或者这里的{this.props.children}直接写<SwitchRoute/>多明显*/}
                 </div>
 
