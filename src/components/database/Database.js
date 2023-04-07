@@ -1,6 +1,6 @@
 import React from "react"
 import {Button, Col, Form, Input, Row, Select} from "antd";
-import {createCodeAction, setSelectedColKeys} from 'actions/database/databaseAction'
+import {createCodeAction, setSelectedColKeys, getTablesAction} from 'actions/database/databaseAction'
 import connect from "react-redux/es/connect/connect";
 
 class Database extends React.Component {
@@ -49,6 +49,19 @@ class Database extends React.Component {
 
 
 
+    pressEnter = e => this.props.dispatch(getTablesAction({"tableName": e.target.value}))
+
+    searchTables = e => {
+        e.preventDefault();
+        this.props.form.validateFields((err, values) => {
+            if (!err) {
+                this.props.dispatch(getTablesAction(values))
+            }
+        });
+
+    }
+
+
     createCode = () => this.props.dispatch(createCodeAction(this.selectedObjs))
 
     last = () => this.props.changeActiveKey("0")
@@ -56,30 +69,6 @@ class Database extends React.Component {
     render = () => {
 
         const { getFieldDecorator } = this.props.form;
-
-        const formItemLayout = {
-            labelCol: {
-                xs: { span: 24 },
-                sm: { span: 6 },
-            },
-            wrapperCol: {
-                xs: { span: 24 },
-                sm: { span: 12 },
-            },
-        };
-
-        const tailFormItemLayout = {
-            wrapperCol: {
-                xs: {
-                    span: 24,
-                    offset: 0,
-                },
-                sm: {
-                    span: 16,
-                    offset: 12,
-                },
-            },
-        };
 
         let {children, ...otherProps} = this.props
 
@@ -100,17 +89,11 @@ class Database extends React.Component {
 
         return (
             <div>
-                <Row type="flex" justify="end" className="header">
-                    <Col span={11}>
-                        <Form onSubmit={this.next} layout={"inline"}>
+                <Row type="flex" justify="start" style={{marginBottom: 20}}>
+                    <Col span={9} push={2}>
+                        <Form layout={"inline"} onSubmit={this.searchTables}>
                             <Form.Item label="tableName" placeholder="Please input tableName">
-                                {getFieldDecorator('tableName', {
-                                    // initialValue: "127.0.0.1",
-                                    initialValue: "",
-                                    rules: [{ required: true, message: 'Please input tableName!', whitespace: true }],
-                                })(
-                                    <Input />
-                                )}
+                                {getFieldDecorator('tableName', {initialValue: "",})(<Input style={{width: 250}} onPressEnter={this.pressEnter} />)}
                             </Form.Item>
 
                             <Form.Item >
@@ -119,11 +102,8 @@ class Database extends React.Component {
                         </Form>
                     </Col>
 
-                    <Col span={13}><Button type="primary"  onClick={this.createCode}>生成代码</Button></Col>
-                </Row>
-
-                <Row type="flex" justify="start" className="header">
-
+                    {/*<Col span={12} push={2} ><Button type="primary" style={{marginTop: 4, background: "#6a986a", borderColor: "#6a986a"}} onClick={this.createCode}>生成代码</Button></Col>*/}
+                    <Col span={12} push={2} ><Button type="primary" style={{marginTop: 4}} onClick={this.createCode}>生成代码</Button></Col>
                 </Row>
 
                 <Row gutter={24}>
