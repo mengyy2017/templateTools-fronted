@@ -5,6 +5,7 @@ import {tables, columns} from 'reducers/database/databaseReducer'
 import {tabHeader} from "reducers/database/tabHeaderReducer";
 import {menu} from "reducers/menu/menuReducer";
 import {autoCompletion} from "reducers/spider/autoCompletionReducer";
+import {codeFormRadioChangeInfo} from "reducers/database/codeFormRadioReducer";
 // import {asyncListener} from "reducers/concurrency/asyncListenerReducer";
 
 export default combineReducers({
@@ -14,5 +15,6 @@ export default combineReducers({
     activeKey: tabHeader,
     menu,
     autoCompletion,
+    codeFormChangeInfo: codeFormRadioChangeInfo
     // asyncListener
 });

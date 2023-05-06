@@ -2,6 +2,7 @@ import {Tabs} from 'antd';
 import React from "react";
 import connect from "react-redux/es/connect/connect";
 import CodeFormInfo from "components/database/CodeFormInfo";
+import CodeFormInfoRadio from "components/database/CodeFormInfoRadio";
 import {setActiveKeyAction} from "actions/database/tabHeaderAction";
 import TabTableColumn from "components/database/TabTableColumn";
 const TabPane = Tabs.TabPane;
@@ -20,6 +21,7 @@ class TabHeader extends React.Component{
             <div>
                 <Tabs defaultActiveKey="1" activeKey={activeKey} onChange={this.changeActiveKey}>
                     <TabPane disabled tab="Tab 0" key="0">
+                        <CodeFormInfoRadio></CodeFormInfoRadio>
                         <CodeFormInfo changeActiveKey={this.changeActiveKey}/>
                     </TabPane>
                     <TabPane disabled tab="Tab 1" key="1">
