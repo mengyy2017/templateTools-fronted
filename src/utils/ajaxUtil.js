@@ -21,19 +21,20 @@ const defaultSuccCallBack = response => {
 }
 
 const defaultFailCallback = (responseObj) => {
-    let{response} = responseObj
-    if (response) {
+    let{resp} = responseObj
+    if (resp) {
         // if (response.status == "401" && response.data.code == "401" && response.data.msg == "未认证")
-        response.statusText && response.statusText != "" ? message.error(response.statusText) : undefined
-        response.data.msg && response.data.msg != "" ? message.error(response.data.msg) : undefined
-        response.data.error && response.data.error != "" ? message.error(response.data.error) : undefined
+        resp.code && resp.code != 200 ? message.error(resp.msg) : undefined
+        resp.statusText && resp.statusText != "" ? message.error(resp.statusText) : undefined
+        resp.data && resp.data.msg && resp.data.msg != "" ? message.error(resp.data.msg) : undefined
+        resp.data && resp.data.error && resp.data.error != "" ? message.error(resp.data.error) : undefined
         // response.data.message && response.data.message != "" ? message.error(response.data.message) : undefined
     } else {
         responseObj.data ? {data: {code, msg}} = responseObj : undefined
         responseObj.data ? message.error(code + " " + msg) : undefined
         responseObj.message ? message.error(responseObj.message) : undefined
     }
-    return new Promise((resolve, reject) => reject())
+    return new Promise((resolve, reject) => reject(responseObj))
 }
 
 const ajax = {
