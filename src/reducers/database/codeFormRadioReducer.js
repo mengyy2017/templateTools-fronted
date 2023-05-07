@@ -9,17 +9,6 @@ export const codeFormRadioChangeInfo = (prevState = {}, action) => {
     }
 }
 
-// export const columns = (prevState = {}, action) => {
-//     switch (action.type) {
-//         case GET_COLUMNS:
-//             return Object.assign({}, prevState, {colArr: action.data})
-//         case SET_SELECTED_COL_KEYS:
-//             return Object.assign({}, prevState, {selectedColKeys: action.selectedKeys})
-//         default:
-//             return prevState
-//     }
-// }
-
 
 
 

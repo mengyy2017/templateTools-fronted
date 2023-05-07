@@ -21,19 +21,19 @@ class CodeFormInfo extends React.Component{
 
         const formItemLayout = {
             labelCol: {
-                xs: { span: 5 },
-                sm: { span: 5 },
+                xs: { span: 3 },
+                sm: { span: 3 },
             },
             wrapperCol: {
-                xs: { span: 5 },
-                sm: { span: 5 },
+                xs: { span: 3 },
+                sm: { span: 3 },
             },
         };
 
         const formItemLayoutSecond = {
             labelCol: {
-                xs: { span: 10 },
-                sm: { span: 10 },
+                xs: { span: 7 },
+                sm: { span: 7 },
             },
             wrapperCol: {
                 xs: { span: 10 },
@@ -55,7 +55,6 @@ class CodeFormInfo extends React.Component{
         };
 
         let {info} = this.props
-
         return (
             <div>
 
@@ -67,7 +66,7 @@ class CodeFormInfo extends React.Component{
                         </Form.Item>
                     </Row>
 
-                    <Row>
+                    <Row style={{marginBottom: 600}}>
                         <Col span={24}>
                             <Form.Item{...formItemLayout} label="database address" placeholder="Please input your database address">
                                 {getFieldDecorator('databaseAddress', {
@@ -164,7 +163,7 @@ class CodeFormInfo extends React.Component{
 
 
 
-                        <Col push={11} span={12} style={{marginTop: "0%", position: "absolute"}}>
+                        <Col push={6} span={12} style={{position: "absolute", marginTop: "0%"}}>
                             <Form.Item {...formItemLayoutSecond} label="BaseEntity Second Path">
                                 {getFieldDecorator('BaseEntitySecondPath', {
                                     initialValue: info.BaseEntitySecondPath,
@@ -254,7 +253,56 @@ class CodeFormInfo extends React.Component{
                                     <Input placeholder="Please input your MapperParamXml First Path" />
                                 )}
                             </Form.Item>
+
                         </Col>
+
+                        <Col push={15} span={12} style={{position: "absolute", marginTop: "0%"}}>
+                            <Form.Item {...formItemLayoutSecond} label="joinType">
+                                {getFieldDecorator('joinType', {
+                                    initialValue: info.joinType,
+                                    rules: [{ required: false }],
+                                })(
+                                    <Input placeholder="Please input your joinType" />
+                                )}
+                            </Form.Item>
+
+                            <Form.Item {...formItemLayoutSecond} label="middleTableName">
+                                {getFieldDecorator('middleTableName', {
+                                    initialValue: info.middleTableName,
+                                    rules: [{ required: false, whitespace: true }],
+                                })(
+                                    <Input placeholder="Please input your middleTableName" />
+                                )}
+                            </Form.Item>
+
+                            <Form.Item {...formItemLayoutSecond} label="resourceTableName">
+                                {getFieldDecorator('resourceTableName', {
+                                    initialValue: info.resourceTableName,
+                                    rules: [{ required: false, whitespace: true }],
+                                })(
+                                    <Input placeholder="Please input your resourceTableName" />
+                                )}
+                            </Form.Item>
+
+                            <Form.Item {...formItemLayoutSecond} label="resourceTableEntitySecondPath">
+                                {getFieldDecorator('resourceTableEntitySecondPath', {
+                                    initialValue: info.resourceTableEntitySecondPath,
+                                    rules: [{ required: false, whitespace: true }],
+                                })(
+                                    <Input placeholder="Please input your resourceTableEntitySecondPath" />
+                                )}
+                            </Form.Item>
+
+                            <Form.Item {...formItemLayoutSecond} label="resourceTable MapperDao Second Path">
+                                {getFieldDecorator('resourceTableMapperDaoSecondPath', {
+                                    initialValue: info.resourceTableMapperDaoSecondPath,
+                                    rules: [{ required: false, whitespace: true }],
+                                })(
+                                    <Input placeholder="Please input your resourceTable MapperDao Second Path" />
+                                )}
+                            </Form.Item>
+                        </Col>
+
                     </Row>
 
                 </Form>
@@ -265,8 +313,21 @@ class CodeFormInfo extends React.Component{
 
 }
 
-const mapStateToProps = state => ({info: state.codeFormChangeInfo && state.codeFormChangeInfo.formInfo ? state.codeFormChangeInfo.formInfo : {} })
+const mapStateToProps = state => ({info: state.codeFormChangeInfo && state.codeFormChangeInfo.formInfo ? state.codeFormChangeInfo.formInfo : {}})
 
-const form = Form.create({ name: 'CodeFormInfo' })(CodeFormInfo);
+const form = Form.create({
+    name: 'CodeFormInfo',
+    onValuesChange(_, values) {
+        // console.log("formValueChange==>" + values);
+    },
+    mapPropsToFields(props) {
+        let info = props.info, returnInfo = {}
+
+        for(let [key, value] of Object.entries(info))
+            returnInfo[key] = Form.createFormField({value: value,})
+
+        return returnInfo;
+    },
+})(CodeFormInfo);
 
 export default connect(mapStateToProps)(form)
