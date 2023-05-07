@@ -155,6 +155,16 @@ class CodeFormInfo extends React.Component{
                                     <Input />
                                 )}
                             </Form.Item>
+
+                            <Form.Item {...formItemLayout} label="default query table">
+                                {getFieldDecorator('defaultQueryTable', {
+                                    initialValue: "",
+                                    rules: [{ required: false, whitespace: true }],
+                                })(
+                                    <Input />
+                                )}
+                            </Form.Item>
+
                         </Col>
 
 

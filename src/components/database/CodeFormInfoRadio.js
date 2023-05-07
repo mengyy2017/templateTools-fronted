@@ -42,24 +42,24 @@ class CodeFormInfoRadio extends React.Component{
 
     //ppm_standalone PPM_STAR_USER 这个工程需要把Mapper的@Component注解改成@Mapper注解
     PPM_STAR_USER_CONF = () => {
-        let BaseEntitySecondPath = "base", PageInfoEntitySecondPath = BaseEntitySecondPath, IServiceSecondPath = "service", CommonControllerSecondPath = "web/common"
+        let defaultQueryTable = "USER", BaseEntitySecondPath = "base", PageInfoEntitySecondPath = BaseEntitySecondPath, IServiceSecondPath = "service", CommonControllerSecondPath = "web/common"
             , EntitySecondPath = "user", MapperDaoSecondPath = "dm/user", ControllerSecondPath = "web/user", ServiceImplSecondPath = "service/user/impl"
             , MapperXmlFirstPath = MapperDaoSecondPath + "/mapper", MapperParamXmlFirstPath = MapperXmlFirstPath + "/param", joinType = 4, middleTableName = "SYSTEMROLE_ASSIGN_USER"
             , resourceTableName = "SYSTEMROLE", resourceTableEntitySecondPath = "systemrole", resourceTableMapperDaoSecondPath = "dm/systemrole";
 
-        return {BaseEntitySecondPath, PageInfoEntitySecondPath, IServiceSecondPath, CommonControllerSecondPath, EntitySecondPath, MapperDaoSecondPath
+        return {defaultQueryTable, BaseEntitySecondPath, PageInfoEntitySecondPath, IServiceSecondPath, CommonControllerSecondPath, EntitySecondPath, MapperDaoSecondPath
             , ControllerSecondPath, ServiceImplSecondPath, MapperXmlFirstPath, MapperParamXmlFirstPath, joinType, middleTableName, resourceTableName, resourceTableEntitySecondPath
             , resourceTableMapperDaoSecondPath}
     }
 
     //ppm_standalone PPM_STAR_SYSTEMROLE 这个工程需要把Mapper的@Component注解改成@Mapper注解
     PPM_STAR_SYSTEMROLE_CONF = () => {
-        let BaseEntitySecondPath = "base", PageInfoEntitySecondPath = BaseEntitySecondPath, IServiceSecondPath = "service", CommonControllerSecondPath = "web/common"
+        let defaultQueryTable = "SYSTEMROLE", BaseEntitySecondPath = "base", PageInfoEntitySecondPath = BaseEntitySecondPath, IServiceSecondPath = "service", CommonControllerSecondPath = "web/common"
             , EntitySecondPath = "systemrole", MapperDaoSecondPath = "dm/systemrole", ControllerSecondPath = "web/systemrole", ServiceImplSecondPath = "service/systemrole/impl"
             , MapperXmlFirstPath = MapperDaoSecondPath + "/mapper", MapperParamXmlFirstPath = MapperXmlFirstPath + "/param", joinType = 0, middleTableName = "middleTableName"
             , resourceTableName = "resourceTableName", resourceTableEntitySecondPath = "systemrole", resourceTableMapperDaoSecondPath = "resourceTableMapperDaoSecondPath";
 
-        return {BaseEntitySecondPath, PageInfoEntitySecondPath, IServiceSecondPath, CommonControllerSecondPath, EntitySecondPath, MapperDaoSecondPath
+        return {defaultQueryTable, BaseEntitySecondPath, PageInfoEntitySecondPath, IServiceSecondPath, CommonControllerSecondPath, EntitySecondPath, MapperDaoSecondPath
             , ControllerSecondPath, ServiceImplSecondPath, MapperXmlFirstPath, MapperParamXmlFirstPath, joinType, middleTableName, resourceTableName, resourceTableEntitySecondPath
             , resourceTableMapperDaoSecondPath}
     }
