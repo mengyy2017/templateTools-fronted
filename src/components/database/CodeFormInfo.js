@@ -36,8 +36,8 @@ class CodeFormInfo extends React.Component{
                 sm: { span: 7 },
             },
             wrapperCol: {
-                xs: { span: 10 },
-                sm: { span: 10 },
+                xs: { span: 8 },
+                sm: { span: 8 },
             },
         };
 
@@ -173,7 +173,7 @@ class CodeFormInfo extends React.Component{
 
 
 
-                        <Col push={6} span={12} style={{position: "absolute", marginTop: "0%"}}>
+                        <Col push={7} span={12} style={{position: "absolute", marginTop: "0%"}}>
                             <Form.Item {...formItemLayoutSecond} label="BaseEntity Second Path">
                                 {getFieldDecorator('BaseEntitySecondPath', {
                                     initialValue: info.BaseEntitySecondPath,
@@ -285,7 +285,7 @@ class CodeFormInfo extends React.Component{
                                 )}
                             </Form.Item>
 
-                            <Form.Item {...formItemLayoutSecond} label="resourceTableName">
+                            <Form.Item {...formItemLayoutSecond} label="rTableName">
                                 {getFieldDecorator('resourceTableName', {
                                     initialValue: info.resourceTableName,
                                     rules: [{ required: false, whitespace: true }],
@@ -294,7 +294,7 @@ class CodeFormInfo extends React.Component{
                                 )}
                             </Form.Item>
 
-                            <Form.Item {...formItemLayoutSecond} label="resourceTableEntitySecondPath">
+                            <Form.Item {...formItemLayoutSecond} label="rTableEntitySecondPath">
                                 {getFieldDecorator('resourceTableEntitySecondPath', {
                                     initialValue: info.resourceTableEntitySecondPath,
                                     rules: [{ required: false, whitespace: true }],
@@ -303,7 +303,7 @@ class CodeFormInfo extends React.Component{
                                 )}
                             </Form.Item>
 
-                            <Form.Item {...formItemLayoutSecond} label="resourceTable MapperDao Second Path">
+                            <Form.Item {...formItemLayoutSecond} label="rTable MapperDao Second Path">
                                 {getFieldDecorator('resourceTableMapperDaoSecondPath', {
                                     initialValue: info.resourceTableMapperDaoSecondPath,
                                     rules: [{ required: false, whitespace: true }],

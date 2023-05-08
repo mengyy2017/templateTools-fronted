@@ -77,7 +77,7 @@ class CodeFormInfoRadio extends React.Component{
     render = () => {
         return (
             <Row type="flex" justify="start" style={{marginTop: 5, marginBottom: 15}}>
-                <Col offset={6}>
+                <Col offset={5}>
                     <Radio.Group onChange={this.onChange} value={this.props.info}>
                         <Radio value={this.LOCALHOST_OPERATION_MONITOR}>LOCALHOST_OPERATION_MONITOR</Radio>
                         <Radio value={this.PDM_STAR_TEST}>PDM_STAR_TEST</Radio>
