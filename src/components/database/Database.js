@@ -1,18 +1,18 @@
 import React from "react"
 import {Button, Col, Form, Input, Row, Select} from "antd";
-import {createCodeAction, setSelectedColKeys, getTablesAction} from 'actions/database/databaseAction'
+import {createCodeAction, setSelectedColKeys, setSelectedTableKeys, getTablesAction} from 'actions/database/databaseAction'
 import connect from "react-redux/es/connect/connect";
 
 class Database extends React.Component {
 
     selectedObjs = []
     selectedColKeys = []
+    selectedTableKeys = []
 
     addSelectedTable = record => this.selectedObjs.push({tableEntity: {tableName: record.tableName}, colList: []})
 
     rmSlectedTable = record => {
-
-        let rmColList
+        let rmColList = [] // 这个在下面这行代码会把这个表对应的所有列给赋值上去 并且调用的是selectedObjs的filter方法 当前表也会从selectedObjs移除
         this.selectedObjs = this.selectedObjs.filter(obj => (obj.tableEntity && obj.tableEntity.tableName != record.tableName) || (rmColList = obj.colList) == undefined )
 
         // rmColList.forEach(col => this.selectedColKeys.find((key, index) => col.tableName + '*@' + col.columnName == key ? this.selectedColKeys.splice(index, 1) : undefined))
@@ -22,15 +22,36 @@ class Database extends React.Component {
         //     ......
         // }
         // 的键没有关系  和他的值也没有关系  但是改 this.selectedColKeys state中的 selectedColKeys 就会跟着变  不知道为什么
-        // 好像有点明白了......  updateSelectedColKeys 中将 this.selectedColKeys 和 传进来的参数做了关联
-        // 而这个传进来的参数是antd onChange事件的参数  这个参数很可能跟state有关  你在这里改this.selectedColKeys
-        // 就相当于通过这个引用去改实际对象的值  参数和state也就跟着一块改了
+        // 好像有点明白了......  updateSelectedColKeys 中将 this.selectedColKeys 和 传进来的参数做了关联而这个传进来的参数
+        // 是antd onChange事件的参数  这个参数很可能跟state有关  你在这里改this.selectedColKeys就相当于通过这个引用去改实际对
+        // 象的值  参数和state也就跟着一块改了 难道onChange函数就把选中的key绑定到一个变量上去吗 不是 onChange的参数是操作后还处
+        // 于选择状态的键 所以在onChange里要把键记录到一个变量上去 不然不记录的话点选中了 从哪个变量里能获取到选中的键呢 获取不到又
+        // 怎么能赋值给antd的table的rowSelection.selectedRowKeys属性 让其知道哪些键被选中了呢
 
-        this.selectedKeys = [...this.selectedColKeys]
-        rmColList.forEach(col => this.selectedKeys.find((key, index) => col.tableName + '*@' + col.columnName == key ? this.selectedKeys.splice(index, 1) : undefined))
+        this.selectedColumnKeys = [...this.selectedColKeys] // 下面对rmColList也就是对要删除的列进行循环 从selectedColumnKeys（选中coloumnKey的副本）里找到这个列然后用splice删除
+        rmColList.forEach(col => this.selectedColumnKeys.find((key, index) => col.tableName + '*@' + col.columnName == key ? this.selectedColumnKeys.splice(index, 1) : undefined))
 
-        this.props.dispatch(setSelectedColKeys(this.selectedKeys))
-        this.updateSelectedColKeys(this.selectedKeys)
+        this.props.dispatch(setSelectedColKeys(this.selectedColumnKeys))
+        this.updateSelectedColKeys(this.selectedColumnKeys)
+
+
+
+        this.selectedTKeys = [...this.selectedTableKeys]
+        this.selectedTKeys.find((key, index) => record.tableName == key ? this.selectedTKeys.splice(index, 1) : undefined)
+
+        this.props.dispatch(setSelectedTableKeys(this.selectedTKeys))
+        this.updateSelectedTableKeys(this.selectedTKeys)
+    }
+
+    rmAll = () => {
+        this.selectedObjs = []
+        this.selectedColKeys = []
+
+        this.props.dispatch(setSelectedColKeys([]))
+        this.updateSelectedColKeys([])
+
+        this.props.dispatch(setSelectedTableKeys([]))
+        this.updateSelectedTableKeys([])
     }
 
     // 这两个是更新选中的这条数据的信息 包含主键和其他的信息 传入后台的需要的是整条数据信息  跟state无关 不会引起对勾变化
@@ -44,8 +65,12 @@ class Database extends React.Component {
 
     // 这个只更新主键 跟state有关系 更新后对勾会变化
     updateSelectedColKeys = keys => this.selectedColKeys = keys
-    
+
+    updateSelectedTableKeys = keys => this.selectedTableKeys = keys
+
     dispatchSelectedColKeys = () => this.props.dispatch(setSelectedColKeys(this.selectedColKeys))
+
+    dispatchSelectedTableKeys = () => this.props.dispatch(setSelectedTableKeys(this.selectedTableKeys))
 
 
 
@@ -64,7 +89,10 @@ class Database extends React.Component {
 
     createCode = () => this.props.dispatch(createCodeAction(this.selectedObjs))
 
-    last = () => this.props.changeActiveKey("0")
+    last = () => {
+        this.rmAll()
+        this.props.changeActiveKey("0")
+    }
 
     render = () => {
 
@@ -82,6 +110,8 @@ class Database extends React.Component {
                         getSelectedObjs: this.getSelectedObjs,
                         updateSelectedColKeys: this.updateSelectedColKeys,
                         dispatchSelectedColKeys: this.dispatchSelectedColKeys,
+                        updateSelectedTableKeys: this.updateSelectedTableKeys,
+                        dispatchSelectedTableKeys: this.dispatchSelectedTableKeys,
                         ...otherProps
                     })
             }

@@ -5,7 +5,6 @@ import ajax from "utils/ajaxUtil";
 
 export const GET_TABLES = 'GET_TABLES'
 export const getTablesSuccess = data => ({type: GET_TABLES, data})
-
 export const getTablesAction = pars => async dispatch => {
         ajax.post({
             url: TEMPLATE_SERVER_URL + '/database/getAllTables',
@@ -16,11 +15,7 @@ export const getTablesAction = pars => async dispatch => {
 
 
 export const GET_COLUMNS = 'GET_COLUMNS'
-export const SET_SELECTED_COL_KEYS = 'SET_SELECTED_COL_KEYS'
-
 export const getColumnsSuccess = data => ({type: GET_COLUMNS, data})
-export const setSelectedCol = selectedKeys => ({type: SET_SELECTED_COL_KEYS, selectedKeys})
-
 export const getColumnsAction = pars => dispatch => {
         ajax.post({
             url: TEMPLATE_SERVER_URL + '/database/getAllColumns',
@@ -33,8 +28,13 @@ export const getColumnsAction = pars => dispatch => {
         })
 }
 
-
+export const SET_SELECTED_COL_KEYS = 'SET_SELECTED_COL_KEYS'
+export const setSelectedCol = selectedKeys => ({type: SET_SELECTED_COL_KEYS, selectedKeys})
 export const setSelectedColKeys = selectedKeys => dispatch => dispatch(setSelectedCol(selectedKeys))
+
+export const SET_SELECTED_TABLE_KEYS = 'SET_SELECTED_TABLE_KEYS'
+export const setSelectedTable = selectedTableKeys => ({type: SET_SELECTED_TABLE_KEYS, selectedTableKeys})
+export const setSelectedTableKeys = selectedTableKeys => dispatch => dispatch(setSelectedTable(selectedTableKeys))
 
 export const createCodeAction = pars => async dispatch => {
     ajax.post({
@@ -43,5 +43,6 @@ export const createCodeAction = pars => async dispatch => {
         succCallback: () => message.success("生成代码成功"),
     })
 }
-    
-    
+
+
+
