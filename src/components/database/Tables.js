@@ -38,7 +38,7 @@ class Tables extends React.Component{
                 selected ? addSelectedTable(record) && dispatchSelectedTableKeys() : rmSlectedTable(record)
             },
             onSelectAll: (selected, selectedRows, changeRows) => {
-                selected ? changeRows.forEach(record => addSelectedTable(record)) : changeRows.forEach(record => rmSlectedTable(record))
+                selected ? changeRows.forEach(record => addSelectedTable(record)) && dispatchSelectedTableKeys() : changeRows.forEach(record => rmSlectedTable(record))
             },
             selectedRowKeys: selectedTableKeys
         }
