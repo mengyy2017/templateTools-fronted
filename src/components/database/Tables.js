@@ -31,15 +31,12 @@ class Tables extends React.Component{
 
         const rowSelection = {
             onChange: slectedTableKeys => updateSelectedTableKeys(slectedTableKeys),
-            onSelect: (record, selected) => {
-                // 为什么之前选中一个却没有打勾 因为调用addSelectedTable只改变了selectedObjs的值 而对勾选有影响的selectedTableKeys没有做任何更改 也就是selectedTableKeys没有添加任何键
-                // 之前虽然在rmSlectedTable添加了对selectedTableKeys移除的逻辑 并且调用了dispatch 但至始至终都没有往selectedTableKeys里添加 那么移除逻辑对空数组移除还是空数组 所以加入
-                // onChange函数 在本方法调用之前onChange方法里面会先去改变selectedTableKeys 然后这里再调用dispatch 而rmSelectedTable不用dispatch了 因为mSelectedTable里面有dispatch的逻辑
-                selected ? addSelectedTable(record) && dispatchSelectedTableKeys() : rmSlectedTable(record)
-            },
-            onSelectAll: (selected, selectedRows, changeRows) => {
-                selected ? changeRows.forEach(record => addSelectedTable(record)) && dispatchSelectedTableKeys() : changeRows.forEach(record => rmSlectedTable(record))
-            },
+
+            // 为什么之前选中一个却没有打勾 因为调用addSelectedTable只改变了selectedObjs的值 而对勾选有影响的selectedTableKeys没有做任何更改 也就是selectedTableKeys没有添加任何键
+            // 之前虽然在rmSlectedTable添加了对selectedTableKeys移除的逻辑 并且调用了dispatch 但至始至终都没有往selectedTableKeys里添加 那么移除逻辑对空数组移除还是空数组 所以加入
+            // onChange函数 在本方法调用之前onChange方法里面会先去改变selectedTableKeys 然后这里再调用dispatch 而rmSelectedTable不用dispatch了 因为mSelectedTable里面有dispatch的逻辑
+            onSelect: (record, selected) => selected ? addSelectedTable(record) && dispatchSelectedTableKeys() : rmSlectedTable(record),
+            onSelectAll: (selected, selectedRows, changeRows) => selected ? changeRows.forEach(record => addSelectedTable(record)) || dispatchSelectedTableKeys() : changeRows.forEach(record => rmSlectedTable(record)),
             selectedRowKeys: selectedTableKeys
         }
 

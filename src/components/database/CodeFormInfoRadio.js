@@ -15,18 +15,18 @@ class CodeFormInfoRadio extends React.Component{
     }
 
     LOCALHOST = () => {
-        return {"databaseAddress": "127.0.0.1", "databaseType": "mysql", "databasePort": "3306", "databaseSchema": "information_schema"
-            , "databaseUsername": "root", "databasePassword": "123456", "tableSchema": "operation_monitor", "codePackage": "com.guowang"}
+        return {"databaseAddress": "127.0.0.1", "databaseType": "mysql", "databasePort": "3306", "sysDatabaseSchema": "information_schema", "databaseUsername": "root"
+            , "databasePassword": "123456", "businessDatabaseSchema": "operation_monitor", "codePackage": "com.guowang", "xmlWithSchema": 1, "DatabaseInfoMapperSecondPath": "database/mapper"}
     }
 
     PDM_STAR = () => {
-        return {"databaseAddress": "192.168.3.75", "databaseType": "dm", "databasePort": "5236", "databaseSchema": "SYS"
-            , "databaseUsername": "PDM", "databasePassword": "plm123456", "tableSchema": "PDM_STAR", "codePackage": "cn.jwis.xingwang"}
+        return {"databaseAddress": "192.168.3.75", "databaseType": "dm", "databasePort": "5236", "sysDatabaseSchema": "SYS", "databaseUsername": "PDM"
+            , "databasePassword": "plm123456", "businessDatabaseSchema": "PDM_STAR", "codePackage": "cn.jwis.xingwang", "xmlWithSchema": 1, "DatabaseInfoMapperSecondPath": "database/mapper"}
     }
 
     PPM_STAR = () => {
-        return {"databaseAddress": "192.168.3.75", "databaseType": "dm", "databasePort": "5236", "databaseSchema": "SYS"
-            , "databaseUsername": "PDM", "databasePassword": "plm123456", "tableSchema": "PPM_STAR", "codePackage": "cn.jwis.product.ppm.customer"}
+        return {"databaseAddress": "192.168.3.75", "databaseType": "dm", "databasePort": "5236", "sysDatabaseSchema": "SYS", "databaseUsername": "PDM"
+            , "databasePassword": "plm123456", "businessDatabaseSchema": "PPM_STAR", "codePackage": "cn.jwis.product.ppm.customer", "xmlWithSchema": 1, "DatabaseInfoMapperSecondPath": "database/mapper"}
     }
 
     // joinType

@@ -21,8 +21,8 @@ class CodeFormInfo extends React.Component{
 
         const formItemLayout = {
             labelCol: {
-                xs: { span: 3 },
-                sm: { span: 3 },
+                xs: { span: 4 },
+                sm: { span: 4 },
             },
             wrapperCol: {
                 xs: { span: 3 },
@@ -102,8 +102,8 @@ class CodeFormInfo extends React.Component{
                             </Form.Item>
 
                             <Form.Item{...formItemLayout} label="sys database schema" placeholder="Please input your sys database schema">
-                                {getFieldDecorator('databaseSchema', {
-                                    initialValue: info.databaseSchema,
+                                {getFieldDecorator('sysDatabaseSchema', {
+                                    initialValue: info.sysDatabaseSchema,
                                     rules: [{ required: true, message: 'Please input your sys database schema!', whitespace: true }],
                                 })(
                                     <Input placeholder="Please input your sys database schema" />
@@ -129,8 +129,8 @@ class CodeFormInfo extends React.Component{
                             </Form.Item>
 
                             <Form.Item {...formItemLayout} label="business database schema" placeholder="Please input your business database schema">
-                                {getFieldDecorator('tableSchema', {
-                                    initialValue: info.tableSchema,
+                                {getFieldDecorator('businessDatabaseSchema', {
+                                    initialValue: info.businessDatabaseSchema,
                                     rules: [{ required: true, message: 'Please input your business database schema!', whitespace: true }],
                                 })(
                                     <Input placeholder="Please input your business database schema" />
@@ -156,9 +156,18 @@ class CodeFormInfo extends React.Component{
                                 )}
                             </Form.Item>
 
-                            <Form.Item {...formItemLayout} label="default query table">
-                                {getFieldDecorator('defaultQueryTable', {
-                                    initialValue: "",
+                            <Form.Item {...formItemLayout} label="xmlWithSchema">
+                                {getFieldDecorator('xmlWithSchema', {
+                                    initialValue: info.xmlWithSchema,
+                                    rules: [{ required: false }],
+                                })(
+                                    <Input />
+                                )}
+                            </Form.Item>
+
+                            <Form.Item {...formItemLayout} label="DatabaseInfo Mapper Second Path">
+                                {getFieldDecorator('DatabaseInfoMapperSecondPath', {
+                                    initialValue: info.DatabaseInfoMapperSecondPath,
                                     rules: [{ required: false, whitespace: true }],
                                 })(
                                     <Input />
@@ -173,7 +182,17 @@ class CodeFormInfo extends React.Component{
 
 
 
-                        <Col push={7} span={12} style={{position: "absolute", marginTop: "0%"}}>
+                        <Col push={8} span={12} style={{position: "absolute", marginTop: "0%"}}>
+
+                            <Form.Item {...formItemLayoutSecond} label="default query table">
+                                {getFieldDecorator('defaultQueryTable', {
+                                    initialValue: "",
+                                    rules: [{ required: false, whitespace: true }],
+                                })(
+                                    <Input />
+                                )}
+                            </Form.Item>
+
                             <Form.Item {...formItemLayoutSecond} label="BaseEntity Second Path">
                                 {getFieldDecorator('BaseEntitySecondPath', {
                                     initialValue: info.BaseEntitySecondPath,
@@ -266,7 +285,7 @@ class CodeFormInfo extends React.Component{
 
                         </Col>
 
-                        <Col push={15} span={12} style={{position: "absolute", marginTop: "0%"}}>
+                        <Col push={16} span={12} style={{position: "absolute", marginTop: "0%"}}>
                             <Form.Item {...formItemLayoutSecond} label="joinType">
                                 {getFieldDecorator('joinType', {
                                     initialValue: info.joinType,
