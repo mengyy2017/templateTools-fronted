@@ -30,7 +30,7 @@ class CodeFormInfo extends React.Component{
             },
         };
 
-        const formItemLayoutSecond = {
+        const formItemLayoutSec = {
             labelCol: {
                 xs: { span: 7 },
                 sm: { span: 7 },
@@ -165,9 +165,9 @@ class CodeFormInfo extends React.Component{
                                 )}
                             </Form.Item>
 
-                            <Form.Item {...formItemLayout} label="DatabaseInfo Mapper Second Path">
-                                {getFieldDecorator('DatabaseInfoMapperSecondPath', {
-                                    initialValue: info.DatabaseInfoMapperSecondPath,
+                            <Form.Item {...formItemLayout} label="DatabaseInfo Mapper Sec Path">
+                                {getFieldDecorator('DatabaseInfoMapperSecPath', {
+                                    initialValue: info.DatabaseInfoMapperSecPath,
                                     rules: [{ required: false, whitespace: true }],
                                 })(
                                     <Input />
@@ -184,7 +184,7 @@ class CodeFormInfo extends React.Component{
 
                         <Col push={8} span={12} style={{position: "absolute", marginTop: "0%"}}>
 
-                            <Form.Item {...formItemLayoutSecond} label="default query table">
+                            <Form.Item {...formItemLayoutSec} label="default query table">
                                 {getFieldDecorator('defaultQueryTable', {
                                     initialValue: "",
                                     rules: [{ required: false, whitespace: true }],
@@ -193,79 +193,79 @@ class CodeFormInfo extends React.Component{
                                 )}
                             </Form.Item>
 
-                            <Form.Item {...formItemLayoutSecond} label="BaseEntity Second Path">
-                                {getFieldDecorator('BaseEntitySecondPath', {
-                                    initialValue: info.BaseEntitySecondPath,
+                            <Form.Item {...formItemLayoutSec} label="BaseEntity Sec Path">
+                                {getFieldDecorator('BaseEntitySecPath', {
+                                    initialValue: info.BaseEntitySecPath,
                                     rules: [{ required: true, whitespace: true }],
                                 })(
-                                    <Input placeholder="Please input your BaseEntity Second Path" />
+                                    <Input placeholder="Please input your BaseEntity Sec Path" />
                                 )}
                             </Form.Item>
 
-                            <Form.Item {...formItemLayoutSecond} label="PageInfoEntity Second Path">
-                                {getFieldDecorator('PageInfoEntitySecondPath', {
-                                    initialValue: info.PageInfoEntitySecondPath,
+                            <Form.Item {...formItemLayoutSec} label="PageInfoEntity Sec Path">
+                                {getFieldDecorator('PageInfoEntitySecPath', {
+                                    initialValue: info.PageInfoEntitySecPath,
                                     rules: [{ required: true, whitespace: true }],
                                 })(
-                                    <Input placeholder="Please input your PageInfoEntity Second Path" />
+                                    <Input placeholder="Please input your PageInfoEntity Sec Path" />
                                 )}
                             </Form.Item>
 
-                            <Form.Item {...formItemLayoutSecond} label="IService Second Path">
-                                {getFieldDecorator('IServiceSecondPath', {
-                                    initialValue: info.IServiceSecondPath,
+                            <Form.Item {...formItemLayoutSec} label="IService Sec Path">
+                                {getFieldDecorator('IServiceSecPath', {
+                                    initialValue: info.IServiceSecPath,
                                     rules: [{ required: true, whitespace: true }],
                                 })(
-                                    <Input placeholder="Please input your IService Second Path" />
+                                    <Input placeholder="Please input your IService Sec Path" />
                                 )}
                             </Form.Item>
 
-                            <Form.Item {...formItemLayoutSecond} label="CommonController Second Path">
-                                {getFieldDecorator('CommonControllerSecondPath', {
-                                    initialValue: info.CommonControllerSecondPath,
+                            <Form.Item {...formItemLayoutSec} label="CommonController Sec Path">
+                                {getFieldDecorator('CommonControllerSecPath', {
+                                    initialValue: info.CommonControllerSecPath,
                                     rules: [{ required: true, whitespace: true }],
                                 })(
-                                    <Input placeholder="Please input your CommonController Second Path" />
+                                    <Input placeholder="Please input your CommonController Sec Path" />
                                 )}
                             </Form.Item>
 
-                            <Form.Item {...formItemLayoutSecond} label="Entity Second Path">
-                                {getFieldDecorator('EntitySecondPath', {
-                                    initialValue: info.EntitySecondPath,
+                            <Form.Item {...formItemLayoutSec} label="Entity Sec Path">
+                                {getFieldDecorator('EntitySecPath', {
+                                    initialValue: info.EntitySecPath,
                                     rules: [{ required: true, whitespace: true }],
                                 })(
-                                    <Input placeholder="Please input your Entity Second Path" />
+                                    <Input placeholder="Please input your Entity Sec Path" />
                                 )}
                             </Form.Item>
 
-                            <Form.Item {...formItemLayoutSecond} label="MapperDao Second Path">
-                                {getFieldDecorator('MapperDaoSecondPath', {
-                                    initialValue: info.MapperDaoSecondPath,
+                            <Form.Item {...formItemLayoutSec} label="MapperDao Sec Path">
+                                {getFieldDecorator('MapperDaoSecPath', {
+                                    initialValue: info.MapperDaoSecPath,
                                     rules: [{ required: true, whitespace: true }],
                                 })(
-                                    <Input placeholder="Please input your MapperDao Second Path" />
+                                    <Input placeholder="Please input your MapperDao Sec Path" />
                                 )}
                             </Form.Item>
 
-                            <Form.Item {...formItemLayoutSecond} label="Controller Second Path">
-                                {getFieldDecorator('ControllerSecondPath', {
-                                    initialValue: info.ControllerSecondPath,
+                            <Form.Item {...formItemLayoutSec} label="Controller Sec Path">
+                                {getFieldDecorator('ControllerSecPath', {
+                                    initialValue: info.ControllerSecPath,
                                     rules: [{ required: true, whitespace: true }],
                                 })(
-                                    <Input placeholder="Please input your Controller Second Path" />
+                                    <Input placeholder="Please input your Controller Sec Path" />
                                 )}
                             </Form.Item>
 
-                            <Form.Item {...formItemLayoutSecond} label="ServiceImpl Second Path">
-                                {getFieldDecorator('ServiceImplSecondPath', {
-                                    initialValue: info.ServiceImplSecondPath,
+                            <Form.Item {...formItemLayoutSec} label="ServiceImpl Sec Path">
+                                {getFieldDecorator('ServiceImplSecPath', {
+                                    initialValue: info.ServiceImplSecPath,
                                     rules: [{ required: true, whitespace: true }],
                                 })(
-                                    <Input placeholder="Please input your ServiceImpl Second Path" />
+                                    <Input placeholder="Please input your ServiceImpl Sec Path" />
                                 )}
                             </Form.Item>
 
-                            <Form.Item {...formItemLayoutSecond} label="MapperXml First Path">
+                            <Form.Item {...formItemLayoutSec} label="MapperXml First Path">
                                 {getFieldDecorator('MapperXmlFirstPath', {
                                     initialValue: info.MapperXmlFirstPath,
                                     rules: [{ required: true, whitespace: true }],
@@ -274,7 +274,7 @@ class CodeFormInfo extends React.Component{
                                 )}
                             </Form.Item>
 
-                            <Form.Item {...formItemLayoutSecond} label="MapperParamXml First Path">
+                            <Form.Item {...formItemLayoutSec} label="MapperParamXml First Path">
                                 {getFieldDecorator('MapperParamXmlFirstPath', {
                                     initialValue: info.MapperParamXmlFirstPath,
                                     rules: [{ required: true, whitespace: true }],
@@ -286,7 +286,7 @@ class CodeFormInfo extends React.Component{
                         </Col>
 
                         <Col push={16} span={12} style={{position: "absolute", marginTop: "0%"}}>
-                            <Form.Item {...formItemLayoutSecond} label="joinType">
+                            <Form.Item {...formItemLayoutSec} label="joinType">
                                 {getFieldDecorator('joinType', {
                                     initialValue: info.joinType,
                                     rules: [{ required: false }],
@@ -295,41 +295,78 @@ class CodeFormInfo extends React.Component{
                                 )}
                             </Form.Item>
 
-                            <Form.Item {...formItemLayoutSecond} label="middleTableName">
-                                {getFieldDecorator('middleTableName', {
-                                    initialValue: info.middleTableName,
+                            <Form.Item {...formItemLayoutSec} label="mtName">
+                                {getFieldDecorator('mtName', {
+                                    initialValue: info.mtName,
                                     rules: [{ required: false, whitespace: true }],
                                 })(
-                                    <Input placeholder="Please input your middleTableName" />
+                                    <Input placeholder="Please input your mtName" />
                                 )}
                             </Form.Item>
 
-                            <Form.Item {...formItemLayoutSecond} label="rTableName">
-                                {getFieldDecorator('resourceTableName', {
-                                    initialValue: info.resourceTableName,
+                            <Form.Item {...formItemLayoutSec} label="mtEntitySecPath">
+                                {getFieldDecorator('mtEntitySecPath', {
+                                    initialValue: info.mtEntitySecPath,
                                     rules: [{ required: false, whitespace: true }],
                                 })(
-                                    <Input placeholder="Please input your resourceTableName" />
+                                    <Input placeholder="Please input your mtEntitySecPath" />
                                 )}
                             </Form.Item>
 
-                            <Form.Item {...formItemLayoutSecond} label="rTableEntitySecondPath">
-                                {getFieldDecorator('resourceTableEntitySecondPath', {
-                                    initialValue: info.resourceTableEntitySecondPath,
+                            <Form.Item {...formItemLayoutSec} label="mtMapperDaoSecPath">
+                                {getFieldDecorator('mtMapperDaoSecPath', {
+                                    initialValue: info.mtMapperDaoSecPath,
                                     rules: [{ required: false, whitespace: true }],
                                 })(
-                                    <Input placeholder="Please input your resourceTableEntitySecondPath" />
+                                    <Input placeholder="Please input your mtMapperDao Sec Path" />
                                 )}
                             </Form.Item>
 
-                            <Form.Item {...formItemLayoutSecond} label="rTable MapperDao Second Path">
-                                {getFieldDecorator('resourceTableMapperDaoSecondPath', {
-                                    initialValue: info.resourceTableMapperDaoSecondPath,
+                            <Form.Item {...formItemLayoutSec} label="mtServiceImplSecPath">
+                                {getFieldDecorator('mtServiceImplSecPath', {
+                                    initialValue: info.mtServiceImplSecPath,
                                     rules: [{ required: false, whitespace: true }],
                                 })(
-                                    <Input placeholder="Please input your resourceTable MapperDao Second Path" />
+                                    <Input placeholder="Please input your mtServiceImpl Sec Path" />
                                 )}
                             </Form.Item>
+
+                            <Form.Item {...formItemLayoutSec} label="rtName">
+                                {getFieldDecorator('rtName', {
+                                    initialValue: info.rtName,
+                                    rules: [{ required: false, whitespace: true }],
+                                })(
+                                    <Input placeholder="Please input your rtName" />
+                                )}
+                            </Form.Item>
+
+                            <Form.Item {...formItemLayoutSec} label="rtEntitySecPath">
+                                {getFieldDecorator('rtEntitySecPath', {
+                                    initialValue: info.rtEntitySecPath,
+                                    rules: [{ required: false, whitespace: true }],
+                                })(
+                                    <Input placeholder="Please input your rtEntitySecPath" />
+                                )}
+                            </Form.Item>
+
+                            <Form.Item {...formItemLayoutSec} label="rtMapperDao Sec Path">
+                                {getFieldDecorator('rtMapperDaoSecPath', {
+                                    initialValue: info.rtMapperDaoSecPath,
+                                    rules: [{ required: false, whitespace: true }],
+                                })(
+                                    <Input placeholder="Please input your MapperDao Sec Path" />
+                                )}
+                            </Form.Item>
+
+                            <Form.Item {...formItemLayoutSec} label="rtServiceImpl Sec Path">
+                                {getFieldDecorator('rtServiceImplSecPath', {
+                                    initialValue: info.rtServiceImplSecPath,
+                                    rules: [{ required: false, whitespace: true }],
+                                })(
+                                    <Input placeholder="Please input your rtServiceImpl Sec Path" />
+                                )}
+                            </Form.Item>
+
                         </Col>
 
                     </Row>

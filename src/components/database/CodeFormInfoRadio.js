@@ -16,17 +16,26 @@ class CodeFormInfoRadio extends React.Component{
 
     LOCALHOST = () => {
         return {"databaseAddress": "127.0.0.1", "databaseType": "mysql", "databasePort": "3306", "sysDatabaseSchema": "information_schema", "databaseUsername": "root"
-            , "databasePassword": "123456", "businessDatabaseSchema": "operation_monitor", "codePackage": "com.guowang", "xmlWithSchema": 1, "DatabaseInfoMapperSecondPath": "database/mapper"}
+            , "databasePassword": "123456", "businessDatabaseSchema": "operation_monitor", "codePackage": "com.guowang", "xmlWithSchema": 0
+            , "DatabaseInfoMapperSecPath": "database/mapper"}
     }
 
     PDM_STAR = () => {
         return {"databaseAddress": "192.168.3.75", "databaseType": "dm", "databasePort": "5236", "sysDatabaseSchema": "SYS", "databaseUsername": "PDM"
-            , "databasePassword": "plm123456", "businessDatabaseSchema": "PDM_STAR", "codePackage": "cn.jwis.xingwang", "xmlWithSchema": 1, "DatabaseInfoMapperSecondPath": "database/mapper"}
+            , "databasePassword": "plm123456", "businessDatabaseSchema": "PDM_STAR", "codePackage": "cn.jwis.xingwang", "xmlWithSchema": 0
+            , "DatabaseInfoMapperSecPath": "database/mapper"}
     }
 
     PPM_STAR = () => {
         return {"databaseAddress": "192.168.3.75", "databaseType": "dm", "databasePort": "5236", "sysDatabaseSchema": "SYS", "databaseUsername": "PDM"
-            , "databasePassword": "plm123456", "businessDatabaseSchema": "PPM_STAR", "codePackage": "cn.jwis.product.ppm.customer", "xmlWithSchema": 1, "DatabaseInfoMapperSecondPath": "database/mapper"}
+            , "databasePassword": "plm123456", "businessDatabaseSchema": "PPM_STAR", "codePackage": "cn.jwis.product.ppm.customer", "xmlWithSchema": 0
+            , "DatabaseInfoMapperSecPath": "database/mapper"}
+    }
+
+    IAM_STAR = () => {
+        return {"databaseAddress": "192.168.3.75", "databaseType": "dm", "databasePort": "5236", "sysDatabaseSchema": "SYS", "databaseUsername": "PDM"
+            , "databasePassword": "plm123456", "businessDatabaseSchema": "IAM_STAR", "codePackage": "cn.jwis.product.ppm.customer", "xmlWithSchema": 1
+            , "DatabaseInfoMapperSecPath": "dm/database/mapper"}
     }
 
     // joinType
@@ -43,63 +52,110 @@ class CodeFormInfoRadio extends React.Component{
 
     //ppm_standalone PPM_STAR_USER 这个工程需要把Mapper的@Component注解改成@Mapper注解
     PPM_STAR_USER = (() => {
-        let defaultQueryTable = "USER", BaseEntitySecondPath = "base", PageInfoEntitySecondPath = BaseEntitySecondPath, IServiceSecondPath = "service", CommonControllerSecondPath = "web/common"
-            , EntitySecondPath = "user", MapperDaoSecondPath = "dm/user", ControllerSecondPath = "web/user", ServiceImplSecondPath = "service/user/impl"
-            , MapperXmlFirstPath = MapperDaoSecondPath + "/mapper", MapperParamXmlFirstPath = MapperXmlFirstPath + "/param", joinType = 4, middleTableName = "SYSTEMROLE_ASSIGN_USER"
-            , resourceTableName = "SYSTEMROLE", resourceTableEntitySecondPath = "systemrole", resourceTableMapperDaoSecondPath = "dm/systemrole";
+        let defaultQueryTable = "USER", EntitySecPath = "user", MapperDaoSecPath = "dm/user", ControllerSecPath = "web/user", ServiceImplSecPath = "service/user/impl"
+            , joinType = 4, mtName = "SYSTEMROLE_ASSIGN_USER", rtName = "SYSTEMROLE", rtEntitySecPath = "systemrole", rtMapperDaoSecPath = "dm/systemrole", rtServiceImplSecPath = "none"
+            , BaseEntitySecPath = "base", PageInfoEntitySecPath = BaseEntitySecPath, IServiceSecPath = "service", CommonControllerSecPath = "web/common"
+            , MapperXmlFirstPath = MapperDaoSecPath + "/mapper", MapperParamXmlFirstPath = MapperXmlFirstPath + "/param"
+            ;
 
-        return Object.assign ({}, this.PPM_STAR(), {defaultQueryTable, BaseEntitySecondPath, PageInfoEntitySecondPath, IServiceSecondPath, CommonControllerSecondPath, EntitySecondPath, MapperDaoSecondPath
-            , ControllerSecondPath, ServiceImplSecondPath, MapperXmlFirstPath, MapperParamXmlFirstPath, joinType, middleTableName, resourceTableName, resourceTableEntitySecondPath
-            , resourceTableMapperDaoSecondPath})
+        return Object.assign ({}, this.PPM_STAR(), {defaultQueryTable, BaseEntitySecPath, PageInfoEntitySecPath, IServiceSecPath, CommonControllerSecPath, EntitySecPath, MapperDaoSecPath
+            , ControllerSecPath, ServiceImplSecPath, MapperXmlFirstPath, MapperParamXmlFirstPath, joinType, mtName, rtName, rtEntitySecPath
+            , rtMapperDaoSecPath, rtServiceImplSecPath})
     })()
 
     //ppm_standalone PPM_STAR_SYSTEMROLE 这个工程需要把Mapper的@Component注解改成@Mapper注解
     PPM_STAR_SYSTEMROLE = (() => {
-        let defaultQueryTable = "SYSTEMROLE", BaseEntitySecondPath = "base", PageInfoEntitySecondPath = BaseEntitySecondPath, IServiceSecondPath = "service", CommonControllerSecondPath = "web/common"
-            , EntitySecondPath = "systemrole", MapperDaoSecondPath = "dm/systemrole", ControllerSecondPath = "web/systemrole", ServiceImplSecondPath = "service/systemrole/impl"
-            , MapperXmlFirstPath = MapperDaoSecondPath + "/mapper", MapperParamXmlFirstPath = MapperXmlFirstPath + "/param", joinType = 0, middleTableName = "middleTableName"
-            , resourceTableName = "resourceTableName", resourceTableEntitySecondPath = "systemrole", resourceTableMapperDaoSecondPath = "resourceTableMapperDaoSecondPath";
+        let defaultQueryTable = "SYSTEMROLE", EntitySecPath = "systemrole", MapperDaoSecPath = "dm/systemrole", ControllerSecPath = "web/systemrole", ServiceImplSecPath = "service/systemrole/impl"
+            , joinType = 0, mtName = "none", rtName = "none", rtEntitySecPath = "none", rtMapperDaoSecPath = "none", rtServiceImplSecPath = "none"
+            , BaseEntitySecPath = "base", PageInfoEntitySecPath = BaseEntitySecPath, IServiceSecPath = "service", CommonControllerSecPath = "web/common"
+            , MapperXmlFirstPath = MapperDaoSecPath + "/mapper", MapperParamXmlFirstPath = MapperXmlFirstPath + "/param"
+            ;
 
-        return Object.assign ({}, this.PPM_STAR(), {defaultQueryTable, BaseEntitySecondPath, PageInfoEntitySecondPath, IServiceSecondPath, CommonControllerSecondPath, EntitySecondPath, MapperDaoSecondPath
-            , ControllerSecondPath, ServiceImplSecondPath, MapperXmlFirstPath, MapperParamXmlFirstPath, joinType, middleTableName, resourceTableName, resourceTableEntitySecondPath
-            , resourceTableMapperDaoSecondPath})
+        return Object.assign ({}, this.PPM_STAR(), {defaultQueryTable, BaseEntitySecPath, PageInfoEntitySecPath, IServiceSecPath, CommonControllerSecPath, EntitySecPath, MapperDaoSecPath
+            , ControllerSecPath, ServiceImplSecPath, MapperXmlFirstPath, MapperParamXmlFirstPath, joinType, mtName, rtName, rtEntitySecPath
+            , rtMapperDaoSecPath, rtServiceImplSecPath})
     })()
 
     PPM_STAR_COMPANY = (() => {
-        let defaultQueryTable = "COMPANY", BaseEntitySecondPath = "base", PageInfoEntitySecondPath = BaseEntitySecondPath, IServiceSecondPath = "service", CommonControllerSecondPath = "web/common"
-            , EntitySecondPath = "company", MapperDaoSecondPath = "dm/company", ControllerSecondPath = "web/company", ServiceImplSecondPath = "service/company/impl"
-            , MapperXmlFirstPath = MapperDaoSecondPath + "/mapper", MapperParamXmlFirstPath = MapperXmlFirstPath + "/param", joinType = 1, middleTableName = "COMPANY_BELONG_TO_TENANT"
-            , resourceTableName = "TENANT", resourceTableEntitySecondPath = "tenant", resourceTableMapperDaoSecondPath = "dm/tenant";
+        let defaultQueryTable = "COMPANY", EntitySecPath = "company", MapperDaoSecPath = "dm/company", ControllerSecPath = "web/company", ServiceImplSecPath = "service/company/impl"
+            , joinType = 1, mtName = "COMPANY_BELONG_TO_TENANT", rtName = "TENANT", rtEntitySecPath = "tenant", rtMapperDaoSecPath = "dm/tenant", rtServiceImplSecPath = "none"
+            , BaseEntitySecPath = "base", PageInfoEntitySecPath = BaseEntitySecPath, IServiceSecPath = "service", CommonControllerSecPath = "web/common"
+            , MapperXmlFirstPath = MapperDaoSecPath + "/mapper", MapperParamXmlFirstPath = MapperXmlFirstPath + "/param"
+            ;
 
-        return Object.assign({}, this.PPM_STAR(),{defaultQueryTable, BaseEntitySecondPath, PageInfoEntitySecondPath, IServiceSecondPath, CommonControllerSecondPath, EntitySecondPath, MapperDaoSecondPath
-            , ControllerSecondPath, ServiceImplSecondPath, MapperXmlFirstPath, MapperParamXmlFirstPath, joinType, middleTableName, resourceTableName, resourceTableEntitySecondPath
-            , resourceTableMapperDaoSecondPath})
+        return Object.assign({}, this.PPM_STAR(),{defaultQueryTable, BaseEntitySecPath, PageInfoEntitySecPath, IServiceSecPath, CommonControllerSecPath, EntitySecPath, MapperDaoSecPath
+            , ControllerSecPath, ServiceImplSecPath, MapperXmlFirstPath, MapperParamXmlFirstPath, joinType, mtName, rtName, rtEntitySecPath
+            , rtMapperDaoSecPath, rtServiceImplSecPath})
     })()
 
     PPM_STAR_TENANT = (() => {
-        let defaultQueryTable = "TENANT", BaseEntitySecondPath = "base", PageInfoEntitySecondPath = BaseEntitySecondPath, IServiceSecondPath = "service", CommonControllerSecondPath = "web/common"
-            , EntitySecondPath = "tenant", MapperDaoSecondPath = "dm/tenant", ControllerSecondPath = "web/tenant", ServiceImplSecondPath = "service/tenant/impl"
-            , MapperXmlFirstPath = MapperDaoSecondPath + "/mapper", MapperParamXmlFirstPath = MapperXmlFirstPath + "/param", joinType = 5, middleTableName = "middleTableName"
-            , resourceTableName = "resourceTableName", resourceTableEntitySecondPath = "resourceTableEntitySecondPath", resourceTableMapperDaoSecondPath = "resourceTableMapperDaoSecondPath";
+        let defaultQueryTable = "TENANT", EntitySecPath = "tenant", MapperDaoSecPath = "dm/tenant", ControllerSecPath = "web/tenant", ServiceImplSecPath = "service/tenant/impl"
+            , joinType = 5, mtName = "mtName", rtName = "rtName", rtEntitySecPath = "rtEntitySecPath", rtMapperDaoSecPath = "rtMapperDaoSecPath", rtServiceImplSecPath = "none"
+            , BaseEntitySecPath = "base", PageInfoEntitySecPath = BaseEntitySecPath, IServiceSecPath = "service", CommonControllerSecPath = "web/common"
+            , MapperXmlFirstPath = MapperDaoSecPath + "/mapper", MapperParamXmlFirstPath = MapperXmlFirstPath + "/param"
+            ;
 
-        return Object.assign({}, this.PPM_STAR(),{defaultQueryTable, BaseEntitySecondPath, PageInfoEntitySecondPath, IServiceSecondPath, CommonControllerSecondPath, EntitySecondPath, MapperDaoSecondPath
-            , ControllerSecondPath, ServiceImplSecondPath, MapperXmlFirstPath, MapperParamXmlFirstPath, joinType, middleTableName, resourceTableName, resourceTableEntitySecondPath
-            , resourceTableMapperDaoSecondPath})
+        return Object.assign({}, this.PPM_STAR(),{defaultQueryTable, BaseEntitySecPath, PageInfoEntitySecPath, IServiceSecPath, CommonControllerSecPath, EntitySecPath, MapperDaoSecPath
+            , ControllerSecPath, ServiceImplSecPath, MapperXmlFirstPath, MapperParamXmlFirstPath, joinType, mtName, rtName, rtEntitySecPath
+            , rtMapperDaoSecPath, rtServiceImplSecPath})
     })()
 
-    DEFAULT_VAL = this.PPM_STAR_COMPANY;
+    // PPM_STAR_PROJECT_DYNAMIC = (() => {
+    //     let defaultQueryTable = "PROJECTITEMDYNAMICATTRVALUES", BaseEntitySecPath = "base", PageInfoEntitySecPath = BaseEntitySecPath, IServiceSecPath = "service", CommonControllerSecPath = "web/common"
+    //         , EntitySecPath = "project", MapperDaoSecPath = "dm/project", ControllerSecPath = "web/project", ServiceImplSecPath = "service/project/impl", rtServiceImplSecPath = "none"
+    //         , joinType = 0, mtName = "none", MapperXmlFirstPath = MapperDaoSecPath + "/mapper", MapperParamXmlFirstPath = MapperXmlFirstPath + "/param"
+    //         , rtName = "none", rtEntitySecPath = "none", rtMapperDaoSecPath = "none";
+    //
+    //     return Object.assign({}, this.PPM_STAR(),{defaultQueryTable, BaseEntitySecPath, PageInfoEntitySecPath, IServiceSecPath, CommonControllerSecPath, EntitySecPath, MapperDaoSecPath
+    //         , ControllerSecPath, ServiceImplSecPath, MapperXmlFirstPath, MapperParamXmlFirstPath, joinType, mtName, rtName, rtEntitySecPath
+    //         , rtMapperDaoSecPath, rtServiceImplSecPath})
+    // })()
+
+    IAM_STAR_DEPARTMENT_POSITION = (() => {
+        let defaultQueryTable = "DEPARTMENT", EntitySecPath = "entity/department", MapperDaoSecPath = "dm/department", ControllerSecPath = "web/department", ServiceImplSecPath = "service/department/impl"
+            , joinType = 4, mtName = "POSITION_BELONG_TO_DEPARTMENT", mtEntitySecPath = "entity/middle", mtMapperDaoSecPath = "dm/middle", mtServiceImplSecPath = "service/middle/impl"
+            , rtName = "POSITION", rtEntitySecPath = "entity/position", rtMapperDaoSecPath = "dm/position", rtServiceImplSecPath = "service/position/impl"
+            , BaseEntitySecPath = "entity/base", PageInfoEntitySecPath = BaseEntitySecPath, IServiceSecPath = "service", CommonControllerSecPath = "web/common"
+            , MapperXmlFirstPath = MapperDaoSecPath + "/mapper", MapperParamXmlFirstPath = MapperXmlFirstPath + "/param"
+            ;
+
+        return Object.assign({}, this.IAM_STAR(),{defaultQueryTable, BaseEntitySecPath, PageInfoEntitySecPath, IServiceSecPath, CommonControllerSecPath, EntitySecPath, MapperDaoSecPath
+            , ControllerSecPath, ServiceImplSecPath, MapperXmlFirstPath, MapperParamXmlFirstPath, joinType, mtName, mtEntitySecPath, mtMapperDaoSecPath, mtServiceImplSecPath
+            , rtName, rtEntitySecPath, rtMapperDaoSecPath, rtServiceImplSecPath})
+    })()
+
+    IAM_STAR_POSITION_PERSONNEL = (() => {
+        let defaultQueryTable = "POSITION", EntitySecPath = "entity/position", MapperDaoSecPath = "dm/position", ControllerSecPath = "web/position", ServiceImplSecPath = "service/position/impl"
+            , joinType = 2, mtName = "PERSONNEL_BELONG_TO_POSITION", mtEntitySecPath = "entity/middle", mtMapperDaoSecPath = "dm/middle", mtServiceImplSecPath = "service/middle/impl"
+            , rtName = "PERSONNEL", rtEntitySecPath = "entity/personnel", rtMapperDaoSecPath = "dm/personnel", rtServiceImplSecPath = "service/personnel/impl"
+            , BaseEntitySecPath = "entity/base", PageInfoEntitySecPath = BaseEntitySecPath, IServiceSecPath = "service", CommonControllerSecPath = "web/common"
+            , MapperXmlFirstPath = MapperDaoSecPath + "/mapper", MapperParamXmlFirstPath = MapperXmlFirstPath + "/param"
+            ;
+
+        return Object.assign({}, this.IAM_STAR(),{defaultQueryTable, BaseEntitySecPath, PageInfoEntitySecPath, IServiceSecPath, CommonControllerSecPath, EntitySecPath, MapperDaoSecPath
+            , ControllerSecPath, ServiceImplSecPath, MapperXmlFirstPath, MapperParamXmlFirstPath, joinType, mtName, mtEntitySecPath, mtMapperDaoSecPath, mtServiceImplSecPath
+            , rtName, rtEntitySecPath, rtMapperDaoSecPath, rtServiceImplSecPath})
+    })()
+
+    DEFAULT_VAL = this.IAM_STAR_DEPARTMENT_POSITION;
 
     render = () => {
         return (
             <Row type="flex" justify="start" style={{marginTop: 5, marginBottom: 15}}>
-                <Col offset={5}>
+                <Col offset={6}>
                     <Radio.Group onChange={this.onChange} value={this.props.info}>
                         {/*<Radio value={this.LOCALHOST_OPERATION_MONITOR}>LOCALHOST_OPERATION_MONITOR</Radio>*/}
                         {/*<Radio value={this.PDM_STAR_TEST}>PDM_STAR_TEST</Radio>*/}
-                        <Radio value={this.PPM_STAR_USER}>PPM_STAR_USER</Radio>
-                        <Radio value={this.PPM_STAR_SYSTEMROLE}>PPM_STAR_SYSTEMROLE</Radio>
-                        <Radio value={this.PPM_STAR_COMPANY}>PPM_STAR_COMPANY</Radio>
-                        <Radio value={this.PPM_STAR_TENANT}>PPM_STAR_TENANT</Radio>
+                        {/*<Radio value={this.PPM_STAR_USER}>PPM_STAR_USER</Radio>*/}
+                        {/*<Radio value={this.PPM_STAR_SYSTEMROLE}>PPM_STAR_SYSTEMROLE</Radio>*/}
+                        {/*<Radio value={this.PPM_STAR_PROJECT_DYNAMIC}>PPM_STAR_PROJECT_DYNAMIC</Radio>*/}
+                        {/*<Radio value={this.PPM_STAR_COMPANY}>PPM_STAR_COMPANY</Radio>*/}
+                        {/*<Radio value={this.PPM_STAR_TENANT}>PPM_STAR_TENANT</Radio>*/}
+                        <Radio value={this.IAM_STAR_DEPARTMENT_POSITION}>IAM_STAR_DEPARTMENT_POSITION</Radio>
+                        {/*<Radio value={this.IAM_STAR_POSITION_BELONG_TO_DEPARTMENT}>IAM_STAR_POSITION_BELONG_TO_DEPARTMENT</Radio>*/}
+                        <Radio value={this.IAM_STAR_POSITION_PERSONNEL}>IAM_STAR_POSITION_PERSONNEL</Radio>
+                        {/*<Radio value={this.IAM_STAR_PERSONNEL}>IAM_STAR_PERSONNEL</Radio>*/}
+                        {/*<Radio value={this.IAM_STAR_PERSONNEL_BELONG_TO_POSITION}>IAM_STAR_PERSONNEL_BELONG_TO_POSITION</Radio>*/}
                     </Radio.Group>
                 </Col>
             </Row>
