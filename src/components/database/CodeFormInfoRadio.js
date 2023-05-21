@@ -137,6 +137,32 @@ class CodeFormInfoRadio extends React.Component{
             , rtName, rtEntitySecPath, rtMapperDaoSecPath, rtServiceImplSecPath})
     })()
 
+    IAM_STAR_USER = (() => {
+        let defaultQueryTable = "USER", EntitySecPath = "entity/user", MapperDaoSecPath = "dm/user", ControllerSecPath = "web/user", ServiceImplSecPath = "service/user/impl"
+            , joinType = 0, mtName = "DEPARTMENT_BELONG_TO_DEPARTMENT", mtEntitySecPath = "entity/middle", mtMapperDaoSecPath = "dm/middle", mtServiceImplSecPath = "service/middle/impl"
+            , rtName = "none", rtEntitySecPath = "none", rtMapperDaoSecPath = "none", rtServiceImplSecPath = "none"
+            , BaseEntitySecPath = "entity/base", PageInfoEntitySecPath = BaseEntitySecPath, IServiceSecPath = "service", CommonControllerSecPath = "web/common"
+            , MapperXmlFirstPath = MapperDaoSecPath + "/mapper", MapperParamXmlFirstPath = MapperXmlFirstPath + "/param"
+        ;
+
+        return Object.assign ({}, this.IAM_STAR(), {defaultQueryTable, BaseEntitySecPath, PageInfoEntitySecPath, IServiceSecPath, CommonControllerSecPath, EntitySecPath, MapperDaoSecPath
+            , ControllerSecPath, ServiceImplSecPath, MapperXmlFirstPath, MapperParamXmlFirstPath, joinType, mtName, mtEntitySecPath, mtMapperDaoSecPath, mtServiceImplSecPath
+            , rtName, rtEntitySecPath, rtMapperDaoSecPath, rtServiceImplSecPath})
+    })()
+
+    IAM_STAR_POSITIONDEF = (() => {
+        let defaultQueryTable = "POSITIONDEF", EntitySecPath = "entity/positiondef", MapperDaoSecPath = "dm/positiondef", ControllerSecPath = "web/positiondef", ServiceImplSecPath = "service/positiondef/impl"
+            , joinType = 0, mtName = "none", mtEntitySecPath = "none", mtMapperDaoSecPath = "none", mtServiceImplSecPath = "none"
+            , rtName = "none", rtEntitySecPath = "none", rtMapperDaoSecPath = "none", rtServiceImplSecPath = "none"
+            , BaseEntitySecPath = "entity/base", PageInfoEntitySecPath = BaseEntitySecPath, IServiceSecPath = "service", CommonControllerSecPath = "web/common"
+            , MapperXmlFirstPath = MapperDaoSecPath + "/mapper", MapperParamXmlFirstPath = MapperXmlFirstPath + "/param"
+        ;
+
+        return Object.assign ({}, this.IAM_STAR(), {defaultQueryTable, BaseEntitySecPath, PageInfoEntitySecPath, IServiceSecPath, CommonControllerSecPath, EntitySecPath, MapperDaoSecPath
+            , ControllerSecPath, ServiceImplSecPath, MapperXmlFirstPath, MapperParamXmlFirstPath, joinType, mtName, mtEntitySecPath, mtMapperDaoSecPath, mtServiceImplSecPath
+            , rtName, rtEntitySecPath, rtMapperDaoSecPath, rtServiceImplSecPath})
+    })()
+
     DEFAULT_VAL = this.IAM_STAR_DEPARTMENT_POSITION;
 
     render = () => {
@@ -154,6 +180,8 @@ class CodeFormInfoRadio extends React.Component{
                         <Radio value={this.IAM_STAR_DEPARTMENT_POSITION}>IAM_STAR_DEPARTMENT_POSITION</Radio>
                         {/*<Radio value={this.IAM_STAR_POSITION_BELONG_TO_DEPARTMENT}>IAM_STAR_POSITION_BELONG_TO_DEPARTMENT</Radio>*/}
                         <Radio value={this.IAM_STAR_POSITION_PERSONNEL}>IAM_STAR_POSITION_PERSONNEL</Radio>
+                        <Radio value={this.IAM_STAR_USER}>IAM_STAR_USER</Radio>
+                        <Radio value={this.IAM_STAR_POSITIONDEF}>IAM_STAR_POSITIONDEF</Radio>
                         {/*<Radio value={this.IAM_STAR_PERSONNEL}>IAM_STAR_PERSONNEL</Radio>*/}
                         {/*<Radio value={this.IAM_STAR_PERSONNEL_BELONG_TO_POSITION}>IAM_STAR_PERSONNEL_BELONG_TO_POSITION</Radio>*/}
                     </Radio.Group>
