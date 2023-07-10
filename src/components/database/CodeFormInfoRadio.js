@@ -2,7 +2,7 @@ import React  from 'react';
 import {Radio, Row, Col} from 'antd';
 import {connect} from "react-redux";
 import {codeFormRadioChangeAction} from 'actions/database/codeFormRadioAction'
-import {PDM_STAR_DEVIATE, PDM_STAR_DEVIATEDOC, IAM_STAR_POSITION_BELONG_DEPARTMENT} from "components/database/CodeTemplateInfo"
+import {PDM_STAR_DEVIATE, PDM_STAR_DEVIATEDOC, IAM_STAR_POSITION_BELONG_DEPARTMENT} from "components/database/CodeConst"
 
 class CodeFormInfoRadio extends React.Component{
 
