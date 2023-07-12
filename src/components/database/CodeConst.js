@@ -22,6 +22,18 @@ export const IAM_STAR = () => {
         , "DatabaseInfoMapperSecPath": "repo/sync/mapper"}
 }
 
+export const IAM_TRUKING = () => {
+    return {"databaseAddress": "192.168.2.143", "databaseType": "mysql", "databasePort": "3306", "sysDatabaseSchema": "information_schema", "databaseUsername": "platform"
+        , "databasePassword": "JCPdb123", "businessDatabaseSchema": "iam_truking", "codePackage": "cn.jwis.product.ppm.integration", "xmlWithSchema": 1
+        , "DatabaseInfoMapperSecPath": "repo/mapper"}
+}
+
+export const PPM_TRUKING = () => {
+    return {"databaseAddress": "192.168.2.143", "databaseType": "mysql", "databasePort": "3306", "sysDatabaseSchema": "information_schema", "databaseUsername": "platform"
+        , "databasePassword": "JCPdb123", "businessDatabaseSchema": "ppm_truking", "codePackage": "cn.jwis.product.ppm.integration", "xmlWithSchema": 1
+        , "DatabaseInfoMapperSecPath": "repo/mapper"}
+}
+
 // joinType
 // 0是 NONE_JOIN 没有join
 // 1是 ONE_TO_ONE_FROM 即主表是FROM 对副表是一对一关系
@@ -197,15 +209,33 @@ export const PPM_STAR_TENANT = (() => {
 //         , rtName, rtEntitySecPath, rtMapperDaoSecPath, rtServiceImplSecPath})
 // })()
 
-export const IAM_STAR_POSITION_BELONG_DEPARTMENT = (() => {
-    let defaultQueryTable = "POSITION_BELONG_TO_DEPARTMENT", EntitySecPath = "entity", MapperDaoSecPath = "repo/sync", ControllerSecPath = "web/sync", ServiceImplSecPath = "service/impl"
+// export const IAM_STAR_POSITION_BELONG_DEPARTMENT = (() => {
+//     let defaultQueryTable = "POSITION_BELONG_TO_DEPARTMENT", EntitySecPath = "entity", MapperDaoSecPath = "repo/sync", ControllerSecPath = "web/sync", ServiceImplSecPath = "service/impl"
+//         , joinType = 0, mtName = "none", mtEntitySecPath = "none", mtMapperDaoSecPath = "none", mtServiceImplSecPath = "none"
+//         , rtName = "none", rtEntitySecPath = "none", rtMapperDaoSecPath = "none", rtServiceImplSecPath = "none"
+//         , BaseEntitySecPath = "entity", PageInfoEntitySecPath = BaseEntitySecPath, IServiceSecPath = "service", CommonControllerSecPath = "web/common"
+//         , MapperXmlFirstPath = MapperDaoSecPath + "/mapper", MapperParamXmlFirstPath = MapperXmlFirstPath + "/param"
+//     ;
+//
+//     return Object.assign ({}, IAM_STAR(), {defaultQueryTable, BaseEntitySecPath, PageInfoEntitySecPath, IServiceSecPath, CommonControllerSecPath, EntitySecPath, MapperDaoSecPath
+//         , ControllerSecPath, ServiceImplSecPath, MapperXmlFirstPath, MapperParamXmlFirstPath, joinType, mtName, mtEntitySecPath, mtMapperDaoSecPath, mtServiceImplSecPath
+//         , rtName, rtEntitySecPath, rtMapperDaoSecPath, rtServiceImplSecPath})
+// })()
+
+
+
+
+
+
+export const PPM_TRUKING_USER = (() => {
+    let defaultQueryTable = "user", EntitySecPath = "entity", MapperDaoSecPath = "repo/mapper", ControllerSecPath = "web", ServiceImplSecPath = "impl"
         , joinType = 0, mtName = "none", mtEntitySecPath = "none", mtMapperDaoSecPath = "none", mtServiceImplSecPath = "none"
         , rtName = "none", rtEntitySecPath = "none", rtMapperDaoSecPath = "none", rtServiceImplSecPath = "none"
-        , BaseEntitySecPath = "entity", PageInfoEntitySecPath = BaseEntitySecPath, IServiceSecPath = "service", CommonControllerSecPath = "web/common"
-        , MapperXmlFirstPath = MapperDaoSecPath + "/mapper", MapperParamXmlFirstPath = MapperXmlFirstPath + "/param"
+        , BaseEntitySecPath = "entity", PageInfoEntitySecPath = BaseEntitySecPath, IServiceSecPath = "interf", CommonControllerSecPath = "web"
+        , MapperXmlFirstPath = MapperDaoSecPath, MapperParamXmlFirstPath = MapperXmlFirstPath + "/param"
     ;
 
-    return Object.assign ({}, IAM_STAR(), {defaultQueryTable, BaseEntitySecPath, PageInfoEntitySecPath, IServiceSecPath, CommonControllerSecPath, EntitySecPath, MapperDaoSecPath
+    return Object.assign ({}, PPM_TRUKING(), {defaultQueryTable, BaseEntitySecPath, PageInfoEntitySecPath, IServiceSecPath, CommonControllerSecPath, EntitySecPath, MapperDaoSecPath
         , ControllerSecPath, ServiceImplSecPath, MapperXmlFirstPath, MapperParamXmlFirstPath, joinType, mtName, mtEntitySecPath, mtMapperDaoSecPath, mtServiceImplSecPath
         , rtName, rtEntitySecPath, rtMapperDaoSecPath, rtServiceImplSecPath})
 })()
