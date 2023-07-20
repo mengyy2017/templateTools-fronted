@@ -2,7 +2,7 @@ import React  from 'react';
 import {Radio, Row, Col} from 'antd';
 import {connect} from "react-redux";
 import {codeFormRadioChangeAction} from 'actions/database/codeFormRadioAction'
-import {PPM_TRUKING_USER} from "components/database/CodeConst"
+import {PPM_TRUKING_USER, PPM_XINGBANG_NONE} from "components/database/CodeConst"
 
 class CodeFormInfoRadio extends React.Component{
 
@@ -15,7 +15,7 @@ class CodeFormInfoRadio extends React.Component{
         this.props.dispatch(codeFormRadioChangeAction(e.target.value))
     }
 
-    DEFAULT_VAL = PPM_TRUKING_USER;
+    DEFAULT_VAL = PPM_XINGBANG_NONE;
 
     render = () => {
         return (
@@ -23,6 +23,7 @@ class CodeFormInfoRadio extends React.Component{
                 <Col offset={6}>
                     <Radio.Group onChange={this.onChange} value={this.props.info}>
                         <Radio value={PPM_TRUKING_USER}>PPM_TRUKING_USER</Radio>
+                        <Radio value={PPM_XINGBANG_NONE}>PPM_XINGBANG_NONE</Radio>
                     </Radio.Group>
                 </Col>
             </Row>

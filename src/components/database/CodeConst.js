@@ -34,6 +34,12 @@ export const PPM_TRUKING = () => {
         , "DatabaseInfoMapperSecPath": "repo/mapper"}
 }
 
+export const PPM_XINGBANG = () => {
+    return {"databaseAddress": "192.168.2.143", "databaseType": "mysql", "databasePort": "3306", "sysDatabaseSchema": "information_schema", "databaseUsername": "platform"
+        , "databasePassword": "JCPdb123", "businessDatabaseSchema": "ppm_sinoboom", "codePackage": "cn.jwis.product.ppm.customer", "xmlWithSchema": 0
+        , "DatabaseInfoMapperSecPath": "none"}
+}
+
 // joinType
 // 0是 NONE_JOIN 没有join
 // 1是 ONE_TO_ONE_FROM 即主表是FROM 对副表是一对一关系
@@ -239,3 +245,25 @@ export const PPM_TRUKING_USER = (() => {
         , ControllerSecPath, ServiceImplSecPath, MapperXmlFirstPath, MapperParamXmlFirstPath, joinType, mtName, mtEntitySecPath, mtMapperDaoSecPath, mtServiceImplSecPath
         , rtName, rtEntitySecPath, rtMapperDaoSecPath, rtServiceImplSecPath})
 })()
+
+
+export const PPM_XINGBANG_NONE = (() => {
+    let defaultQueryTable = "", EntitySecPath = "entity", MapperDaoSecPath = "repo/mapper", ControllerSecPath = "web", ServiceImplSecPath = "impl"
+        , joinType = 0, mtName = "none", mtEntitySecPath = "none", mtMapperDaoSecPath = "none", mtServiceImplSecPath = "none"
+        , rtName = "none", rtEntitySecPath = "none", rtMapperDaoSecPath = "none", rtServiceImplSecPath = "none"
+        , BaseEntitySecPath = "entity", PageInfoEntitySecPath = BaseEntitySecPath, IServiceSecPath = "interf", CommonControllerSecPath = "web"
+        , MapperXmlFirstPath = MapperDaoSecPath, MapperParamXmlFirstPath = MapperXmlFirstPath + "/param"
+    ;
+
+    return Object.assign ({}, PPM_XINGBANG(), {defaultQueryTable, BaseEntitySecPath, PageInfoEntitySecPath, IServiceSecPath, CommonControllerSecPath, EntitySecPath, MapperDaoSecPath
+        , ControllerSecPath, ServiceImplSecPath, MapperXmlFirstPath, MapperParamXmlFirstPath, joinType, mtName, mtEntitySecPath, mtMapperDaoSecPath, mtServiceImplSecPath
+        , rtName, rtEntitySecPath, rtMapperDaoSecPath, rtServiceImplSecPath})
+})()
+
+
+
+
+
+
+
+
