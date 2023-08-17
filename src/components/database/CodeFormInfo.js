@@ -9,6 +9,25 @@ class CodeFormInfo extends React.Component{
         e.preventDefault();
         this.props.form.validateFieldsAndScroll((err, values) => {
             if (!err) {
+
+                let mtRtJoinType = values['mtRtJoinType'], rtName = values['rtName']
+                if(0 != mtRtJoinType){
+
+                    let rtNameLen = rtName.replaceAll(" ", "").split(",").length
+                    for(let [k, v] of Object.entries(values)){
+
+                        if(k.startsWith("mt") || k.startsWith("rt")) {
+
+                            var valueArr = Number.isFinite(v) ? [v] : v.replaceAll(" ", "").split(",")
+                            if(valueArr.length < rtNameLen)
+                                for (let i = 1; i < rtNameLen; i++)
+                                    valueArr[i] = valueArr[0]
+
+                            values[k] = valueArr;
+                        }
+                    }
+
+                }
                 this.props.dispatch(setCodeInfoAction(values))
                 this.props.changeActiveKey("1")
             }
@@ -184,6 +203,15 @@ class CodeFormInfo extends React.Component{
 
                         <Col push={8} span={12} style={{position: "absolute", marginTop: "0%"}}>
 
+                            <Form.Item {...formItemLayoutSec} label="retainColumnName">
+                                {getFieldDecorator('retainColumnName', {
+                                    initialValue: info.retainColumnName,
+                                    rules: [{ required: false }],
+                                })(
+                                    <Input />
+                                )}
+                            </Form.Item>
+
                             <Form.Item {...formItemLayoutSec} label="default query table">
                                 {getFieldDecorator('defaultQueryTable', {
                                     initialValue: "",
@@ -265,33 +293,42 @@ class CodeFormInfo extends React.Component{
                                 )}
                             </Form.Item>
 
-                            <Form.Item {...formItemLayoutSec} label="MapperXml First Path">
-                                {getFieldDecorator('MapperXmlFirstPath', {
-                                    initialValue: info.MapperXmlFirstPath,
+                            <Form.Item {...formItemLayoutSec} label="MapperXml Sec Path">
+                                {getFieldDecorator('MapperXmlSecPath', {
+                                    initialValue: info.MapperXmlSecPath,
                                     rules: [{ required: true, whitespace: true }],
                                 })(
-                                    <Input placeholder="Please input your MapperXml First Path" />
+                                    <Input placeholder="Please input your MapperXml Sec Path" />
                                 )}
                             </Form.Item>
 
-                            <Form.Item {...formItemLayoutSec} label="MapperParamXml First Path">
-                                {getFieldDecorator('MapperParamXmlFirstPath', {
-                                    initialValue: info.MapperParamXmlFirstPath,
+                            <Form.Item {...formItemLayoutSec} label="MapperParamXml Sec Path">
+                                {getFieldDecorator('MapperParamXmlSecPath', {
+                                    initialValue: info.MapperParamXmlSecPath,
                                     rules: [{ required: true, whitespace: true }],
                                 })(
-                                    <Input placeholder="Please input your MapperParamXml First Path" />
+                                    <Input placeholder="Please input your MapperParamXml Sec Path" />
                                 )}
                             </Form.Item>
 
                         </Col>
 
                         <Col push={16} span={12} style={{position: "absolute", marginTop: "0%"}}>
-                            <Form.Item {...formItemLayoutSec} label="joinType">
-                                {getFieldDecorator('joinType', {
-                                    initialValue: info.joinType,
+                            <Form.Item {...formItemLayoutSec} label="mtRtJoinType">
+                                {getFieldDecorator('mtRtJoinType', {
+                                    initialValue: info.mtRtJoinType,
                                     rules: [{ required: false }],
                                 })(
-                                    <Input placeholder="Please input your joinType" />
+                                    <Input placeholder="Please input your mtRtJoinType" />
+                                )}
+                            </Form.Item>
+
+                            <Form.Item {...formItemLayoutSec} label="displayMiddle">
+                                {getFieldDecorator('displayMiddle', {
+                                    initialValue: info.displayMiddle,
+                                    rules: [{ required: false }],
+                                })(
+                                    <Input placeholder="Please input your displayMiddle" />
                                 )}
                             </Form.Item>
 
@@ -322,12 +359,48 @@ class CodeFormInfo extends React.Component{
                                 )}
                             </Form.Item>
 
+                            <Form.Item {...formItemLayoutSec} label="mtMapperXmlSecPath">
+                                {getFieldDecorator('mtMapperXmlSecPath', {
+                                    initialValue: info.mtMapperXmlSecPath,
+                                    rules: [{ required: false, whitespace: true }],
+                                })(
+                                    <Input placeholder="Please input your mtMapperXmlSecPath" />
+                                )}
+                            </Form.Item>
+
+                            <Form.Item {...formItemLayoutSec} label="mtMapperParamXmlSecPath">
+                                {getFieldDecorator('mtMapperParamXmlSecPath', {
+                                    initialValue: info.mtMapperParamXmlSecPath,
+                                    rules: [{ required: false, whitespace: true }],
+                                })(
+                                    <Input placeholder="Please input your mtMapperParamXmlSecPath" />
+                                )}
+                            </Form.Item>
+
                             <Form.Item {...formItemLayoutSec} label="mtServiceImplSecPath">
                                 {getFieldDecorator('mtServiceImplSecPath', {
                                     initialValue: info.mtServiceImplSecPath,
                                     rules: [{ required: false, whitespace: true }],
                                 })(
-                                    <Input placeholder="Please input your mtServiceImpl Sec Path" />
+                                    <Input placeholder="Please input your mtServiceImplSecPath" />
+                                )}
+                            </Form.Item>
+
+                            <Form.Item {...formItemLayoutSec} label="mtFromColumn">
+                                {getFieldDecorator('mtFromColumn', {
+                                    initialValue: info.mtFromColumn,
+                                    rules: [{ required: false, whitespace: true }],
+                                })(
+                                    <Input placeholder="Please input your mtFromColumn" />
+                                )}
+                            </Form.Item>
+
+                            <Form.Item {...formItemLayoutSec} label="mtToColumn">
+                                {getFieldDecorator('mtToColumn', {
+                                    initialValue: info.mtToColumn,
+                                    rules: [{ required: false, whitespace: true }],
+                                })(
+                                    <Input placeholder="Please input your mtToColumn" />
                                 )}
                             </Form.Item>
 
@@ -349,21 +422,39 @@ class CodeFormInfo extends React.Component{
                                 )}
                             </Form.Item>
 
-                            <Form.Item {...formItemLayoutSec} label="rtMapperDao Sec Path">
+                            <Form.Item {...formItemLayoutSec} label="rtMapperDaoSecPath">
                                 {getFieldDecorator('rtMapperDaoSecPath', {
                                     initialValue: info.rtMapperDaoSecPath,
                                     rules: [{ required: false, whitespace: true }],
                                 })(
-                                    <Input placeholder="Please input your MapperDao Sec Path" />
+                                    <Input placeholder="Please input your MapperDaoSecPath" />
                                 )}
                             </Form.Item>
 
-                            <Form.Item {...formItemLayoutSec} label="rtServiceImpl Sec Path">
+                            <Form.Item {...formItemLayoutSec} label="rtMapperXmlSecPath">
+                                {getFieldDecorator('rtMapperXmlSecPath', {
+                                    initialValue: info.rtMapperXmlSecPath,
+                                    rules: [{ required: false, whitespace: true }],
+                                })(
+                                    <Input placeholder="Please input your rtMapperXmlSecPath" />
+                                )}
+                            </Form.Item>
+
+                            <Form.Item {...formItemLayoutSec} label="rtMapperParamXmlSecPath">
+                                {getFieldDecorator('rtMapperParamXmlSecPath', {
+                                    initialValue: info.rtMapperParamXmlSecPath,
+                                    rules: [{ required: false, whitespace: true }],
+                                })(
+                                    <Input placeholder="Please input your rtMapperParamXmlSecPath" />
+                                )}
+                            </Form.Item>
+
+                            <Form.Item {...formItemLayoutSec} label="rtServiceImplSecPath">
                                 {getFieldDecorator('rtServiceImplSecPath', {
                                     initialValue: info.rtServiceImplSecPath,
                                     rules: [{ required: false, whitespace: true }],
                                 })(
-                                    <Input placeholder="Please input your rtServiceImpl Sec Path" />
+                                    <Input placeholder="Please input your rtServiceImplSecPath" />
                                 )}
                             </Form.Item>
 
