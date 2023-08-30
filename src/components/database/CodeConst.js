@@ -24,14 +24,14 @@ export const IAM_STAR = () => {
 
 export const IAM_TRUKING = () => {
     return {"databaseAddress": "192.168.2.143", "databaseType": "mysql", "databasePort": "3306", "sysDatabaseSchema": "information_schema", "databaseUsername": "platform"
-        , "databasePassword": "JCPdb123", "businessDatabaseSchema": "iam_truking", "codePackage": "cn.jwis.product.ppm.integration", "xmlWithSchema": 1
+        , "databasePassword": "JCPdb123", "businessDatabaseSchema": "iam_truking", "codePackage": "cn.jwis.product.ppm.customer", "xmlWithSchema": 1
         , "DatabaseInfoMapperSecPath": "repo/mapper"}
 }
 
 export const PPM_TRUKING = () => {
     return {"databaseAddress": "192.168.2.143", "databaseType": "mysql", "databasePort": "3306", "sysDatabaseSchema": "information_schema", "databaseUsername": "platform"
-        , "databasePassword": "JCPdb123", "businessDatabaseSchema": "ppm_truking", "codePackage": "cn.jwis.product.ppm.integration", "xmlWithSchema": 1
-        , "DatabaseInfoMapperSecPath": "repo/mapper"}
+        , "databasePassword": "JCPdb123", "businessDatabaseSchema": "ppm_truking", "codePackage": "cn.jwis.product.ppm.customer", "xmlWithSchema": 0
+        , "DatabaseInfoMapperSecPath": ""}
 }
 
 export const PPM_XINGBANG = () => {
@@ -253,16 +253,59 @@ export const PPM_STAR_RISK = (() => {
 
 
 export const PPM_TRUKING_USER = (() => {
-    let defaultQueryTable = "user", EntitySecPath = "entity", MapperDaoSecPath = "repo/mapper", ControllerSecPath = "web", ServiceImplSecPath = "impl"
-        , mtRtJoinType = 0, mtName = "none", mtEntitySecPath = "none", mtMapperDaoSecPath = "none", mtServiceImplSecPath = "none"
-        , rtName = "none", rtEntitySecPath = "none", rtMapperDaoSecPath = "none", rtServiceImplSecPath = "none"
-        , BaseEntitySecPath = "entity", PageInfoEntitySecPath = BaseEntitySecPath, IServiceSecPath = "interf", CommonControllerSecPath = "web"
+    let retainColumnName = 0, defaultQueryTable = "user", EntitySecPath = "entity", MapperDaoSecPath = "repo/mysql/mapper", ControllerSecPath = "web", ServiceImplSecPath = "service/impl"
+        , mtRtJoinType = 0, displayMiddle = 0, containLinear = 0, linearIndexList = 0,  mtName = "none", mtEntitySecPath = "none", mtMapperDaoSecPath = "none"
+        , BaseEntitySecPath = "entity", PageInfoEntitySecPath = BaseEntitySecPath, IServiceSecPath = "service/interf", CommonControllerSecPath = "web"
         , MapperXmlSecPath = MapperDaoSecPath, MapperParamXmlSecPath = MapperXmlSecPath + "/param"
+
+        , mtServiceImplSecPath = "none", mtMapperXmlSecPath = "repo/mysql/mapper", mtMapperParamXmlSecPath = mtMapperXmlSecPath + "/param"
+        , mtFromColumn = "FROM_OID", mtToColumn = "TO_OID"
+
+        , rtName = "none", rtEntitySecPath = "none", rtMapperDaoSecPath = "none", rtServiceImplSecPath = "none", rtMapperXmlSecPath = "repo/mysql/mapper"
+        , rtMapperParamXmlSecPath = rtMapperXmlSecPath + "/param"
     ;
 
-    return Object.assign ({}, PPM_TRUKING(), {defaultQueryTable, BaseEntitySecPath, PageInfoEntitySecPath, IServiceSecPath, CommonControllerSecPath, EntitySecPath, MapperDaoSecPath
-        , ControllerSecPath, ServiceImplSecPath, MapperXmlSecPath, MapperParamXmlSecPath, mtRtJoinType, mtName, mtEntitySecPath, mtMapperDaoSecPath, mtServiceImplSecPath
-        , rtName, rtEntitySecPath, rtMapperDaoSecPath, rtServiceImplSecPath})
+    return Object.assign ({}, PPM_TRUKING(), {retainColumnName, defaultQueryTable, BaseEntitySecPath, PageInfoEntitySecPath, IServiceSecPath, CommonControllerSecPath, EntitySecPath, MapperDaoSecPath
+        , ControllerSecPath, ServiceImplSecPath, MapperXmlSecPath, MapperParamXmlSecPath, mtRtJoinType, displayMiddle, containLinear, linearIndexList, mtName, mtEntitySecPath, mtMapperDaoSecPath, mtMapperXmlSecPath, mtMapperParamXmlSecPath, mtServiceImplSecPath
+        , mtFromColumn, mtToColumn, rtName, rtEntitySecPath, rtMapperDaoSecPath, rtMapperXmlSecPath, rtMapperParamXmlSecPath, rtServiceImplSecPath})
+})()
+
+export const PPM_TRUKING_PROJECT_PROJECTTEAM = (() => {
+    let retainColumnName = 0, defaultQueryTable = "PROJECT", EntitySecPath = "entity", MapperDaoSecPath = "repo/mysql/mapper", ControllerSecPath = "web", ServiceImplSecPath = "service/impl"
+        , BaseEntitySecPath = "entity", PageInfoEntitySecPath = BaseEntitySecPath, IServiceSecPath = "service/interf", CommonControllerSecPath = "web"
+        , MapperXmlSecPath = MapperDaoSecPath, MapperParamXmlSecPath = MapperXmlSecPath + "/param"
+
+        , mtRtJoinType = "1, 1, 3, 3", displayMiddle = 0, containLinear = 1, linearIndexList = 1, mtName = "department, projectmaster_contain_projectteam, projectteam_assign_projectteamrole, projectteamrole_assign_user"
+        , mtEntitySecPath = "entity", mtMapperDaoSecPath = "repo/mysql/mapper"
+        , mtMapperXmlSecPath = "repo/mysql/mapper", mtMapperParamXmlSecPath = mtMapperXmlSecPath + "/param", mtServiceImplSecPath = "service/impl"
+        , mtFromColumn = "FROM_OID", mtToColumn = "TO_OID"
+
+        , rtName = "projectmaster, projectteam, projectteamrole, user", rtEntitySecPath = "entity", rtMapperDaoSecPath = "repo/mysql/mapper"
+        , rtMapperXmlSecPath = "repo/mysql/mapper", rtMapperParamXmlSecPath = rtMapperXmlSecPath + "/param", rtServiceImplSecPath = "service/impl"
+    ;
+
+    return Object.assign ({}, PPM_TRUKING(), {retainColumnName, defaultQueryTable, BaseEntitySecPath, PageInfoEntitySecPath, IServiceSecPath, CommonControllerSecPath, EntitySecPath, MapperDaoSecPath
+        , ControllerSecPath, ServiceImplSecPath, MapperXmlSecPath, MapperParamXmlSecPath, mtRtJoinType, displayMiddle, containLinear, linearIndexList, mtName, mtEntitySecPath, mtMapperDaoSecPath, mtMapperXmlSecPath, mtMapperParamXmlSecPath, mtServiceImplSecPath
+        , mtFromColumn, mtToColumn, rtName, rtEntitySecPath, rtMapperDaoSecPath, rtMapperXmlSecPath, rtMapperParamXmlSecPath, rtServiceImplSecPath})
+})()
+
+export const PPM_TRUKING_PROGRAM_PROJECTTEAM = (() => {
+    let retainColumnName = 0, defaultQueryTable = "PROGRAM", EntitySecPath = "entity", MapperDaoSecPath = "repo/mysql/mapper", ControllerSecPath = "web", ServiceImplSecPath = "service/impl"
+        , BaseEntitySecPath = "entity", PageInfoEntitySecPath = BaseEntitySecPath, IServiceSecPath = "service/interf", CommonControllerSecPath = "web"
+        , MapperXmlSecPath = MapperDaoSecPath, MapperParamXmlSecPath = MapperXmlSecPath + "/param"
+
+        , mtRtJoinType = "1, 1, 3, 3", displayMiddle = 0, containLinear = 1, linearIndexList = 1, mtName = "department, programmaster_contain_projectteam, projectteam_assign_projectteamrole, projectteamrole_assign_user"
+        , mtEntitySecPath = "entity", mtMapperDaoSecPath = "repo/mysql/mapper"
+        , mtMapperXmlSecPath = "repo/mysql/mapper", mtMapperParamXmlSecPath = mtMapperXmlSecPath + "/param", mtServiceImplSecPath = "service/impl"
+        , mtFromColumn = "FROM_OID", mtToColumn = "TO_OID"
+
+        , rtName = "programmaster, projectteam, projectteamrole, user", rtEntitySecPath = "entity", rtMapperDaoSecPath = "repo/mysql/mapper"
+        , rtMapperXmlSecPath = "repo/mysql/mapper", rtMapperParamXmlSecPath = rtMapperXmlSecPath + "/param", rtServiceImplSecPath = "service/impl"
+    ;
+
+    return Object.assign ({}, PPM_TRUKING(), {retainColumnName, defaultQueryTable, BaseEntitySecPath, PageInfoEntitySecPath, IServiceSecPath, CommonControllerSecPath, EntitySecPath, MapperDaoSecPath
+        , ControllerSecPath, ServiceImplSecPath, MapperXmlSecPath, MapperParamXmlSecPath, mtRtJoinType, displayMiddle, containLinear, linearIndexList, mtName, mtEntitySecPath, mtMapperDaoSecPath, mtMapperXmlSecPath, mtMapperParamXmlSecPath, mtServiceImplSecPath
+        , mtFromColumn, mtToColumn, rtName, rtEntitySecPath, rtMapperDaoSecPath, rtMapperXmlSecPath, rtMapperParamXmlSecPath, rtServiceImplSecPath})
 })()
 
 

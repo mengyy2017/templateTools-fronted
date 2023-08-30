@@ -10,24 +10,24 @@ class CodeFormInfo extends React.Component{
         this.props.form.validateFieldsAndScroll((err, values) => {
             if (!err) {
 
-                let mtRtJoinType = values['mtRtJoinType'], rtName = values['rtName']
-                if(0 != mtRtJoinType){
+                let rtName = values['rtName']
+                let rtNameLen = rtName.replaceAll(" ", "").split(",").length
 
-                    let rtNameLen = rtName.replaceAll(" ", "").split(",").length
-                    for(let [k, v] of Object.entries(values)){
+                for(let [k, v] of Object.entries(values)){
 
-                        if(k.startsWith("mt") || k.startsWith("rt")) {
+                    if(k.startsWith("mt") || k.startsWith("rt")) {
 
-                            var valueArr = Number.isFinite(v) ? [v] : v.replaceAll(" ", "").split(",")
-                            if(valueArr.length < rtNameLen)
-                                for (let i = 1; i < rtNameLen; i++)
-                                    valueArr[i] = valueArr[0]
+                        var valueArr = Number.isFinite(v) ? [v] : v.replaceAll(" ", "").split(",")
+                        if(valueArr.length < rtNameLen)
+                            for (let i = 1; i < rtNameLen; i++)
+                                valueArr[i] = valueArr[0]
 
-                            values[k] = valueArr;
-                        }
-                    }
+                        values[k] = valueArr;
+                    }else if(k == "linearIndexList")
+                        values[k] = Number.isFinite(v) ? [v] : v.replaceAll(" ", "").split(",")
 
                 }
+
                 this.props.dispatch(setCodeInfoAction(values))
                 this.props.changeActiveKey("1")
             }
@@ -203,21 +203,48 @@ class CodeFormInfo extends React.Component{
 
                         <Col push={8} span={12} style={{position: "absolute", marginTop: "0%"}}>
 
-                            <Form.Item {...formItemLayoutSec} label="retainColumnName">
-                                {getFieldDecorator('retainColumnName', {
-                                    initialValue: info.retainColumnName,
-                                    rules: [{ required: false }],
-                                })(
-                                    <Input />
-                                )}
-                            </Form.Item>
-
                             <Form.Item {...formItemLayoutSec} label="default query table">
                                 {getFieldDecorator('defaultQueryTable', {
                                     initialValue: "",
                                     rules: [{ required: false, whitespace: true }],
                                 })(
                                     <Input />
+                                )}
+                            </Form.Item>
+
+                            <Form.Item {...formItemLayoutSec} label="mtRtJoinType">
+                                {getFieldDecorator('mtRtJoinType', {
+                                    initialValue: info.mtRtJoinType,
+                                    rules: [{ required: false }],
+                                })(
+                                    <Input placeholder="Please input your mtRtJoinType" />
+                                )}
+                            </Form.Item>
+
+                            <Form.Item {...formItemLayoutSec} label="displayMiddle">
+                                {getFieldDecorator('displayMiddle', {
+                                    initialValue: info.displayMiddle,
+                                    rules: [{ required: false }],
+                                })(
+                                    <Input placeholder="Please input your displayMiddle" />
+                                )}
+                            </Form.Item>
+
+                            <Form.Item {...formItemLayoutSec} label="containLinear">
+                                {getFieldDecorator('containLinear', {
+                                    initialValue: info.containLinear,
+                                    rules: [{ required: false }],
+                                })(
+                                    <Input placeholder="Please input your containLinear" />
+                                )}
+                            </Form.Item>
+
+                            <Form.Item {...formItemLayoutSec} label="linearIndexList">
+                                {getFieldDecorator('linearIndexList', {
+                                    initialValue: info.linearIndexList,
+                                    rules: [{ required: false }],
+                                })(
+                                    <Input placeholder="Please input your linearIndexList" />
                                 )}
                             </Form.Item>
 
@@ -314,21 +341,13 @@ class CodeFormInfo extends React.Component{
                         </Col>
 
                         <Col push={16} span={12} style={{position: "absolute", marginTop: "0%"}}>
-                            <Form.Item {...formItemLayoutSec} label="mtRtJoinType">
-                                {getFieldDecorator('mtRtJoinType', {
-                                    initialValue: info.mtRtJoinType,
-                                    rules: [{ required: false }],
-                                })(
-                                    <Input placeholder="Please input your mtRtJoinType" />
-                                )}
-                            </Form.Item>
 
-                            <Form.Item {...formItemLayoutSec} label="displayMiddle">
-                                {getFieldDecorator('displayMiddle', {
-                                    initialValue: info.displayMiddle,
+                            <Form.Item {...formItemLayoutSec} label="retainColumnName">
+                                {getFieldDecorator('retainColumnName', {
+                                    initialValue: info.retainColumnName,
                                     rules: [{ required: false }],
                                 })(
-                                    <Input placeholder="Please input your displayMiddle" />
+                                    <Input />
                                 )}
                             </Form.Item>
 

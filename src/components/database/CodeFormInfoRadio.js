@@ -2,7 +2,7 @@ import React  from 'react';
 import {Radio, Row, Col} from 'antd';
 import {connect} from "react-redux";
 import {codeFormRadioChangeAction} from 'actions/database/codeFormRadioAction'
-import {PPM_TRUKING_USER, PPM_XINGBANG_NONE, PPM_XINGBANG_PROJECT, PPM_XINGBANG_PPMECR, PPM_XINGBANG_USREDEPARTMENT, PPM_XINGBANG_USRE_TENANT, PPM_STAR_RISK} from "components/database/CodeConst"
+import {PPM_TRUKING_USER, PPM_XINGBANG_NONE, PPM_XINGBANG_PROJECT, PPM_XINGBANG_PPMECR, PPM_XINGBANG_USREDEPARTMENT, PPM_XINGBANG_USRE_TENANT, PPM_STAR_RISK, PPM_TRUKING_PROGRAM_PROJECTTEAM} from "components/database/CodeConst"
 
 class CodeFormInfoRadio extends React.Component{
 
@@ -15,7 +15,7 @@ class CodeFormInfoRadio extends React.Component{
         this.props.dispatch(codeFormRadioChangeAction(e.target.value))
     }
 
-    DEFAULT_VAL = PPM_STAR_RISK;
+    DEFAULT_VAL = PPM_TRUKING_PROGRAM_PROJECTTEAM;
 
     render = () => {
         return (
@@ -29,6 +29,7 @@ class CodeFormInfoRadio extends React.Component{
                         <Radio value={PPM_XINGBANG_USREDEPARTMENT}>PPM_XINGBANG_USREDEPARTMENT</Radio>
                         <Radio value={PPM_XINGBANG_USRE_TENANT}>PPM_XINGBANG_USRE_TENANT</Radio>
                         <Radio value={PPM_STAR_RISK}>PPM_STAR_RISK</Radio>
+                        <Radio value={PPM_TRUKING_PROGRAM_PROJECTTEAM}>PPM_TRUKING_PROGRAM_PROJECTTEAM</Radio>
                     </Radio.Group>
                 </Col>
             </Row>
