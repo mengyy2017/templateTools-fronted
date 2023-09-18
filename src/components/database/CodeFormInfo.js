@@ -212,12 +212,21 @@ class CodeFormInfo extends React.Component{
                                 )}
                             </Form.Item>
 
-                            <Form.Item {...formItemLayoutSec} label="mtRtJoinType">
-                                {getFieldDecorator('mtRtJoinType', {
-                                    initialValue: info.mtRtJoinType,
+                            <Form.Item {...formItemLayoutSec} label="mtRtJoinTypeList">
+                                {getFieldDecorator('mtRtJoinTypeList', {
+                                    initialValue: info.mtRtJoinTypeList,
                                     rules: [{ required: false }],
                                 })(
-                                    <Input placeholder="Please input your mtRtJoinType" />
+                                    <Input placeholder="Please input your mtRtJoinTypeList" />
+                                )}
+                            </Form.Item>
+
+                            <Form.Item {...formItemLayoutSec} label="one2ManyPage">
+                                {getFieldDecorator('one2ManyPage', {
+                                    initialValue: info.one2ManyPage,
+                                    rules: [{ required: false }],
+                                })(
+                                    <Input placeholder="Please input your one2ManyPage" />
                                 )}
                             </Form.Item>
 

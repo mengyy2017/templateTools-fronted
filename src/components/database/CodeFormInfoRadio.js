@@ -2,7 +2,7 @@ import React  from 'react';
 import {Radio, Row, Col} from 'antd';
 import {connect} from "react-redux";
 import {codeFormRadioChangeAction} from 'actions/database/codeFormRadioAction'
-import {PPM_TRUKING_USER, PPM_XINGBANG_NONE, PPM_XINGBANG_PROJECT, PPM_XINGBANG_PPMECR, PPM_XINGBANG_USREDEPARTMENT, PPM_XINGBANG_USRE_TENANT, PPM_STAR_RISK, PPM_TRUKING_PROGRAM_PROJECTTEAM} from "components/database/CodeConst"
+import {PPM_TRUKING_USER, PPM_STAR_RISK, PDM_STAR_DEVIATEDOC, PPM_TRUKING_PROGRAM_PROJECTTEAM, PPM_TRUKING_PROJECT_PROJECTTEAM} from "components/database/CodeConst"
 
 class CodeFormInfoRadio extends React.Component{
 
@@ -15,7 +15,7 @@ class CodeFormInfoRadio extends React.Component{
         this.props.dispatch(codeFormRadioChangeAction(e.target.value))
     }
 
-    DEFAULT_VAL = PPM_TRUKING_PROGRAM_PROJECTTEAM;
+    DEFAULT_VAL = PPM_TRUKING_PROJECT_PROJECTTEAM;
 
     render = () => {
         return (
@@ -23,13 +23,10 @@ class CodeFormInfoRadio extends React.Component{
                 <Col offset={6}>
                     <Radio.Group onChange={this.onChange} value={this.props.info}>
                         <Radio value={PPM_TRUKING_USER}>PPM_TRUKING_USER</Radio>
-                        <Radio value={PPM_XINGBANG_NONE}>PPM_XINGBANG_NONE</Radio>
-                        <Radio value={PPM_XINGBANG_PROJECT}>PPM_XINGBANG_PROJECT</Radio>
-                        <Radio value={PPM_XINGBANG_PPMECR}>PPM_XINGBANG_PPMECR</Radio>
-                        <Radio value={PPM_XINGBANG_USREDEPARTMENT}>PPM_XINGBANG_USREDEPARTMENT</Radio>
-                        <Radio value={PPM_XINGBANG_USRE_TENANT}>PPM_XINGBANG_USRE_TENANT</Radio>
+                        <Radio value={PDM_STAR_DEVIATEDOC}>PDM_STAR_DEVIATEDOC</Radio>
                         <Radio value={PPM_STAR_RISK}>PPM_STAR_RISK</Radio>
                         <Radio value={PPM_TRUKING_PROGRAM_PROJECTTEAM}>PPM_TRUKING_PROGRAM_PROJECTTEAM</Radio>
+                        <Radio value={PPM_TRUKING_PROJECT_PROJECTTEAM}>PPM_TRUKING_PROJECT_PROJECTTEAM</Radio>
                     </Radio.Group>
                 </Col>
             </Row>
