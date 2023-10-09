@@ -221,12 +221,30 @@ class CodeFormInfo extends React.Component{
                                 )}
                             </Form.Item>
 
+                            <Form.Item {...formItemLayoutSec} label="mtRtJoinHasMiddleList">
+                                {getFieldDecorator('mtRtJoinHasMiddleList', {
+                                    initialValue: info.mtRtJoinHasMiddleList,
+                                    rules: [{ required: false }],
+                                })(
+                                    <Input placeholder="Please input your mtRtJoinHasMiddleList" />
+                                )}
+                            </Form.Item>
+
                             <Form.Item {...formItemLayoutSec} label="one2ManyPage">
                                 {getFieldDecorator('one2ManyPage', {
                                     initialValue: info.one2ManyPage,
                                     rules: [{ required: false }],
                                 })(
                                     <Input placeholder="Please input your one2ManyPage" />
+                                )}
+                            </Form.Item>
+
+                            <Form.Item {...formItemLayoutSec} label="insertCascade">
+                                {getFieldDecorator('insertCascade', {
+                                    initialValue: info.insertCascade,
+                                    rules: [{ required: false }],
+                                })(
+                                    <Input placeholder="Please input your insertCascade" />
                                 )}
                             </Form.Item>
 
