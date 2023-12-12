@@ -207,7 +207,7 @@ export const PPM_TRUKING_OUTBOUND_REQUI = (() => {
 })()
 
 export const PPM_TRUKING_PACKAGING = (() => {
-    let retainColumnName = 0, defaultQueryTable = "packaging_material_requisition", EntitySecPath = "entity", MapperDaoSecPath = "repo/mysql/mapper", ControllerSecPath = "web", ServiceImplSecPath = "service/impl"
+    let retainColumnName = 0, defaultQueryTable = "packaging_requisition", EntitySecPath = "entity", MapperDaoSecPath = "repo/mysql/mapper", ControllerSecPath = "web", ServiceImplSecPath = "service/impl"
         , BaseEntitySecPath = "entity", PageInfoEntitySecPath = BaseEntitySecPath, IServiceSecPath = "service/interf", CommonControllerSecPath = "web"
         , MapperXmlSecPath = MapperDaoSecPath, MapperParamXmlSecPath = MapperXmlSecPath + "/param"
 
@@ -216,7 +216,7 @@ export const PPM_TRUKING_PACKAGING = (() => {
         , mtMapperXmlSecPath = "repo/mysql/mapper", mtMapperParamXmlSecPath = mtMapperXmlSecPath + "/param", mtServiceImplSecPath = "service/impl"
         , mtFromColumn = "OID", mtToColumn = "REQUISITION_OID"
 
-        , rtName = "packaging_material_requisition_item, packaging_material_requisition_file", rtEntitySecPath = "entity", rtMapperDaoSecPath = "repo/mysql/mapper"
+        , rtName = "packaging_requisition_item", rtEntitySecPath = "entity", rtMapperDaoSecPath = "repo/mysql/mapper"
         , rtMapperXmlSecPath = "repo/mysql/mapper", rtMapperParamXmlSecPath = rtMapperXmlSecPath + "/param", rtServiceImplSecPath = "service/impl"
     ;
 
